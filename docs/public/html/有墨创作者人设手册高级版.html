@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内容创作者人设搭建手册 v4 — Creator Persona Document</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap');
+
+  :root {
+    --gold: #C9A96E; --gold-light: #E8D5A3; --gold-dark: #A07D3A;
+    --black: #1A1A1A; --charcoal: #2D2D2D; --dark-gray: #444;
+    --mid-gray: #888; --light-gray: #C8C8C8;
+    --off-white: #F8F6F1; --warm-white: #FEFDFB;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--off-white); color:var(--charcoal); font-family:'Noto Sans SC','Inter',-apple-system,sans-serif; font-weight:400; line-height:1.8; -webkit-font-smoothing:antialiased; }
+
+  /* COVER */
+  .cover { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background:linear-gradient(160deg,#1A1A1A 0%,#2D2D2D 45%,#3A3028 100%); position:relative; overflow:hidden; }
+  .cover::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(ellipse at 25% 55%,rgba(201,169,110,.09) 0%,transparent 55%),radial-gradient(ellipse at 75% 25%,rgba(201,169,110,.06) 0%,transparent 50%); animation:shimmer 9s ease-in-out infinite alternate; }
+  @keyframes shimmer { 0%{transform:translateX(-2%) translateY(-1%)} 100%{transform:translateX(2%) translateY(1%)} }
+  .cover-content { position:relative; z-index:1; text-align:center; padding:3rem 2rem; }
+  .cover-rule { width:56px; height:1px; background:var(--gold); margin:0 auto 2.5rem; }
+  .cover-eyebrow { font-size:.72rem; letter-spacing:.4rem; color:var(--gold-light); opacity:.55; text-transform:uppercase; margin-bottom:1.4rem; font-weight:300; }
+  .cover-title { font-family:'Noto Serif SC','Playfair Display',serif; font-size:2.7rem; font-weight:700; color:var(--gold); letter-spacing:.5rem; margin-bottom:.8rem; }
+  .cover-subtitle { font-family:'Playfair Display',serif; font-size:.95rem; color:var(--gold-light); letter-spacing:.35rem; text-transform:uppercase; opacity:.55; margin-bottom:2.2rem; }
+  .cover-desc { font-size:.84rem; color:var(--light-gray); font-weight:300; max-width:420px; margin:0 auto; line-height:2.1; }
+  .niches { display:flex; flex-wrap:wrap; justify-content:center; gap:.5rem; margin-top:2.2rem; }
+  .niche { font-size:.7rem; color:var(--gold-light); border:1px solid rgba(201,169,110,.22); border-radius:20px; padding:.25rem .85rem; font-weight:300; opacity:.65; }
+  .cover-rule-sm { width:36px; height:1px; background:var(--gold-dark); margin:2.8rem auto 0; opacity:.45; }
+
+  /* TOC */
+  .toc { max-width:860px; margin:3rem auto 0; padding:2.5rem 2.5rem 0; }
+  .toc-title { font-family:'Noto Serif SC',serif; font-size:.8rem; color:var(--mid-gray); letter-spacing:.25rem; margin-bottom:1.2rem; }
+  .toc-grid { display:grid; grid-template-columns:1fr 1fr; gap:.45rem 2rem; }
+  .toc-item { display:flex; align-items:center; gap:.7rem; font-size:.82rem; color:var(--dark-gray); font-weight:300; padding:.35rem 0; border-bottom:1px solid rgba(201,169,110,.1); }
+  .toc-num { font-family:'Playfair Display',serif; font-size:.75rem; color:var(--gold); font-weight:600; min-width:22px; opacity:.7; }
+
+  /* CONTAINER */
+  .container { max-width:860px; margin:0 auto; padding:3rem 2.5rem 4rem; }
+
+  /* SECTION */
+  .section { margin-bottom:4rem; }
+  .section-header { display:flex; align-items:center; gap:1.2rem; margin-bottom:.6rem; }
+  .section-num { font-family:'Playfair Display',serif; font-size:3rem; font-weight:700; color:var(--gold); line-height:1; opacity:.32; min-width:60px; }
+  .section-title-group { flex:1; }
+  .section-title { font-family:'Noto Serif SC','Playfair Display',serif; font-size:1.32rem; font-weight:600; color:var(--black); letter-spacing:.25rem; }
+  .section-subtitle { font-size:.78rem; color:var(--mid-gray); letter-spacing:.08rem; margin-top:.2rem; font-weight:300; }
+  .section-divider { width:100%; height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin:1rem 0 2rem; opacity:.38; }
+
+  /* FIELDS */
+  .fields-wrapper { border-radius:8px; overflow:hidden; box-shadow:0 1px 8px rgba(0,0,0,.03); }
+  .field-card { background:var(--warm-white); border:1px solid rgba(201,169,110,.11); border-radius:6px; padding:1.8rem 2.2rem; margin-bottom:1px; transition:border-color .25s,box-shadow .25s; }
+  .field-card:hover { border-color:rgba(201,169,110,.28); box-shadow:0 4px 18px rgba(201,169,110,.05); }
+  .field-card+.field-card { margin-top:-1px; }
+  .field-label { font-family:'Noto Serif SC',serif; font-size:.83rem; font-weight:600; color:var(--gold-dark); letter-spacing:.13rem; margin-bottom:.5rem; display:flex; align-items:center; gap:.5rem; }
+  .field-label::before { content:''; width:3px; height:13px; background:var(--gold); border-radius:2px; opacity:.55; flex-shrink:0; }
+  .field-value { font-size:.88rem; color:var(--dark-gray); line-height:2.1; padding-left:1rem; font-weight:300; }
+  .blank { display:inline-block; min-width:160px; border-bottom:1px solid var(--light-gray); margin:0 .3rem; padding:0 .4rem; color:#ccc; font-style:italic; font-size:.8rem; }
+  .option { display:inline-flex; align-items:center; gap:.3rem; margin-right:1.1rem; margin-bottom:.35rem; font-size:.86rem; }
+  .checkbox { width:15px; height:15px; border:1.5px solid var(--light-gray); border-radius:3px; display:inline-block; vertical-align:middle; position:relative; top:-1px; flex-shrink:0; }
+  .field-hint { font-size:.76rem; color:var(--mid-gray); margin-top:.4rem; padding-left:1rem; font-style:italic; line-height:1.6; }
+
+  /* Bio preview */
+  .bio-preview { margin-top:.8rem; padding:1.2rem 1.5rem; background:#f5f5f5; border-radius:8px; border:1px dashed var(--light-gray); }
+  .bio-preview-label { font-size:.72rem; color:var(--mid-gray); letter-spacing:.1rem; margin-bottom:.6rem; }
+  .bio-line { border-bottom:1px solid var(--light-gray); min-height:28px; margin-bottom:.5rem; font-size:.85rem; color:#bbb; padding:2px 6px; }
+  .bio-line:last-child { margin-bottom:0; }
+
+  /* SOP steps */
+  .sop-steps { margin-top:.5rem; padding-left:1rem; }
+  .sop-step { display:flex; align-items:flex-start; gap:1rem; padding:.7rem 0; border-bottom:1px solid rgba(201,169,110,.1); }
+  .sop-step:last-child { border-bottom:none; }
+  .sop-num { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gold); opacity:.5; min-width:24px; font-weight:700; line-height:1.4; }
+  .sop-content { flex:1; font-size:.86rem; color:var(--dark-gray); font-weight:300; }
+  .sop-name { font-weight:500; color:var(--black); margin-bottom:.2rem; font-size:.88rem; }
+  .sop-fill { display:flex; gap:1rem; margin-top:.3rem; flex-wrap:wrap; }
+  .sop-fill span { font-size:.78rem; color:var(--mid-gray); }
+
+  /* Table */
+  .table-fields { width:100%; border-collapse:collapse; margin-top:.5rem; }
+  .table-fields th { font-size:.75rem; color:var(--gold-dark); font-weight:600; letter-spacing:.1rem; padding:.5rem .8rem; border-bottom:1px solid rgba(201,169,110,.2); text-align:left; background:rgba(201,169,110,.04); }
+  .table-fields td { padding:.6rem .8rem; border-bottom:1px solid rgba(0,0,0,.04); font-size:.84rem; color:var(--dark-gray); font-weight:300; }
+  .table-fields td .blank { min-width:80px; }
+  .table-fields tr:last-child td { border-bottom:none; }
+
+  /* Data card */
+  .data-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:.6rem; }
+  .data-card { padding:1rem 1.2rem; border:1px solid rgba(201,169,110,.15); border-radius:6px; background:rgba(201,169,110,.03); }
+  .data-card-label { font-size:.72rem; color:var(--gold-dark); font-weight:600; letter-spacing:.1rem; margin-bottom:.4rem; }
+  .data-card-value { font-size:.85rem; color:var(--dark-gray); font-weight:300; }
+
+  /* TIP BAR */
+  .tip-bar { margin-top:1.2rem; padding:.9rem 1.4rem; background:linear-gradient(135deg,rgba(201,169,110,.06),rgba(201,169,110,.01)); border-left:2px solid var(--gold-light); border-radius:0 6px 6px 0; font-size:.77rem; color:var(--mid-gray); font-weight:300; line-height:1.75; }
+  .tip-icon { color:var(--gold); margin-right:.35rem; }
+
+  /* THEMES */
+  .theme-rose .field-card{background:linear-gradient(135deg,#FEFCFB,#FDF5F3)} .theme-rose .field-label::before{background:#D4836D} .theme-rose .field-label{color:#B56A52}
+  .theme-sage .field-card{background:linear-gradient(135deg,#FCFEFC,#F4F9F3)} .theme-sage .field-label::before{background:#7DA677} .theme-sage .field-label{color:#5D8A56}
+  .theme-lav .field-card{background:linear-gradient(135deg,#FDFCFE,#F6F2FA)} .theme-lav .field-label::before{background:#9B7DBF} .theme-lav .field-label{color:#7D5FA3}
+  .theme-sky .field-card{background:linear-gradient(135deg,#FCFDFE,#F2F6FC)} .theme-sky .field-label::before{background:#7A9EC2} .theme-sky .field-label{color:#5A7FA3}
+  .theme-peach .field-card{background:linear-gradient(135deg,#FEFDFC,#FBF5EE)} .theme-peach .field-label::before{background:#CDA065} .theme-peach .field-label{color:#A67D42}
+  .theme-teal .field-card{background:linear-gradient(135deg,#FBFEFE,#EEF8F6)} .theme-teal .field-label::before{background:#5CA89A} .theme-teal .field-label{color:#3D8A7B}
+  .theme-amber .field-card{background:linear-gradient(135deg,#FEFEF9,#FAF6E8)} .theme-amber .field-label::before{background:#C49A2A} .theme-amber .field-label{color:#9E7A18}
+  .theme-slate .field-card{background:linear-gradient(135deg,#FBFCFE,#EFF2F7)} .theme-slate .field-label::before{background:#6B82A8} .theme-slate .field-label{color:#4E6589}
+  .theme-mint .field-card{background:linear-gradient(135deg,#FAFEFE,#EAF7F4)} .theme-mint .field-label::before{background:#3DAA90} .theme-mint .field-label{color:#2A8A72}
+  .theme-coral .field-card{background:linear-gradient(135deg,#FEFBFA,#FAEEE9)} .theme-coral .field-label::before{background:#C96B50} .theme-coral .field-label{color:#A84E36}
+  .theme-indigo .field-card{background:linear-gradient(135deg,#FAFBFE,#EEF0FA)} .theme-indigo .field-label::before{background:#5A6DB5} .theme-indigo .field-label{color:#3E52A0}
+  .theme-rose2 .field-card{background:linear-gradient(135deg,#FEFAFA,#FAF0F0)} .theme-rose2 .field-label::before{background:#B85C6E} .theme-rose2 .field-label{color:#96404F}
+  .theme-olive .field-card{background:linear-gradient(135deg,#FBFDF8,#F0F5E8)} .theme-olive .field-label::before{background:#7A9A45} .theme-olive .field-label{color:#5E7C2E}
+  .theme-wine .field-card{background:linear-gradient(135deg,#FEFBFC,#F7EEF2)} .theme-wine .field-label::before{background:#9B4A6B} .theme-wine .field-label{color:#7D3353}
+  .theme-ocean .field-card{background:linear-gradient(135deg,#FAFCFE,#ECF3FA)} .theme-ocean .field-label::before{background:#4A7FAA} .theme-ocean .field-label{color:#2E6390}
+
+  /* CHECKLIST */
+  .checklist-section { margin-top:4rem; padding:3rem; background:var(--charcoal); border-radius:10px; position:relative; overflow:hidden; }
+  .checklist-section::before { content:''; position:absolute; top:0; right:0; width:220px; height:220px; background:radial-gradient(circle,rgba(201,169,110,.07),transparent 70%); }
+  .checklist-title { font-family:'Noto Serif SC',serif; font-size:1.15rem; color:var(--gold); letter-spacing:.28rem; margin-bottom:.45rem; position:relative; }
+  .checklist-desc { font-size:.78rem; color:var(--light-gray); margin-bottom:1.8rem; font-weight:300; opacity:.68; }
+  .checklist-group { margin-bottom:1.4rem; }
+  .checklist-group-title { font-size:.72rem; color:var(--gold); letter-spacing:.2rem; margin-bottom:.5rem; opacity:.7; font-weight:400; }
+  .check-item { display:flex; align-items:flex-start; gap:.8rem; padding:.6rem 0; border-bottom:1px solid rgba(255,255,255,.05); }
+  .check-item:last-child { border-bottom:none; }
+  .check-box { width:17px; height:17px; border:1.5px solid var(--gold-dark); border-radius:4px; flex-shrink:0; margin-top:3px; opacity:.58; }
+  .check-text { font-size:.86rem; color:rgba(255,255,255,.73); font-weight:300; line-height:1.65; }
+
+  /* FOOTER */
+  .footer { text-align:center; margin-top:5rem; padding:3rem 0; border-top:1px solid rgba(201,169,110,.14); }
+  .footer-emblem { font-size:1.4rem; margin-bottom:1rem; opacity:.28; color:var(--gold); }
+  .footer-rule { width:28px; height:1px; background:var(--gold); margin:0 auto 1.4rem; opacity:.38; }
+  .footer-text { font-family:'Noto Serif SC',serif; font-size:.88rem; color:var(--gold-dark); letter-spacing:.2rem; margin-bottom:.5rem; }
+  .footer-sub { font-size:.74rem; color:var(--light-gray); font-weight:300; letter-spacing:.08rem; }
+
+  @media print {
+    body{background:white}
+    .cover{min-height:100vh;page-break-after:always}
+    .toc{page-break-after:always}
+    .section,.checklist-section{page-break-inside:avoid}
+  }
+  @media(max-width:768px){
+    .container{padding:2rem 1.2rem}
+    .toc{padding:2rem 1.2rem 0}
+    .toc-grid{grid-template-columns:1fr}
+    .cover-title{font-size:1.8rem;letter-spacing:.28rem}
+    .field-card{padding:1.2rem 1.4rem}
+    .checklist-section{padding:2rem 1.4rem}
+    .section-num{font-size:2.2rem;min-width:42px}
+    .data-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-content">
+    <div class="cover-rule"></div>
+    <p class="cover-eyebrow">Content Creator · All Niches · v4.0</p>
+    <h1 class="cover-title">创作者人设手册</h1>
+    <p class="cover-subtitle">Creator Persona Document</p>
+    <p class="cover-desc">无论你做哪个赛道<br>先把「你是谁」想清楚，再谈涨粉变现<br>清晰人设是最强的内容竞争力</p>
+    <div class="niches">
+      <span class="niche">数码科技</span><span class="niche">汽车出行</span><span class="niche">美妆护肤</span>
+      <span class="niche">时尚穿搭</span><span class="niche">美食探店</span><span class="niche">健身运动</span>
+      <span class="niche">旅行露营</span><span class="niche">亲子家庭</span><span class="niche">知识财经</span>
+      <span class="niche">游戏娱乐</span><span class="niche">宠物萌宠</span><span class="niche">职场成长</span>
+    </div>
+    <div class="cover-rule-sm"></div>
+  </div>
+</section>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">目 录 · Contents</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01</span> 账号定位</div>
+    <div class="toc-item"><span class="toc-num">02</span> 人设内核</div>
+    <div class="toc-item"><span class="toc-num">03</span> 冷启动策略（第一个月）</div>
+    <div class="toc-item"><span class="toc-num">04</span> 账号简介（Bio）模板</div>
+    <div class="toc-item"><span class="toc-num">05</span> 视觉体系</div>
+    <div class="toc-item"><span class="toc-num">06</span> 话术体系</div>
+    <div class="toc-item"><span class="toc-num">07</span> 关键词 SEO 策略</div>
+    <div class="toc-item"><span class="toc-num">08</span> 内容规划框架</div>
+    <div class="toc-item"><span class="toc-num">09</span> 内容生产 SOP</div>
+    <div class="toc-item"><span class="toc-num">10</span> 粉丝互动管理</div>
+    <div class="toc-item"><span class="toc-num">11</span> 数据复盘模板</div>
+    <div class="toc-item"><span class="toc-num">12</span> 对标账号分析</div>
+    <div class="toc-item"><span class="toc-num">13</span> 粉丝画像</div>
+    <div class="toc-item"><span class="toc-num">14</span> 联动 / 互推策略</div>
+    <div class="toc-item"><span class="toc-num">15</span> 商务合作资料包</div>
+    <div class="toc-item"><span class="toc-num">16</span> 成长目标与里程碑</div>
+    <div class="toc-item"><span class="toc-num">✦</span> 人设自检清单</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 账号定位 -->
+  <div class="section theme-rose">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div class="section-title-group">
+        <h2 class="section-title">账 号 定 位</h2>
+        <p class="section-subtitle">Account Positioning — 先搞清楚你在做什么赛道</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">账号名称</div>
+        <div class="field-value"><span class="blank">　　　　　　　　　　</span></div>
+        <div class="field-hint">好名字三原则：好读 + 好搜 + 有联想。3—5 字最佳，避开生僻字。</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">内容赛道</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 数码 / 科技</span>
+          <span class="option"><span class="checkbox"></span> 汽车 / 出行</span>
+          <span class="option"><span class="checkbox"></span> 美妆 / 护肤</span>
+          <span class="option"><span class="checkbox"></span> 时尚 / 穿搭</span>
+          <span class="option"><span class="checkbox"></span> 美食 / 探店</span>
+          <span class="option"><span class="checkbox"></span> 健身 / 运动</span>
+          <span class="option"><span class="checkbox"></span> 旅行 / 露营</span>
+          <span class="option"><span class="checkbox"></span> 亲子 / 家庭</span>
+          <span class="option"><span class="checkbox"></span> 知识 / 财经</span>
+          <span class="option"><span class="checkbox"></span> 游戏 / 娱乐</span>
+          <span class="option"><span class="checkbox"></span> 宠物 / 萌宠</span>
+          <span class="option"><span class="checkbox"></span> 职场 / 成长</span>
+          <span class="option"><span class="checkbox"></span> 其他：<span class="blank" style="min-width:80px">　</span></span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">细分切口</div>
+        <div class="field-value">在<span class="blank" style="min-width:80px">　</span>赛道里，我专注<span class="blank" style="min-width:140px">　</span></div>
+        <div class="field-hint">如：汽车→新能源 SUV 横评 / 美妆→敏感肌平价替代 / 数码→手机摄影深度评测</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">一句话 Slogan</div>
+        <div class="field-value">"我是<span class="blank" style="min-width:80px">　</span>，专门帮<span class="blank" style="min-width:80px">　</span>解决<span class="blank" style="min-width:100px">　</span>"</div>
+        <div class="field-hint">15 字以内，说清楚：你是谁 + 帮谁 + 解决什么</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">主阵地平台</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 小红书</span>
+          <span class="option"><span class="checkbox"></span> 抖音</span>
+          <span class="option"><span class="checkbox"></span> 视频号</span>
+          <span class="option"><span class="checkbox"></span> B站</span>
+          <span class="option"><span class="checkbox"></span> 微博</span>
+          <span class="option"><span class="checkbox"></span> YouTube</span>
+          <span class="option"><span class="checkbox"></span> 播客</span>
+          <span class="option"><span class="checkbox"></span> 其他：<span class="blank" style="min-width:60px">　</span></span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">内容形式</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 图文笔记</span>
+          <span class="option"><span class="checkbox"></span> 短视频（60 秒内）</span>
+          <span class="option"><span class="checkbox"></span> 中长视频（3—15 分钟）</span>
+          <span class="option"><span class="checkbox"></span> 深度长视频（15 分钟以上）</span>
+          <span class="option"><span class="checkbox"></span> Vlog</span>
+          <span class="option"><span class="checkbox"></span> 直播</span>
+          <span class="option"><span class="checkbox"></span> 播客 / 音频</span>
+          <span class="option"><span class="checkbox"></span> 混合多形态</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">更新节奏</div>
+        <div class="field-value">每周<span class="blank" style="min-width:36px">　</span>条，固定<span class="blank" style="min-width:80px">　</span>发布</div>
+        <div class="field-hint">宁可稳定少发，也不要冲刺后断更。先承诺能坚持的频率。</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">变现目标</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 品牌商务合作</span>
+          <span class="option"><span class="checkbox"></span> 平台流量分成</span>
+          <span class="option"><span class="checkbox"></span> 带货电商</span>
+          <span class="option"><span class="checkbox"></span> 知识付费 / 课程</span>
+          <span class="option"><span class="checkbox"></span> 私域运营</span>
+          <span class="option"><span class="checkbox"></span> 暂不考虑变现</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 起步阶段：一个平台 + 一种形式 + 一个细分切口，做深比铺广更快出结果。</div>
+  </div>
+
+  <!-- 02 人设内核 -->
+  <div class="section theme-sage">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div class="section-title-group">
+        <h2 class="section-title">人 设 内 核</h2>
+        <p class="section-subtitle">Persona Core — 你是一个什么样的博主？</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">身份标签</div>
+        <div class="field-value"><span class="blank" style="min-width:260px">　</span></div>
+        <div class="field-hint">如：10 年老车主 / 皮肤科学生 / 月薪 5K 穿出精致感的女生 / 带娃爸爸的数码开箱</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">博主人设类型</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 专业测评型（数据 / 横评 / 深度）</span>
+          <span class="option"><span class="checkbox"></span> 生活分享型（真实日常 / 情感共鸣）</span>
+          <span class="option"><span class="checkbox"></span> 知识科普型（干货 / 教程 / 避坑）</span>
+          <span class="option"><span class="checkbox"></span> 颜值展示型（好物种草 / 美学氛围）</span>
+          <span class="option"><span class="checkbox"></span> 娱乐搞笑型（段子 / 反转 / 剧情）</span>
+          <span class="option"><span class="checkbox"></span> 观点输出型（评论 / 辩论 / 犀利视角）</span>
+          <span class="option"><span class="checkbox"></span> 混合型：<span class="blank" style="min-width:100px">　</span></span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">性格气质</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 温柔治愈</span>
+          <span class="option"><span class="checkbox"></span> 犀利直接</span>
+          <span class="option"><span class="checkbox"></span> 幽默接地气</span>
+          <span class="option"><span class="checkbox"></span> 专业严谨</span>
+          <span class="option"><span class="checkbox"></span> 元气活力</span>
+          <span class="option"><span class="checkbox"></span> 冷静理性</span>
+          <span class="option"><span class="checkbox"></span> 其他：<span class="blank" style="min-width:60px">　</span></span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">我的真实故事</div>
+        <div class="field-value">
+          我最开始接触这个领域，是因为<span class="blank" style="min-width:160px">　</span><br>
+          我经历过<span class="blank" style="min-width:200px">　</span><br>
+          这让我觉得<span class="blank" style="min-width:200px">　</span>
+        </div>
+        <div class="field-hint">真实故事 = 最强人设武器，不需要精彩，只需要真实</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">核心价值观</div>
+        <div class="field-value">
+          我相信<span class="blank" style="min-width:200px">　</span><br>
+          我反对<span class="blank" style="min-width:200px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">差异化优势</div>
+        <div class="field-value">同赛道 100 个博主里，只有我<span class="blank" style="min-width:200px">　</span></div>
+        <div class="field-hint">背景、视角、方法或风格上的独特组合，越具体越有力</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">人设底线</div>
+        <div class="field-value">我绝不<span class="blank" style="min-width:240px">　</span></div>
+        <div class="field-hint">如：接不认同的品牌 / 捏造测评数据 / 无底线蹭流量 / 贩卖焦虑</div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 真实 > 完美。有瑕疵的真人比精心包装的人设更容易被记住。好人设 = 真实经历 + 鲜明态度 + 清晰边界。</div>
+  </div>
+
+  <!-- 03 冷启动策略 -->
+  <div class="section theme-olive">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div class="section-title-group">
+        <h2 class="section-title">冷 启 动 策 略</h2>
+        <p class="section-subtitle">Cold Start Plan — 第一个月最重要，决定账号基调</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">前 10 条内容规划</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>#</th><th>内容方向</th><th>核心目的</th></tr>
+            <tr><td>1—2</td><td><span class="blank" style="min-width:120px">　</span></td><td>建立账号基调，告诉平台「我是谁」</td></tr>
+            <tr><td>3—5</td><td><span class="blank" style="min-width:120px">　</span></td><td>验证选题方向，测试哪类内容有互动</td></tr>
+            <tr><td>6—8</td><td><span class="blank" style="min-width:120px">　</span></td><td>强化人设，做 1 条有冲爆款潜力的内容</td></tr>
+            <tr><td>9—10</td><td><span class="blank" style="min-width:120px">　</span></td><td>固化风格，形成可复制的内容模板</td></tr>
+          </table>
+        </div>
+        <div class="field-hint">前 10 条内容是算法给你「贴标签」的关键期，风格要高度一致</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">第一个月行动计划</div>
+        <div class="field-value">
+          第 1 周：<span class="blank" style="min-width:200px">　</span><br>
+          第 2 周：<span class="blank" style="min-width:200px">　</span><br>
+          第 3 周：<span class="blank" style="min-width:200px">　</span><br>
+          第 4 周：<span class="blank" style="min-width:200px">　</span>
+        </div>
+        <div class="field-hint">如：第 1 周完善主页资料 + 发 2 条定调内容 / 第 2 周测试 3 种选题方向…</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">平台新号期注意事项</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 主页资料填写完整再发内容</span>
+          <span class="option"><span class="checkbox"></span> 头像 / 简介统一后再开始更新</span>
+          <span class="option"><span class="checkbox"></span> 新号前期避免频繁修改账号名</span>
+          <span class="option"><span class="checkbox"></span> 不跨赛道发内容（混乱信号影响推荐）</span>
+          <span class="option"><span class="checkbox"></span> 发布后 1 小时内主动互动（回评论）</span>
+          <span class="option"><span class="checkbox"></span> 了解目标平台的限流 / 违规规则</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">冷启动阶段目标</div>
+        <div class="field-value">
+          第一个月结束时，我的目标是：<br>
+          粉丝数达到<span class="blank" style="min-width:80px">　</span>，发出<span class="blank" style="min-width:40px">　</span>条内容，获得至少<span class="blank" style="min-width:60px">　</span>次真实互动
+        </div>
+        <div class="field-hint">冷启动阶段不追求爆款，先追求「稳定更新 + 风格一致 + 真实互动」</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">冷启动期引流策略</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 在目标粉丝聚集的话题下互动，吸引反向关注</span>
+          <span class="option"><span class="checkbox"></span> 在同赛道大号评论区留有价值的评论</span>
+          <span class="option"><span class="checkbox"></span> 加入相关社群 / 话题，先贡献价值再推广</span>
+          <span class="option"><span class="checkbox"></span> 把已有人脉（朋友圈 / 微信好友）转化为初始粉丝</span>
+          <span class="option"><span class="checkbox"></span> 配合热门话题标签蹭少量自然流量</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 新号前 30 天是算法学习期，给平台清晰的信号比发多少条更重要。宁可慢，不要乱。</div>
+  </div>
+
+  <!-- 04 账号简介模板 -->
+  <div class="section theme-coral">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div class="section-title-group">
+        <h2 class="section-title">账 号 简 介 模 板</h2>
+        <p class="section-subtitle">Profile Bio — 访客到主页第一眼，3 秒决定留不留</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">简介结构（逐行填写）</div>
+        <div class="field-value">
+          <div class="bio-preview">
+            <div class="bio-preview-label">📱 主页简介预览区 — 填完后直接复制使用</div>
+            <div class="bio-line">第 1 行（身份定位）：<span style="color:#bbb;font-style:italic">如：📱 数码测评博主 | 5年数码老玩家</span></div>
+            <div class="bio-line">第 2 行（价值主张）：<span style="color:#bbb;font-style:italic">如：帮你避坑，只推荐真正好用的</span></div>
+            <div class="bio-line">第 3 行（更新预告）：<span style="color:#bbb;font-style:italic">如：每周三更新 | 横评 / 开箱 / 深度评测</span></div>
+            <div class="bio-line">第 4 行（引导行动）：<span style="color:#bbb;font-style:italic">如：💌 商务合作 → 主页私信</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">简介关键词埋点</div>
+        <div class="field-value">
+          必须出现在简介中的关键词（影响搜索排名）：<br>
+          ① <span class="blank" style="min-width:120px">　</span>
+          ② <span class="blank" style="min-width:120px">　</span>
+          ③ <span class="blank" style="min-width:120px">　</span>
+        </div>
+        <div class="field-hint">如做美妆：「敏感肌」「平价替代」「成分党」— 这些词决定你能被搜到</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">固定引导语</div>
+        <div class="field-value">
+          合作 / 联系引导：<span class="blank" style="min-width:200px">　</span><br>
+          私域引流话术：<span class="blank" style="min-width:200px">　</span>
+        </div>
+        <div class="field-hint">如：「合作请私信报价单」/ 「回复"资料"领取免费测评指南」</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">各平台简介差异化</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>平台</th><th>字数限制</th><th>侧重点</th></tr>
+            <tr><td>小红书</td><td>150 字</td><td><span class="blank" style="min-width:120px">　</span></td></tr>
+            <tr><td>抖音</td><td>80 字</td><td><span class="blank" style="min-width:120px">　</span></td></tr>
+            <tr><td>B站</td><td>233 字</td><td><span class="blank" style="min-width:120px">　</span></td></tr>
+            <tr><td>微博</td><td>70 字</td><td><span class="blank" style="min-width:120px">　</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> Bio 是你的「数字名片」。3 秒内让陌生人明白：你是谁 + 能给他什么 + 下一步做什么。</div>
+  </div>
+
+  <!-- 05 视觉体系 -->
+  <div class="section theme-lav">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div class="section-title-group">
+        <h2 class="section-title">视 觉 体 系</h2>
+        <p class="section-subtitle">Visual Identity — 刷 3 条就能认出你 = 视觉人设到位</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">品牌色板</div>
+        <div class="field-value">主色 #<span class="blank" style="min-width:80px">　</span> 辅色 #<span class="blank" style="min-width:80px">　</span> 点缀 #<span class="blank" style="min-width:80px">　</span></div>
+        <div class="field-hint">建议 2—3 色，全平台保持一致。可用 coolors.co 生成配色方案。</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">整体视觉风格</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 简约极简</span>
+          <span class="option"><span class="checkbox"></span> 温柔小清新</span>
+          <span class="option"><span class="checkbox"></span> 复古胶片</span>
+          <span class="option"><span class="checkbox"></span> 科技感暗黑</span>
+          <span class="option"><span class="checkbox"></span> 明亮活泼</span>
+          <span class="option"><span class="checkbox"></span> 杂志高级感</span>
+          <span class="option"><span class="checkbox"></span> 真实生活流</span>
+          <span class="option"><span class="checkbox"></span> 其他：<span class="blank" style="min-width:60px">　</span></span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">封面 / 缩略图模板</div>
+        <div class="field-value">固定样式：<span class="blank" style="min-width:220px">　</span></div>
+        <div class="field-hint">如：大字居中 + 色块背景 / 左图右文 / 产品特写 + 角标 / 真人出镜 + 字幕条</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">字体风格</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 粗黑醒目</span>
+          <span class="option"><span class="checkbox"></span> 细线优雅</span>
+          <span class="option"><span class="checkbox"></span> 手写随性</span>
+          <span class="option"><span class="checkbox"></span> 无衬线极简</span>
+          <span class="option"><span class="checkbox"></span> 其他：<span class="blank" style="min-width:60px">　</span></span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">出镜方式</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 正脸出镜</span>
+          <span class="option"><span class="checkbox"></span> 侧颜 / 背影</span>
+          <span class="option"><span class="checkbox"></span> 手部 / 局部特写</span>
+          <span class="option"><span class="checkbox"></span> 不出镜（产品 / 画面为主）</span>
+          <span class="option"><span class="checkbox"></span> 虚拟 / 卡通形象</span>
+          <span class="option"><span class="checkbox"></span> 混搭（视内容灵活）</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">常驻拍摄场景</div>
+        <div class="field-value">
+          场景 A：<span class="blank" style="min-width:140px">　</span><br>
+          场景 B：<span class="blank" style="min-width:140px">　</span><br>
+          场景 C：<span class="blank" style="min-width:140px">　</span>
+        </div>
+        <div class="field-hint">如：家中工作台 / 停车场实拍 / 咖啡馆 / 化妆台 / 健身房 / 户外场景</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">穿搭 / 形象风格</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 简约通勤</span>
+          <span class="option"><span class="checkbox"></span> 韩系温柔</span>
+          <span class="option"><span class="checkbox"></span> 街头潮酷</span>
+          <span class="option"><span class="checkbox"></span> 运动休闲</span>
+          <span class="option"><span class="checkbox"></span> 精英商务</span>
+          <span class="option"><span class="checkbox"></span> 赛道专属（如车手服 / 白大褂）</span>
+          <span class="option"><span class="checkbox"></span> 不固定 / 随心情</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">标志性视觉锚点</div>
+        <div class="field-value">每条内容必出现的标志物：<span class="blank" style="min-width:200px">　</span></div>
+        <div class="field-hint">如：标志配饰 / 固定背景元素 / 品牌贴纸 / 专属手势 / 标志性道具</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">固定滤镜 / 调色风格</div>
+        <div class="field-value">滤镜名称或调色描述：<span class="blank" style="min-width:200px">　</span></div>
+        <div class="field-hint">如：暗调低饱和 / VSCO A4 / 高亮高对比 / 暖棕胶片感</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">头像设计 & BGM 风格</div>
+        <div class="field-value">
+          头像：<span class="option"><span class="checkbox"></span> 真人照片</span><span class="option"><span class="checkbox"></span> 手绘 / 插画</span><span class="option"><span class="checkbox"></span> 文字 LOGO</span><span class="option"><span class="checkbox"></span> 品牌图标</span><br>
+          BGM：<span class="option"><span class="checkbox"></span> 轻快日系</span><span class="option"><span class="checkbox"></span> 治愈钢琴</span><span class="option"><span class="checkbox"></span> 复古氛围</span><span class="option"><span class="checkbox"></span> 电子科技感</span><span class="option"><span class="checkbox"></span> 燃向热血</span><span class="option"><span class="checkbox"></span> 无 BGM</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 视觉统一是最被低估的涨粉技巧。别人记不住你说了什么，但能记住你的「颜色」和「感觉」。</div>
+  </div>
+
+  <!-- 06 话术体系 -->
+  <div class="section theme-sky">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div class="section-title-group">
+        <h2 class="section-title">话 术 体 系</h2>
+        <p class="section-subtitle">Voice & Tone — 你怎么说话，粉丝怎么记住你</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">语气风格</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 闺蜜唠嗑</span>
+          <span class="option"><span class="checkbox"></span> 学长 / 学姐分享</span>
+          <span class="option"><span class="checkbox"></span> 专家科普</span>
+          <span class="option"><span class="checkbox"></span> 毒舌测评</span>
+          <span class="option"><span class="checkbox"></span> 老司机带路</span>
+          <span class="option"><span class="checkbox"></span> 搞笑自嘲</span>
+          <span class="option"><span class="checkbox"></span> 其他：<span class="blank" style="min-width:60px">　</span></span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">固定开场白</div>
+        <div class="field-value"><span class="blank" style="min-width:260px">　</span></div>
+        <div class="field-hint">如："大家好我是 xxx" / "废话不多说直接开测" / "今天聊个争议很大的话题"</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">固定收尾 / 互动钩子</div>
+        <div class="field-value"><span class="blank" style="min-width:260px">　</span></div>
+        <div class="field-hint">如："评论区告诉我你的想法" / "点赞 = 已阅" / "关注我，下期更精彩"</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">标题公式</div>
+        <div class="field-value">
+          句式 ①：<span class="blank" style="min-width:240px">　</span><br>
+          句式 ②：<span class="blank" style="min-width:240px">　</span><br>
+          句式 ③：<span class="blank" style="min-width:240px">　</span>
+        </div>
+        <div class="field-hint">如：「月薪 5K 也能用的 XX」/ 「我测了 10 款只推荐这 1 个」/ 「同款为什么贵 3 倍？」</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">标志性金句 Top 3</div>
+        <div class="field-value">
+          ① <span class="blank" style="min-width:260px">　</span><br>
+          ② <span class="blank" style="min-width:260px">　</span><br>
+          ③ <span class="blank" style="min-width:260px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">口头禅 / 标志词</div>
+        <div class="field-value">反复出现的专属用语：<span class="blank" style="min-width:200px">　</span></div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">内容禁区 & 争议策略</div>
+        <div class="field-value">
+          绝对不做：<span class="blank" style="min-width:200px">　</span><br>
+          争议话题：<span class="option"><span class="checkbox"></span> 敢于表态</span><span class="option"><span class="checkbox"></span> 多方视角</span><span class="option"><span class="checkbox"></span> 中立不站队</span><span class="option"><span class="checkbox"></span> 一律回避</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">负评 / 危机处理</div>
+        <div class="field-value">
+          遭遇事实性质疑：<span class="blank" style="min-width:180px">　</span><br>
+          遭遇恶意攻击：<span class="blank" style="min-width:180px">　</span><br>
+          被友商 / 竞品攻击：<span class="blank" style="min-width:160px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">合作接单原则</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 只接自己用过 / 认可的品牌</span>
+          <span class="option"><span class="checkbox"></span> 明确标注广告</span>
+          <span class="option"><span class="checkbox"></span> 有定价标准，不随意压价</span>
+          <span class="option"><span class="checkbox"></span> 拒绝类目：<span class="blank" style="min-width:100px">　</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 好标题决定点击，好钩子决定互动，好金句决定被记住 — 三者缺一不可。</div>
+  </div>
+
+  <!-- 07 关键词SEO -->
+  <div class="section theme-mint">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <div class="section-title-group">
+        <h2 class="section-title">关 键 词 SEO 策 略</h2>
+        <p class="section-subtitle">Keyword Strategy — 让对的人主动搜到你</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">核心关键词（账号级）</div>
+        <div class="field-value">
+          ① <span class="blank" style="min-width:120px">　</span>
+          ② <span class="blank" style="min-width:120px">　</span>
+          ③ <span class="blank" style="min-width:120px">　</span>
+        </div>
+        <div class="field-hint">必须出现在名字 / 简介 / 所有内容中的词。这些词决定平台给你打什么标签。</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">长尾关键词库</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>长尾词</th><th>搜索量</th><th>竞争度</th><th>状态</th></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="option"><span class="checkbox"></span>高 <span class="checkbox"></span>中 <span class="checkbox"></span>低</span></td><td><span class="option"><span class="checkbox"></span>大 <span class="checkbox"></span>小</span></td><td><span class="blank" style="min-width:50px">　</span></td></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="option"><span class="checkbox"></span>高 <span class="checkbox"></span>中 <span class="checkbox"></span>低</span></td><td><span class="option"><span class="checkbox"></span>大 <span class="checkbox"></span>小</span></td><td><span class="blank" style="min-width:50px">　</span></td></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="option"><span class="checkbox"></span>高 <span class="checkbox"></span>中 <span class="checkbox"></span>低</span></td><td><span class="option"><span class="checkbox"></span>大 <span class="checkbox"></span>小</span></td><td><span class="blank" style="min-width:50px">　</span></td></tr>
+          </table>
+        </div>
+        <div class="field-hint">起步阶段优先：搜索量中等 + 竞争度小的词，更容易上首页</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">标题 SEO 规则</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 核心词放在标题前 5 个字</span>
+          <span class="option"><span class="checkbox"></span> 标题含痛点词 / 疑问句</span>
+          <span class="option"><span class="checkbox"></span> 标题含具体数字</span>
+          <span class="option"><span class="checkbox"></span> 正文至少出现核心词 3 次</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">话题标签策略</div>
+        <div class="field-value">
+          固定必带标签：<span class="blank" style="min-width:200px">　</span><br>
+          每条内容加<span class="blank" style="min-width:36px">　</span>个标签，大流量标签<span class="blank" style="min-width:36px">　</span>个 + 精准标签<span class="blank" style="min-width:36px">　</span>个
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">流量来源策略</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 主攻搜索流量（常青 SEO 内容）</span>
+          <span class="option"><span class="checkbox"></span> 主攻推荐流量（热点爆款内容）</span>
+          <span class="option"><span class="checkbox"></span> 均衡布局（搜索 50% / 推荐 50%）</span>
+        </div>
+        <div class="field-hint">新号建议优先布局搜索流量，稳定可控，搜索流量撑底盘，推荐流量冲爆款。</div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> SEO 是免费的长期流量。核心词埋进名字、简介、标题、正文，让算法帮你找到对的人。</div>
+  </div>
+
+  <!-- 08 内容规划框架 -->
+  <div class="section theme-teal">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <div class="section-title-group">
+        <h2 class="section-title">内 容 规 划 框 架</h2>
+        <p class="section-subtitle">Content Framework — 发什么比发多少更重要</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">内容支柱（选题分类）</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>支柱名称</th><th>内容方向</th><th>占比</th></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:140px">　</span></td><td><span class="blank" style="min-width:40px">　</span>%</td></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:140px">　</span></td><td><span class="blank" style="min-width:40px">　</span>%</td></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:140px">　</span></td><td><span class="blank" style="min-width:40px">　</span>%</td></tr>
+          </table>
+        </div>
+        <div class="field-hint">如：测评横评 50% / 使用技巧干货 30% / 个人日常互动 20%</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">固定系列 / 栏目 IP</div>
+        <div class="field-value">
+          系列名称：<span class="blank" style="min-width:120px">　</span> 频率：<span class="blank" style="min-width:80px">　</span><br>
+          系列名称：<span class="blank" style="min-width:120px">　</span> 频率：<span class="blank" style="min-width:80px">　</span>
+        </div>
+        <div class="field-hint">如「每周一测」「月度避坑榜」「100 元以内好物」— 固定系列让粉丝形成期待</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">常青 vs 热点比例</div>
+        <div class="field-value">
+          常青内容（长期有效）<span class="blank" style="min-width:40px">　</span>%
+          &nbsp;&nbsp;&nbsp;
+          热点内容（短期爆量）<span class="blank" style="min-width:40px">　</span>%
+        </div>
+        <div class="field-hint">建议：常青 7 : 热点 3。常青内容持续带新粉，热点内容短期爆量。</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">选题判断三问</div>
+        <div class="field-value">
+          ① 我的目标粉丝有没有这个需求？<span class="blank" style="min-width:60px">是 / 否</span><br>
+          ② 这个话题我有独特视角吗？<span class="blank" style="min-width:60px">是 / 否</span><br>
+          ③ 同类内容已经饱和了吗？<span class="blank" style="min-width:60px">是 / 否</span>
+        </div>
+        <div class="field-hint">三个答案是「是、是、否」时，这是好选题。</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">选题灵感来源</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 平台搜索框联想词</span>
+          <span class="option"><span class="checkbox"></span> 竞品评论区提问</span>
+          <span class="option"><span class="checkbox"></span> 粉丝 / 私信提问收集</span>
+          <span class="option"><span class="checkbox"></span> 行业热门话题</span>
+          <span class="option"><span class="checkbox"></span> 自身使用 / 经历中的疑问</span>
+          <span class="option"><span class="checkbox"></span> 微信指数 / 百度指数趋势</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">跨平台分发策略</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 主平台原创，其他平台搬运</span>
+          <span class="option"><span class="checkbox"></span> 各平台差异化定制</span>
+          <span class="option"><span class="checkbox"></span> 主平台完整版，其他平台剪辑版</span>
+          <span class="option"><span class="checkbox"></span> 暂时只做一个平台</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 内容支柱 = 你的「选题地图」，有了地图才不会每次创作前发呆半小时不知道做什么。</div>
+  </div>
+
+  <!-- 09 内容生产SOP -->
+  <div class="section theme-indigo">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <div class="section-title-group">
+        <h2 class="section-title">内 容 生 产 SOP</h2>
+        <p class="section-subtitle">Production Workflow — 可复制的流程，才是持续更新的核心</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">每条内容生产流程</div>
+        <div class="field-value">
+          <div class="sop-steps">
+            <div class="sop-step"><div class="sop-num">1</div><div class="sop-content"><div class="sop-name">选题 & 立项</div><div class="sop-fill"><span>耗时：<span class="blank" style="min-width:60px">　</span></span><span>工具：<span class="blank" style="min-width:80px">　</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">2</div><div class="sop-content"><div class="sop-name">脚本 / 内容大纲</div><div class="sop-fill"><span>耗时：<span class="blank" style="min-width:60px">　</span></span><span>工具：<span class="blank" style="min-width:80px">　</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">3</div><div class="sop-content"><div class="sop-name">拍摄 / 素材收集</div><div class="sop-fill"><span>耗时：<span class="blank" style="min-width:60px">　</span></span><span>设备：<span class="blank" style="min-width:100px">　</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">4</div><div class="sop-content"><div class="sop-name">剪辑 / 修图 / 后期</div><div class="sop-fill"><span>耗时：<span class="blank" style="min-width:60px">　</span></span><span>软件：<span class="blank" style="min-width:100px">　</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">5</div><div class="sop-content"><div class="sop-name">封面 & 标题优化</div><div class="sop-fill"><span>耗时：<span class="blank" style="min-width:60px">　</span></span><span>工具：<span class="blank" style="min-width:80px">　</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">6</div><div class="sop-content"><div class="sop-name">发布 & 关键词 / 话题填写</div><div class="sop-fill"><span>耗时：<span class="blank" style="min-width:60px">　</span></span><span>固定时间：<span class="blank" style="min-width:80px">　</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">7</div><div class="sop-content"><div class="sop-name">发布后互动 & 数据记录</div><div class="sop-fill"><span>耗时：<span class="blank" style="min-width:60px">　</span></span><span>互动窗口期：<span class="blank" style="min-width:60px">　</span>小时内</span></div></div></div>
+          </div>
+          <div style="padding-left:1rem;margin-top:.8rem;font-size:.85rem;color:var(--dark-gray);font-weight:300;">单条内容合计预计耗时：<span class="blank" style="min-width:60px">　</span>小时</div>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">生产工具清单</div>
+        <div class="field-value">
+          拍摄：<span class="blank" style="min-width:140px">　</span> &nbsp;&nbsp; 剪辑：<span class="blank" style="min-width:140px">　</span><br>
+          修图：<span class="blank" style="min-width:140px">　</span> &nbsp;&nbsp; 封面设计：<span class="blank" style="min-width:120px">　</span><br>
+          文案辅助：<span class="blank" style="min-width:140px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">批量生产节奏</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 周末集中拍摄，工作日剪辑发布</span>
+          <span class="option"><span class="checkbox"></span> 每周固定一天完成一条全流程</span>
+          <span class="option"><span class="checkbox"></span> 提前备稿，常备<span class="blank" style="min-width:36px">　</span>条库存</span>
+          <span class="option"><span class="checkbox"></span> 灵感驱动，不做硬性计划</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">断更应急预案</div>
+        <div class="field-value">
+          能接受的最长断更周期：<span class="blank" style="min-width:80px">　</span><br>
+          应急内容类型（快速可发）：<span class="blank" style="min-width:140px">　</span><br>
+          最差情况下的「最小可发布内容」：<span class="blank" style="min-width:120px">　</span>
+        </div>
+        <div class="field-hint">如：旅行 / 生病时备好 3 条图文，最差发一条「近况分享」也好过直接消失</div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 把生产流程标准化，才能把创作从「随缘发挥」变成「可持续的事业」。</div>
+  </div>
+
+  <!-- 10 粉丝互动管理 (NEW) -->
+  <div class="section theme-rose2">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <div class="section-title-group">
+        <h2 class="section-title">粉 丝 互 动 管 理</h2>
+        <p class="section-subtitle">Community Management — 吸引粉丝是第一步，留住才算赢</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">评论回复原则</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 发布后 1 小时内必须回复前 20 条评论</span>
+          <span class="option"><span class="checkbox"></span> 所有问题类评论必须回复</span>
+          <span class="option"><span class="checkbox"></span> 有价值的讨论优先回复</span>
+          <span class="option"><span class="checkbox"></span> 夸奖类评论选择性回复（点赞代替）</span>
+          <span class="option"><span class="checkbox"></span> 黑粉 / 无意义攻击直接忽略 / 屏蔽</span>
+        </div>
+        <div class="field-hint">发布后 1—2 小时是互动黄金期，这段时间评论区活跃能显著提升推荐权重</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">固定互动动作</div>
+        <div class="field-value">
+          发布后第 1 小时：<span class="blank" style="min-width:200px">　</span><br>
+          发布后 24 小时：<span class="blank" style="min-width:200px">　</span><br>
+          每周固定互动时间：<span class="blank" style="min-width:160px">　</span>
+        </div>
+        <div class="field-hint">如：发布后 1 小时回复所有评论 + 点赞所有收藏 / 24 小时后发评论区话题引导二次互动</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">评论区运营策略</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 置顶评论引导互动（如提问 / 投票）</span>
+          <span class="option"><span class="checkbox"></span> 主动在评论区抛出话题延续讨论</span>
+          <span class="option"><span class="checkbox"></span> 把高质量提问做成下一条内容的选题</span>
+          <span class="option"><span class="checkbox"></span> 定期「评论区整活」增强粉丝黏性</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">路人粉 → 铁粉转化路径</div>
+        <div class="field-value">
+          第 1 步：<span class="blank" style="min-width:200px">　</span>（让 TA 关注）<br>
+          第 2 步：<span class="blank" style="min-width:200px">　</span>（让 TA 收藏 / 转发）<br>
+          第 3 步：<span class="blank" style="min-width:200px">　</span>（让 TA 主动评论或私信）<br>
+          第 4 步：<span class="blank" style="min-width:200px">　</span>（让 TA 进入私域）
+        </div>
+        <div class="field-hint">如：爆款内容吸引关注 → 固定系列建立期待 → 评论区互动建立信任 → 福利钩子引入私域</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">铁粉维护方式</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 定期做粉丝专属福利（抽奖 / 优惠码）</span>
+          <span class="option"><span class="checkbox"></span> 在内容里提及粉丝 / 粉丝故事</span>
+          <span class="option"><span class="checkbox"></span> 主动回访老粉丝的评论</span>
+          <span class="option"><span class="checkbox"></span> 直播与粉丝实时互动</span>
+          <span class="option"><span class="checkbox"></span> 粉丝群 / 私域定期输出独家内容</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">差评 / 投诉处理流程</div>
+        <div class="field-value">
+          收到差评后我的第一反应是：<span class="blank" style="min-width:160px">　</span><br>
+          如果是有效批评：<span class="blank" style="min-width:200px">　</span><br>
+          如果是恶意差评：<span class="blank" style="min-width:200px">　</span>
+        </div>
+        <div class="field-hint">原则：有效批评公开致谢 + 改进，恶意差评沉默 / 屏蔽，不与杠精正面交战</div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 涨粉靠内容，留粉靠互动。铁粉是你最宝贵的资产 — 100 个铁粉胜过 10,000 个僵粉。</div>
+  </div>
+
+  <!-- 11 数据复盘模板 (NEW) -->
+  <div class="section theme-ocean">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <div class="section-title-group">
+        <h2 class="section-title">数 据 复 盘 模 板</h2>
+        <p class="section-subtitle">Analytics Review — 看懂数据，才能越做越好</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">每周核心数据记录</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>指标</th><th>本周数据</th><th>上周数据</th><th>变化趋势</th></tr>
+            <tr><td>新增粉丝</td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="option"><span class="checkbox"></span>↑ <span class="checkbox"></span>↓ <span class="checkbox"></span>→</span></td></tr>
+            <tr><td>总播放 / 曝光</td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="option"><span class="checkbox"></span>↑ <span class="checkbox"></span>↓ <span class="checkbox"></span>→</span></td></tr>
+            <tr><td>平均互动率</td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="option"><span class="checkbox"></span>↑ <span class="checkbox"></span>↓ <span class="checkbox"></span>→</span></td></tr>
+            <tr><td>涨粉转化率</td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="option"><span class="checkbox"></span>↑ <span class="checkbox"></span>↓ <span class="checkbox"></span>→</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">内容表现评级</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>内容标题</th><th>播放 / 阅读</th><th>互动数</th><th>评级</th><th>分析原因</th></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:40px">　</span></td><td><span class="option"><span class="checkbox"></span>爆 <span class="checkbox"></span>良 <span class="checkbox"></span>差</span></td><td><span class="blank" style="min-width:80px">　</span></td></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:40px">　</span></td><td><span class="option"><span class="checkbox"></span>爆 <span class="checkbox"></span>良 <span class="checkbox"></span>差</span></td><td><span class="blank" style="min-width:80px">　</span></td></tr>
+            <tr><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:40px">　</span></td><td><span class="option"><span class="checkbox"></span>爆 <span class="checkbox"></span>良 <span class="checkbox"></span>差</span></td><td><span class="blank" style="min-width:80px">　</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">爆款内容拆解（每次必做）</div>
+        <div class="field-value">
+          这条内容为什么爆？<br>
+          <span class="option"><span class="checkbox"></span> 标题命中痛点</span>
+          <span class="option"><span class="checkbox"></span> 封面够吸引</span>
+          <span class="option"><span class="checkbox"></span> 内容有实用价值</span>
+          <span class="option"><span class="checkbox"></span> 蹭了热点</span>
+          <span class="option"><span class="checkbox"></span> 情绪共鸣强</span>
+          <span class="option"><span class="checkbox"></span> 发布时间对</span><br>
+          可以复用的点：<span class="blank" style="min-width:200px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">冷门内容反思（每次必做）</div>
+        <div class="field-value">
+          这条内容为什么冷？<br>
+          <span class="option"><span class="checkbox"></span> 标题不够吸引</span>
+          <span class="option"><span class="checkbox"></span> 封面不够醒目</span>
+          <span class="option"><span class="checkbox"></span> 内容价值不足</span>
+          <span class="option"><span class="checkbox"></span> 选题没有需求</span>
+          <span class="option"><span class="checkbox"></span> 发布时间不对</span>
+          <span class="option"><span class="checkbox"></span> 平台限流</span><br>
+          下次改进的点：<span class="blank" style="min-width:200px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">每月复盘四问</div>
+        <div class="field-value">
+          ① 这个月哪类内容表现最好？<span class="blank" style="min-width:140px">　</span><br>
+          ② 粉丝最关心什么话题？<span class="blank" style="min-width:160px">　</span><br>
+          ③ 下个月要调整什么？<span class="blank" style="min-width:160px">　</span><br>
+          ④ 人设定位是否需要微调？<span class="blank" style="min-width:140px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">增长停滞应对决策树</div>
+        <div class="field-value">
+          连续 2 周没有增长 →<br>
+          <span style="padding-left:1rem">先检查：封面 / 标题 → 如果数据没改善 →</span><br>
+          <span style="padding-left:1rem">再检查：选题方向 → 如果数据没改善 →</span><br>
+          <span style="padding-left:1rem">再检查：发布时间 / 频率 → 如果数据没改善 →</span><br>
+          <span style="padding-left:1rem">重新审视：细分切口是否过窄 / 赛道是否过饱和</span>
+        </div>
+        <div class="field-hint">每次只改一个变量，才能知道究竟是哪里出了问题</div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 不复盘的创作是在靠运气。每周 30 分钟数据复盘，比盲目多发 3 条内容更有价值。</div>
+  </div>
+
+  <!-- 12 对标账号分析 -->
+  <div class="section theme-amber">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <div class="section-title-group">
+        <h2 class="section-title">对 标 账 号 分 析</h2>
+        <p class="section-subtitle">Benchmark Analysis — 知道同行在哪，才知道自己在哪</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">Top 3 同赛道对标账号</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>账号名</th><th>我学习他的什么</th><th>我跟他的核心区别</th></tr>
+            <tr><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:100px">　</span></td><td><span class="blank" style="min-width:100px">　</span></td></tr>
+            <tr><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:100px">　</span></td><td><span class="blank" style="min-width:100px">　</span></td></tr>
+            <tr><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:100px">　</span></td><td><span class="blank" style="min-width:100px">　</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">赛道空白 & 机会点</div>
+        <div class="field-value">
+          同赛道共同缺陷：<span class="blank" style="min-width:200px">　</span><br>
+          我能填补的空白：<span class="blank" style="min-width:200px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">爆款拆解记录</div>
+        <div class="field-value">
+          拆解过的爆款：<span class="blank" style="min-width:140px">　</span><br>
+          爆的核心原因：<span class="blank" style="min-width:200px">　</span><br>
+          我可借鉴的点：<span class="blank" style="min-width:200px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">赛道趋势观察</div>
+        <div class="field-value">
+          正在兴起的内容形式：<span class="blank" style="min-width:180px">　</span><br>
+          预判未来 3 个月热点方向：<span class="blank" style="min-width:160px">　</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 对标不是为了模仿，是为了找差距和机会。研究完竞品，你会更清楚自己的不可替代性在哪。</div>
+  </div>
+
+  <!-- 13 粉丝画像 -->
+  <div class="section theme-peach">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <div class="section-title-group">
+        <h2 class="section-title">粉 丝 画 像</h2>
+        <p class="section-subtitle">Audience Portrait — 你在为谁创作？想象一个具体的人</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">TA 是谁</div>
+        <div class="field-value">
+          年龄：<span class="blank" style="min-width:60px">　</span> 性别偏向：<span class="blank" style="min-width:60px">　</span> 城市：<span class="blank" style="min-width:80px">　</span><br>
+          职业 / 状态：<span class="blank" style="min-width:160px">　</span>
+        </div>
+        <div class="field-hint">把"18-30岁女性"换成具体的小美，你的内容会更有针对性</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">TA 的日常 & 痛点</div>
+        <div class="field-value">
+          TA 每天<span class="blank" style="min-width:130px">　</span>，最烦恼的是<span class="blank" style="min-width:130px">　</span><br>
+          痛点 ①：<span class="blank" style="min-width:200px">　</span><br>
+          痛点 ②：<span class="blank" style="min-width:200px">　</span><br>
+          痛点 ③：<span class="blank" style="min-width:200px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">TA 关注你的原因 & 从哪来</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 帮 TA 省钱 / 避坑</span>
+          <span class="option"><span class="checkbox"></span> 帮 TA 做决策</span>
+          <span class="option"><span class="checkbox"></span> 提供生活灵感</span>
+          <span class="option"><span class="checkbox"></span> 专业知识</span>
+          <span class="option"><span class="checkbox"></span> 情绪价值 / 快乐</span><br>
+          主要来源：<span class="option"><span class="checkbox"></span>算法推荐</span><span class="option"><span class="checkbox"></span>关键词搜索</span><span class="option"><span class="checkbox"></span>粉丝转发</span><span class="option"><span class="checkbox"></span>联动引流</span><br>
+          TA 最可能搜索的关键词：<span class="blank" style="min-width:200px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">TA 的理想结果 & 期望行动</div>
+        <div class="field-value">
+          看完你的内容，TA 离<span class="blank" style="min-width:140px">　</span>更近一步<br>
+          期望行动：<span class="option"><span class="checkbox"></span>关注</span><span class="option"><span class="checkbox"></span>收藏</span><span class="option"><span class="checkbox"></span>评论</span><span class="option"><span class="checkbox"></span>转发</span><span class="option"><span class="checkbox"></span>购买</span><span class="option"><span class="checkbox"></span>进私域</span><span class="option"><span class="checkbox"></span>付诸行动</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 精准触达 100 个目标粉丝，胜过模糊覆盖 10,000 个路人。</div>
+  </div>
+
+  <!-- 14 联动/互推策略 -->
+  <div class="section theme-sky">
+    <div class="section-header">
+      <span class="section-num">14</span>
+      <div class="section-title-group">
+        <h2 class="section-title">联 动 / 互 推 策 略</h2>
+        <p class="section-subtitle">Collaboration Strategy — 借力生长，比单打独斗快 3 倍</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">适合联动的账号类型</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 同赛道互补风格（不直接竞争）</span>
+          <span class="option"><span class="checkbox"></span> 相邻赛道（粉丝重合度高）</span>
+          <span class="option"><span class="checkbox"></span> 上下游账号（如穿搭 × 美妆）</span>
+          <span class="option"><span class="checkbox"></span> 粉丝量级相近（±50%）</span>
+          <span class="option"><span class="checkbox"></span> 头部账号（争取被提及）</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">联动目标账号清单</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>账号名</th><th>赛道</th><th>粉丝量</th><th>联动形式</th><th>状态</th></tr>
+            <tr><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:40px">　</span></td></tr>
+            <tr><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:40px">　</span></td></tr>
+            <tr><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:50px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td><td><span class="blank" style="min-width:40px">　</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">联动破冰话术</div>
+        <div class="field-value">发起联动邀约时，我会说：<br><span class="blank" style="min-width:100%;display:block;margin-top:.3rem">　　　　　　　　　　　　　　　　　　</span></div>
+        <div class="field-hint">如："你好，我是做 XX 的博主，粉丝群体和你高度重合，想聊聊互推合作，方便吗？"</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">私域引流计划</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 建粉丝群</span>
+          <span class="option"><span class="checkbox"></span> 微信个人号沉淀铁粉</span>
+          <span class="option"><span class="checkbox"></span> 知识星球 / 付费社群</span>
+          <span class="option"><span class="checkbox"></span> 暂不做私域</span><br>
+          私域引流钩子：<span class="blank" style="min-width:200px">　</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 联动不是求人，是共赢。一次联动顶 10 条普通内容的涨粉效果。</div>
+  </div>
+
+  <!-- 15 商务合作资料包 (NEW) -->
+  <div class="section theme-wine">
+    <div class="section-header">
+      <span class="section-num">15</span>
+      <div class="section-title-group">
+        <h2 class="section-title">商 务 合 作 资 料 包</h2>
+        <p class="section-subtitle">Media Kit — 品牌来找你时，一份资料包搞定一切</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">账号数据摘要（发给品牌方）</div>
+        <div class="field-value">
+          <div class="data-grid">
+            <div class="data-card"><div class="data-card-label">主平台粉丝数</div><div class="data-card-value"><span class="blank" style="min-width:100px">　</span></div></div>
+            <div class="data-card"><div class="data-card-label">平均播放量 / 阅读量</div><div class="data-card-value"><span class="blank" style="min-width:100px">　</span></div></div>
+            <div class="data-card"><div class="data-card-label">平均互动率</div><div class="data-card-value"><span class="blank" style="min-width:100px">　</span>%</div></div>
+            <div class="data-card"><div class="data-card-label">主要粉丝画像</div><div class="data-card-value"><span class="blank" style="min-width:100px">　</span></div></div>
+            <div class="data-card"><div class="data-card-label">粉丝最集中地区</div><div class="data-card-value"><span class="blank" style="min-width:100px">　</span></div></div>
+            <div class="data-card"><div class="data-card-label">过往最佳爆款数据</div><div class="data-card-value"><span class="blank" style="min-width:100px">　</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">合作报价单</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>合作形式</th><th>报价</th><th>包含内容</th><th>交付周期</th></tr>
+            <tr><td>图文种草（小红书）</td><td><span class="blank" style="min-width:60px">　</span>元</td><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td></tr>
+            <tr><td>短视频（抖音 / 视频号）</td><td><span class="blank" style="min-width:60px">　</span>元</td><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td></tr>
+            <tr><td>深度测评视频（B站）</td><td><span class="blank" style="min-width:60px">　</span>元</td><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td></tr>
+            <tr><td>直播带货（%佣金）</td><td><span class="blank" style="min-width:60px">　</span>%</td><td><span class="blank" style="min-width:80px">　</span></td><td><span class="blank" style="min-width:60px">　</span></td></tr>
+          </table>
+        </div>
+        <div class="field-hint">定价参考：粉丝数 × 0.01 元是最低价参考，但互动率高可溢价 2—5 倍</div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">合作流程标准步骤</div>
+        <div class="field-value">
+          <div class="sop-steps">
+            <div class="sop-step"><div class="sop-num">1</div><div class="sop-content"><div class="sop-name">品牌方发起需求</div><div class="sop-fill"><span>我要求提供：<span class="blank" style="min-width:120px">　</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">2</div><div class="sop-content"><div class="sop-name">确认需求与报价</div><div class="sop-fill"><span>报价响应时间：<span class="blank" style="min-width:80px">　</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">3</div><div class="sop-content"><div class="sop-name">合同 / 协议确认</div><div class="sop-fill"><span><span class="option"><span class="checkbox"></span>使用标准合同模板</span><span class="option"><span class="checkbox"></span>口头约定即可</span></span></div></div></div>
+            <div class="sop-step"><div class="sop-num">4</div><div class="sop-content"><div class="sop-name">收款 & 开始创作</div><div class="sop-fill"><span>预付比例：<span class="blank" style="min-width:60px">　</span>%</span></div></div></div>
+            <div class="sop-step"><div class="sop-num">5</div><div class="sop-content"><div class="sop-name">发布 & 数据反馈</div><div class="sop-fill"><span>数据报告周期：<span class="blank" style="min-width:80px">　</span></span></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">合作红线（绝对拒绝）</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 要求虚假宣传 / 夸大功效</span>
+          <span class="option"><span class="checkbox"></span> 不允许标注广告</span>
+          <span class="option"><span class="checkbox"></span> 价值观不符的品牌 / 产品</span>
+          <span class="option"><span class="checkbox"></span> 要求修改我的真实评价</span>
+          <span class="option"><span class="checkbox"></span> 其他：<span class="blank" style="min-width:120px">　</span></span>
+        </div>
+        <div class="field-hint">明确红线保护口碑，口碑才是最长久的变现工具</div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 提前准备好 Media Kit，品牌来找你时 5 分钟就能对接清楚，专业感直接决定谈判主动权。</div>
+  </div>
+
+  <!-- 16 成长目标与里程碑 -->
+  <div class="section theme-slate">
+    <div class="section-header">
+      <span class="section-num">16</span>
+      <div class="section-title-group">
+        <h2 class="section-title">成 长 目 标 与 里 程 碑</h2>
+        <p class="section-subtitle">Growth Roadmap — 有方向才有动力，有数据才能复盘</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="fields-wrapper">
+      <div class="field-card">
+        <div class="field-label">阶段目标</div>
+        <div class="field-value">
+          <table class="table-fields">
+            <tr><th>阶段</th><th>时间节点</th><th>粉丝目标</th><th>内容目标</th></tr>
+            <tr><td>起步期</td><td><span class="blank" style="min-width:50px">　</span>个月内</td><td><span class="blank" style="min-width:50px">　</span> 粉</td><td><span class="blank" style="min-width:100px">　</span></td></tr>
+            <tr><td>成长期</td><td><span class="blank" style="min-width:50px">　</span>个月内</td><td><span class="blank" style="min-width:50px">　</span> 粉</td><td><span class="blank" style="min-width:100px">　</span></td></tr>
+            <tr><td>成熟期</td><td><span class="blank" style="min-width:50px">　</span>个月内</td><td><span class="blank" style="min-width:50px">　</span> 粉</td><td><span class="blank" style="min-width:100px">　</span></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">第一个爆款目标 & 变现里程碑</div>
+        <div class="field-value">
+          第一个爆款：<span class="blank" style="min-width:60px">　</span>内做出播放超<span class="blank" style="min-width:60px">　</span>的内容，方向：<span class="blank" style="min-width:100px">　</span><br>
+          第一次接单：粉丝达到<span class="blank" style="min-width:60px">　</span>时，定价<span class="blank" style="min-width:60px">　</span>元 / 条<br>
+          长期目标：月收入达到<span class="blank" style="min-width:80px">　</span>
+        </div>
+      </div>
+      <div class="field-card">
+        <div class="field-label">复盘节奏 & 卡住应对</div>
+        <div class="field-value">
+          <span class="option"><span class="checkbox"></span> 每周复盘数据</span>
+          <span class="option"><span class="checkbox"></span> 每月内容总结</span>
+          <span class="option"><span class="checkbox"></span> 每季度审视人设定位</span>
+          <span class="option"><span class="checkbox"></span> 爆款 / 冷门内容都做拆解</span>
+        </div>
+        <div class="field-hint">连续 1 个月没增长时先查：封面标题 → 选题方向 → 发布时间 → 细分切口是否过窄</div>
+      </div>
+    </div>
+    <div class="tip-bar"><span class="tip-icon">✦</span> 没有目标的创作很容易在「感觉没什么用」时断更。设定阶段里程碑，每一个小胜利都是继续下去的燃料。</div>
+  </div>
+
+  <!-- 自检清单 -->
+  <div class="checklist-section">
+    <div class="checklist-title">✦  人设自检清单（v4 终极版）</div>
+    <div class="checklist-desc">全部打勾，你已经是真正系统化运营的创作者了 — 领先 99% 的同赛道博主</div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">▸ 定位 & 人设</div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">陌生人看我主页 3 秒内知道「这号是干嘛的」</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">我有真实故事支撑人设，不是硬凹出来的</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">30 秒内能清楚说出：我是谁 + 帮谁 + 提供什么</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">我的差异化切口清晰，知道跟同赛道有什么本质不同</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">内容底线明确，不会为了流量越过红线</div></div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">▸ 冷启动 & Bio & SEO</div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">前 10 条内容计划已想清楚，风格高度一致</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">账号简介（Bio）填写完整，含核心关键词 + 引导行动</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">名字 / 简介里已埋入 3 个以上核心搜索关键词</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">知道目标粉丝会搜什么关键词找到我</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">标题写法有固定公式，核心词放在前 5 字</div></div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">▸ 视觉 & 话术</div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">连刷我 3 条内容，视觉风格统一不跳戏</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">封面在信息流里足够醒目，不会被一划而过</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">至少 1 个标志性视觉元素让人过目不忘</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">有固定开场 + 收尾钩子 + 标题公式</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">有 3 句以上反复说的金句，粉丝能帮你说出来</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">遇到负评和质疑，知道如何应对，不会慌乱</div></div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">▸ 内容规划 & 生产</div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">内容支柱清晰，每次选题都有框架可依</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">有至少 1 个固定系列 / 栏目，粉丝能形成期待</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">内容生产 SOP 已写清楚，知道每条内容大概花多少时间</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">有断更应急预案，最差情况也不会凭空消失</div></div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">▸ 互动 & 数据复盘</div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">发布后 1 小时内有固定互动动作（回评论）</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">有路人粉 → 铁粉的转化路径，不只靠内容等待</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">每周有固定数据复盘，知道看哪些指标</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">每条爆款和冷门内容都做了原因拆解</div></div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">▸ 对标 & 增长 & 商务</div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">研究过 3 个以上对标账号，知道差距和机会在哪</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">粉丝画像具体到能想象出一个活生生的人</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">有联动计划，知道想跟哪些账号合作</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">商务资料包（Media Kit）已准备好，报价单清晰</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">有明确的阶段目标，知道 3 个月后想达到什么状态</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text">每次创作前都对照这份手册自查一遍</div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-emblem">✦</div>
+    <div class="footer-rule"></div>
+    <p class="footer-text">做好人设，内容才有灵魂</p>
+    <p class="footer-sub">填完这份手册，打印贴在工位上 — 每次创作前对照检查，保持一致性是最有效的涨粉策略</p>
+  </footer>
+
+</div>
+</body>
+</html>

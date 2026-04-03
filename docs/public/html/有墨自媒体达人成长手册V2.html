@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自媒体达人成长体系 · 从 0 到变现的完整路径</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF8F3;
+  --cream-dark: #F5F0E8;
+  --warm: #FDFBF7;
+  --gold: #C9A96E;
+  --gold-light: #E8D5A3;
+  --gold-dark: #A07D3A;
+  --gold-pale: rgba(201,169,110,0.08);
+  --ink: #1A1A1A;
+  --ink-m: #3D3D3D;
+  --ink-l: #6B6B6B;
+  --ink-f: #9A9A9A;
+  --red: #C44536;
+  --red-bg: #FDF6F5;
+  --green: #2E7D5E;
+  --green-bg: #F5FBF8;
+  --border: rgba(201,169,110,0.25);
+  --shadow: 0 8px 32px rgba(26,26,26,0.06);
+  --shadow-hover: 0 16px 48px rgba(26,26,26,0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Noto Sans SC', -apple-system, sans-serif;
+  font-weight: 300;
+  line-height: 1.9;
+  overflow-x: hidden;
+}
+
+/* 背景纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(250,248,243,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+.nav-brand span {
+  color: var(--gold);
+  font-weight: 300;
+  margin-left: 10px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  color: var(--ink-l);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  transition: color 0.25s;
+  font-weight: 400;
+}
+.nav-links a:hover { color: var(--gold); }
+@media (max-width: 900px) { .nav-links { display: none; } }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: 100px 40px;
+  overflow: hidden;
+}
+.hero-rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(201,169,110,0.12);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 8s ease-in-out infinite;
+}
+.hero-ring:nth-child(1) { width: 450px; height: 450px; }
+.hero-ring:nth-child(2) { width: 680px; height: 680px; animation-delay: 2s; }
+.hero-ring:nth-child(3) { width: 950px; height: 950px; animation-delay: 4s; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.6; }
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+}
+.hero-badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.4);
+  padding: 8px 26px;
+  margin-bottom: 48px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  animation: fadeUp 1s ease both;
+}
+.hero-title {
+  font-family: 'Noto Serif SC', 'Playfair Display', serif;
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  animation: fadeUp 1s ease 0.15s both;
+  letter-spacing: 0.08em;
+}
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(15px, 2.5vw, 21px);
+  color: var(--gold-dark);
+  letter-spacing: 0.12em;
+  margin-bottom: 32px;
+  animation: fadeUp 1s ease 0.3s both;
+}
+.hero-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 36px;
+  animation: expand 1.2s ease 0.45s both;
+}
+.hero-desc {
+  font-size: 15px;
+  color: var(--ink-m);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 2.2;
+  animation: fadeUp 1s ease 0.55s both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes expand {
+  from { width: 0; opacity: 0; }
+  to { width: 60px; opacity: 1; }
+}
+
+/* SECTION */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 40px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.section-alt {
+  position: relative;
+  z-index: 1;
+  padding: 100px 40px;
+  background: var(--cream-dark);
+}
+.section-alt .inner { max-width: 920px; margin: 0 auto; }
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ══ SECTION HEADER — 统一对齐版 ══ */
+.sec-header {
+  margin-bottom: 60px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.sec-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 56px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+.sec-header-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.15;
+  line-height: 1;
+  letter-spacing: -3px;
+  margin-bottom: -12px;
+  display: block;
+  user-select: none;
+}
+.sec-header-body {
+  /* wrapper for structured headers */
+}
+.sec-eye {
+  font-size: 10px;
+  letter-spacing: 0.55em;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.sec-title {
+  font-family: 'Noto Serif SC', 'Playfair Display', serif;
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 600;
+  line-height: 1.38;
+  margin-bottom: 0;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.sec-title em {
+  font-style: normal;
+  color: var(--gold-dark);
+  font-weight: 400;
+}
+/* old sec-line hidden, border-bottom replaces it */
+.sec-line { display: none; }
+@media (max-width: 600px) {
+  .sec-header-num { font-size: 52px; opacity: 0.12; margin-bottom: -8px; }
+}
+
+/* TEXT */
+p.body {
+  font-size: 16px;
+  color: var(--ink-m);
+  line-height: 2.1;
+  margin-bottom: 20px;
+}
+p.body strong { color: var(--ink); font-weight: 500; }
+
+/* ACCENT BOX */
+.accent {
+  border-left: 3px solid;
+  padding: 28px 32px;
+  margin: 32px 0;
+  border-radius: 0 8px 8px 0;
+}
+.accent.gold { border-color: var(--gold); background: var(--gold-pale); }
+.accent.red { border-color: var(--red); background: var(--red-bg); }
+.accent.green { border-color: var(--green); background: var(--green-bg); }
+.accent h4 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.accent p {
+  font-size: 14px;
+  color: var(--ink-m);
+  line-height: 1.95;
+  margin: 0;
+}
+
+/* H2 H3 */
+h2.sub {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(17px, 2.4vw, 22px);
+  font-weight: 600;
+  margin: 52px 0 20px;
+  padding: 14px 0 14px 16px;
+  border-left: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, rgba(201,169,110,0.05), transparent 60%);
+  border-radius: 0 4px 4px 0;
+}
+h2.sub::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+h2.sub.gold::before { background: var(--gold); }
+h2.sub.red::before { background: var(--red); }
+h2.sub.green::before { background: var(--green); }
+h2.sub.dark::before { background: var(--ink); }
+h2.sub.orange::before { background: #C46B20; }
+h3.sub {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--ink);
+  letter-spacing: 0.1em;
+  padding-left: 12px;
+  border-left: 2px solid rgba(201,169,110,0.4);
+}
+
+/* STEPS */
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(201,169,110,0.08);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  border: 1px solid rgba(201,169,110,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: var(--gold-dark);
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-weight: 600;
+}
+.step p {
+  font-size: 15px;
+  color: var(--ink-m);
+  line-height: 1.9;
+  margin: 0;
+}
+.step p strong { color: var(--ink); font-weight: 500; }
+
+/* COMPARE TABLE */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin: 24px 0 32px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.compare-head {
+  padding: 18px 24px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.compare-head.bad {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.compare-head.good {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.compare-cell {
+  background: var(--warm);
+  padding: 20px 24px;
+  font-size: 14px;
+  color: var(--ink-m);
+  line-height: 1.85;
+}
+@media (max-width: 650px) { .compare { grid-template-columns: 1fr; } }
+
+/* DATA TABLE */
+.dtable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0 32px;
+  font-size: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--warm);
+}
+.dtable th {
+  background: var(--ink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  padding: 16px 18px;
+  text-align: left;
+  text-transform: uppercase;
+}
+.dtable td {
+  padding: 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-m);
+  line-height: 1.75;
+}
+.dtable tr:last-child td { border-bottom: none; }
+.dtable td:first-child {
+  font-weight: 600;
+  color: var(--gold-dark);
+  white-space: nowrap;
+}
+
+/* CONCEPT CARDS */
+.concepts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 28px 0;
+}
+.concept {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  border-radius: 10px;
+  transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+}
+.concept:hover {
+  border-color: var(--gold);
+  transform: translateX(6px);
+  box-shadow: var(--shadow-hover);
+}
+.concept-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: rgba(201,169,110,0.25);
+  line-height: 1;
+  text-align: center;
+  font-weight: 700;
+}
+.concept-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold-dark);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+.concept-desc {
+  font-size: 14px;
+  color: var(--ink-m);
+  line-height: 1.85;
+}
+
+/* STAGE CARDS */
+.stage {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  margin: 32px 0;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: box-shadow 0.4s, transform 0.4s;
+}
+.stage:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.stage-head {
+  padding: 36px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.stage-head.s1 { background: linear-gradient(135deg, #EBF3FB, #F5F8FC); border-left: 5px solid #4A8BC4; }
+.stage-head.s2 { background: linear-gradient(135deg, #FEF5E8, #FAF6EE); border-left: 5px solid #C46B20; }
+.stage-head.s3 { background: linear-gradient(135deg, #F3E9FA, #F8F2FC); border-left: 5px solid #8B5BB5; }
+.stage-head.s4 { background: linear-gradient(135deg, #E6F5EE, #F0F9F4); border-left: 5px solid #2E7D5E; }
+.stage-label {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stage-label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.stage-head.s1 .stage-label { color: #4A8BC4; }
+.stage-head.s2 .stage-label { color: #C46B20; }
+.stage-head.s3 .stage-label { color: #8B5BB5; }
+.stage-head.s4 .stage-label { color: #2E7D5E; }
+.stage-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+.stage-body { padding: 36px 40px; }
+
+/* TAGS */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+.tag {
+  font-size: 11px;
+  padding: 6px 16px;
+  border-radius: 24px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  border: 1px solid var(--border);
+}
+.tag.gold { background: var(--gold-pale); color: var(--gold-dark); }
+.tag.blue { background: #EBF3FB; color: #4A8BC4; }
+.tag.green { background: #E6F5EE; color: #2E7D5E; }
+.tag.red { background: #FDF6F5; color: var(--red); }
+.tag.purple { background: #F3E9FA; color: #8B5BB5; }
+.tag.orange { background: #FEF5E8; color: #C46B20; }
+
+/* FORMULA */
+.formula {
+  text-align: center;
+  padding: 48px;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  margin: 32px 0;
+  border-radius: 12px;
+}
+.formula-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(20px, 3.5vw, 32px);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+.formula-text em {
+  font-style: normal;
+  color: var(--gold-dark);
+}
+.formula-sub {
+  font-size: 11px;
+  color: var(--ink-f);
+  letter-spacing: 0.3em;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+
+/* SECTION INTRO TEXT */
+.sec-intro {
+  font-size: 16px;
+  color: var(--ink-m);
+  line-height: 2;
+  max-width: 680px;
+  margin-bottom: 40px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* METRICS */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin: 32px 0;
+}
+.metric {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  padding: 32px 26px;
+  text-align: center;
+  border-radius: 10px;
+  transition: border-color 0.35s, box-shadow 0.35s;
+}
+.metric:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+}
+.metric-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: var(--gold-dark);
+  line-height: 1;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.metric-label {
+  font-size: 12px;
+  color: var(--ink-l);
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+/* ALGO GRID */
+.algo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+.algo-card {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+}
+.algo-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+  transform: translateY(-3px);
+}
+.algo-card-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gold-dark);
+  margin-bottom: 10px;
+}
+.algo-card-body {
+  font-size: 13px;
+  color: var(--ink-m);
+  line-height: 1.85;
+}
+
+/* CASE BOX */
+.case {
+  background: var(--cream-dark);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 26px 30px;
+  margin: 24px 0;
+}
+.case-label {
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.case-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.case-body {
+  font-size: 14px;
+  color: var(--ink-m);
+  line-height: 1.85;
+}
+
+/* MINDSET CARDS */
+.mindset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin: 28px 0;
+}
+.mindset-card {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+}
+.mindset-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+.mindset-icon { font-size: 28px; margin-bottom: 14px; }
+.mindset-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.mindset-body {
+  font-size: 14px;
+  color: var(--ink-m);
+  line-height: 1.85;
+}
+
+/* CHECKLIST */
+.checklist-section {
+  background: var(--ink);
+  border-radius: 14px;
+  padding: 48px;
+  margin: 48px 0;
+  position: relative;
+  overflow: hidden;
+}
+.checklist-section::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(201,169,110,0.1), transparent 70%);
+}
+.cl-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  letter-spacing: 0.3em;
+  margin-bottom: 6px;
+}
+.cl-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+.cl-group { margin-bottom: 28px; }
+.cl-group-title {
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.cl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.cl-item:last-child { border-bottom: none; }
+.cl-box {
+  width: 18px; height: 18px;
+  border: 1.5px solid rgba(201,169,110,0.5);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.cl-text {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.45);
+  text-align: center;
+  padding: 64px 40px;
+  position: relative;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 50px; height: 2px;
+  background: var(--gold);
+}
+.foot-logo {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 21px;
+  color: #fff;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.foot-tag {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.foot-meta {
+  font-size: 13px;
+  line-height: 2.2;
+}
+
+/* REVEAL ANIMATION */
+.rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.rv.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .section, .section-alt { padding: 70px 24px; }
+  .stage-head, .stage-body { padding: 28px 22px; }
+  .checklist-section { padding: 36px 22px; }
+  .hero { padding: 80px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">自媒体达人成长体系<span>CREATOR PLAYBOOK</span></div>
+  <ul class="nav-links">
+    <li><a href="#s1">核心逻辑</a></li>
+    <li><a href="#s2">失败原因</a></li>
+    <li><a href="#s3">四阶模型</a></li>
+    <li><a href="#s4">平台选择</a></li>
+    <li><a href="#s5">差异对比</a></li>
+    <li><a href="#s6">逐阶详解</a></li>
+    <li><a href="#s8">算法机制</a></li>
+    <li><a href="#s9">SEO 策略</a></li>
+    <li><a href="#s10">数据复盘</a></li>
+    <li><a href="#s11">心态管理</a></li>
+    <li><a href="#s12">变现路径</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-rings">
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">CREATOR GROWTH SYSTEM · 自媒体达人养成手册</div>
+    <h1 class="hero-title">如何成为<br>自媒体达人</h1>
+    <p class="hero-subtitle">From Zero to Influence · 从 0 到变现的完整路径</p>
+    <div class="hero-line"></div>
+    <p class="hero-desc">
+      为什么大多数人做了一年还是没有粉丝？<br>
+      因为他们在做"内容"，而不是在做"影响力"。<br>
+      这份手册，告诉你真正有效的路径。
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 01 CORE LOGIC -->
+<section class="section" id="s1">
+  <div class="sec-header rv">
+    <div class="sec-header-num">01</div>
+    <div class="sec-header-body">
+    <span class="sec-eye">01 · THE CORE LOGIC</span>
+    <h2 class="sec-title">先说结论：做自媒体的<em>底层逻辑</em>是什么</h2>
+        <div class="sec-line"></div>
+    </div>
+  </div>
+  <div class="accent gold rv">
+    <h4>自媒体的本质，不是"发内容"，而是"建立信任"：</h4>
+    <p><strong style="font-size:18px;color:var(--gold-dark)">"粉丝关注你，是因为你代表了他们想成为的人，或者你能持续解决他们的某个问题。"</strong><br><br>这个逻辑永远不会变。变的只是平台和形式。账号能不能做起来，取决于你有没有找到自己的"信任定位"。</p>
+  </div>
+  <p class="body rv"><strong>但找到定位只是起点，不是终点。</strong>大多数人卡在第一步——他们试图"什么都做"或者"模仿别人"，结果做了几个月，没粉丝，没收入，最终放弃。</p>
+  <p class="body rv">真正能做起来的达人，都遵循一条路径：<strong>定位 → 平台 → 内容 → 积累 → 变现</strong>。这五步缺一不可，顺序不能颠倒。</p>
+  <div class="formula rv">
+    <div class="formula-text"><em>精准定位</em> × 持续输出 × 信任积累 = <em>可持续变现</em></div>
+    <div class="formula-sub">POSITIONING × CONTENT × TRUST = MONETIZATION</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 02 REAL PROBLEMS -->
+<section class="section-alt" id="s2">
+  <div class="inner">
+    <div class="sec-header rv">
+      <div class="sec-header-num">02</div>
+      <div class="sec-header-body">
+      <span class="sec-eye">02 · THE REAL PROBLEM</span>
+      <h2 class="sec-title">大多数人做自媒体失败的<em>真实原因</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <h2 class="sub dark rv">失败的典型循环</h2>
+    <div class="rv">
+      <div class="step"><div class="step-num">1</div><p><strong>看到别人做自媒体赚钱，</strong>热血冲头，决定"我也来做"。</p></div>
+      <div class="step"><div class="step-num">2</div><p><strong>随便选个方向，</strong>开始发内容。发了 10 条，没什么播放，开始怀疑自己。</p></div>
+      <div class="step"><div class="step-num">3</div><p><strong>去学"爆款技巧"，</strong>换个赛道，换个风格，再发 10 条，还是没起色。</p></div>
+      <div class="step"><div class="step-num">4</div><p><strong>开始怀疑方向，</strong>觉得是平台问题、时机问题、或者自己"不适合"做自媒体。</p></div>
+      <div class="step"><div class="step-num">5</div><p><strong>停更，沉寂，</strong>过段时间看到新人爆火，又心痒，重新开始……循环往复。</p></div>
+    </div>
+    <div class="accent red rv">
+      <h4>核心问题</h4>
+      <p>这个循环的核心问题不是"内容不好"，而是<strong style="color:var(--red)">"没有找到自己的核心价值"</strong>。你发的每一条内容，都在回答同一个问题：<em>"为什么粉丝应该关注你，而不是关注别人？"</em>——如果你自己都回答不了，算法也无法帮你找到受众。</p>
+    </div>
+    <div class="metrics rv">
+      <div class="metric"><div class="metric-num">90%</div><div class="metric-label">的新账号在发布 30 条内容前放弃</div></div>
+      <div class="metric"><div class="metric-num">3 个月</div><div class="metric-label">是大多数达人开始看到复利效应的时间节点</div></div>
+      <div class="metric"><div class="metric-num">4 倍</div><div class="metric-label">坚持只做一件事的账号成功率是泛内容账号的 4 倍</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 03 FOUR-STAGE MODEL -->
+<section class="section" id="s3">
+  <div class="sec-header rv">
+    <div class="sec-header-num">03</div>
+    <div class="sec-header-body">
+    <span class="sec-eye">03 · CORE FRAMEWORK</span>
+    <h2 class="sec-title">自媒体达人成长的<em>四阶模型</em></h2>
+        <div class="sec-line"></div>
+    </div>
+  </div>
+  <p class="body rv"><strong>任何一个成功的自媒体达人，都经历了四个阶段——</strong>不管他们有没有意识到。这四个阶段不能跳级，不能颠倒：</p>
+  <table class="dtable rv">
+    <thead><tr><th>阶段</th><th>核心任务</th><th>核心问题</th><th>里程碑</th></tr></thead>
+    <tbody>
+      <tr><td>第一阶</td><td>定位与人设</td><td>我是谁？我为谁服务？我能提供什么价值？</td><td>能用 1 句话说清楚自己的定位</td></tr>
+      <tr><td>第二阶</td><td>内容能力</td><td>我知道要做什么，但做出来没人看</td><td>能稳定产出有人看完的内容</td></tr>
+      <tr><td>第三阶</td><td>增长积累</td><td>有内容了，但粉丝涨得慢，缺少爆发点</td><td>第一个 10 万粉，形成稳定粉丝基础</td></tr>
+      <tr><td>第四阶</td><td>商业变现</td><td>有粉丝了，但不知道怎么把流量变成收入</td><td>建立可持续的多元变现模式</td></tr>
+    </tbody>
+  </table>
+  <div class="accent green rv">
+    <h4>这四阶之间的关系，是"地基与楼层"</h4>
+    <p>没有精准定位，内容就没有方向；没有内容能力，粉丝基础就无从建立；没有粉丝积累，变现就是空谈。大多数人失败，是因为跳过第一阶直接做内容，或者跳过第三阶直接想变现——地基没打好，楼越盖越歪。</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 04 PLATFORM SELECTION -->
+<section class="section-alt" id="s4">
+  <div class="inner">
+    <div class="sec-header rv">
+      <div class="sec-header-num">04</div>
+      <div class="sec-header-body">
+      <span class="sec-eye">04 · PLATFORM STRATEGY</span>
+      <h2 class="sec-title">平台选择：去<em>对的地方</em>找对的人</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="accent gold rv">
+      <h4>为什么平台选择要在定位之后、内容之前？</h4>
+      <p>不同平台的流量逻辑、用户画像、内容形式完全不同。先定好人设，再选适合你的平台，最后才制作内容——顺序错了，努力白费。<strong>你的目标受众在哪，你就去哪，而不是"哪个平台最火就去哪"。</strong></p>
+    </div>
+    <div class="concepts rv">
+      <div class="concept">
+        <div class="concept-num">抖音</div>
+        <div>
+          <div class="concept-name">抖音 · 短视频 + 直播带货</div>
+          <div class="concept-desc"><strong>流量逻辑：</strong>算法推荐驱动，完播率和互动率决定推流量级。冷启动快，单条爆款可带来几十万粉。<br><strong>适合人群：</strong>泛生活、才艺娱乐、电商带货、颜值内容。<br><strong>核心指标：</strong>完播率 &gt; 点赞率 &gt; 评论率。发布最佳时间：早 7-9 点、午 12-13 点、晚 18-23 点。</div>
+        </div>
+      </div>
+      <div class="concept">
+        <div class="concept-num">小红书</div>
+        <div>
+          <div class="concept-name">小红书 · 图文 + 搜索种草</div>
+          <div class="concept-desc"><strong>流量逻辑：</strong>搜索 + 推荐双驱动，关键词 SEO 非常重要，内容有长尾效应（一篇好内容可带流量 12 个月）。<br><strong>适合人群：</strong>美妆护肤、时尚穿搭、家居生活、旅行、职场成长。<br><strong>核心指标：</strong>收藏率 &gt; 点赞率（收藏代表实用价值）。标题前 10 个字必须含关键词。</div>
+        </div>
+      </div>
+      <div class="concept">
+        <div class="concept-num">B 站</div>
+        <div>
+          <div class="concept-name">B 站 · 中长视频 + 知识深度</div>
+          <div class="concept-desc"><strong>流量逻辑：</strong>社区文化驱动，用户忠诚度高，弹幕和评论是重要互动形式。成长慢，但粉丝黏性极强。<br><strong>适合人群：</strong>科技数码、财经知识、历史人文、职场干货、深度测评。<br><strong>核心指标：</strong>完播率 + 弹幕量 + 投币率（投币代表深度认可）。</div>
+        </div>
+      </div>
+      <div class="concept">
+        <div class="concept-num">视频号</div>
+        <div>
+          <div class="concept-name">视频号 · 微信生态 + 社交裂变</div>
+          <div class="concept-desc"><strong>流量逻辑：</strong>社交裂变驱动，熟人传播逻辑，朋友点赞决定推流。与微信私域无缝打通，是私域变现最顺畅的平台。<br><strong>适合人群：</strong>中高端知识付费、B2B 服务、已有私域基础的创作者。<br><strong>核心指标：</strong>转发率 &gt; 点赞率（转发驱动裂变）。</div>
+        </div>
+      </div>
+    </div>
+    <h2 class="sub gold rv">选平台的决策框架</h2>
+    <table class="dtable rv">
+      <thead><tr><th>你的内容类型</th><th>首选平台</th><th>辅助平台</th><th>不建议</th></tr></thead>
+      <tbody>
+        <tr><td>美妆 / 护肤 / 时尚</td><td>小红书</td><td>抖音 / 视频号</td><td>B 站（竞争激烈）</td></tr>
+        <tr><td>数码 / 科技测评</td><td>B 站 / 抖音</td><td>小红书 / 微博</td><td>视频号（用户画像不符）</td></tr>
+        <tr><td>汽车 / 出行</td><td>抖音 / B 站</td><td>小红书 / 微博</td><td>—</td></tr>
+        <tr><td>知识 / 职场 / 财经</td><td>B 站 / 小红书</td><td>视频号 / 微博</td><td>—</td></tr>
+        <tr><td>娱乐 / 搞笑 / 才艺</td><td>抖音</td><td>视频号 / 微博</td><td>B 站（用户要求高）</td></tr>
+        <tr><td>美食 / 探店</td><td>抖音 / 小红书</td><td>视频号</td><td>—</td></tr>
+        <tr><td>亲子 / 家庭</td><td>抖音 / 视频号</td><td>小红书</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="accent gold rv">
+      <h4>主平台 + 辅平台的黄金比例</h4>
+      <p><strong>精力分配：主平台 80% + 辅平台 20%。</strong>主平台深耕算法积累，辅平台做内容同步扩大触达面。切忌同时主攻多个平台——精力分散导致每个平台都做不好。<br><br>最常见的组合：<strong>小红书 + 抖音</strong>（生活消费类）/ <strong>B 站 + 微博</strong>（知识内容类）/ <strong>抖音 + 视频号</strong>（带货变现类）</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 05 KEY DIFFERENCES -->
+<section class="section" id="s5">
+  <div class="sec-header rv">
+    <div class="sec-header-num">05</div>
+    <div class="sec-header-body">
+    <span class="sec-eye">05 · WHAT SEPARATES TOP CREATORS</span>
+    <h2 class="sec-title">头部达人 vs 普通创作者的<em>四个根本差异</em></h2>
+        <div class="sec-line"></div>
+    </div>
+  </div>
+
+  <h2 class="sub gold rv">差异一："价值驱动" vs "内容驱动"</h2>
+  <div class="accent gold rv">
+    <h4>核心：先问"给别人带来什么"，再问"发什么内容"</h4>
+    <p>头部达人想的是"我的粉丝看完这条，能得到什么？"普通创作者想的是"我今天发什么好？"</p>
+  </div>
+  <div class="compare rv">
+    <div class="compare-head bad">❌ 普通创作者的思维</div>
+    <div class="compare-head good">✅ 头部达人的思维</div>
+    <div class="compare-cell">以"我"为中心：我今天有什么想说的？我最近做了什么？</div>
+    <div class="compare-cell">以"受众"为中心：我的目标用户今天最需要什么？什么能帮到他们？</div>
+    <div class="compare-cell">追热点、蹭流量，内容东一榔头西一棒子，账号标签混乱</div>
+    <div class="compare-cell">有稳定的内容主题，每条内容都在强化同一个"人设标签"</div>
+    <div class="compare-cell">粉丝不知道关注你是为了什么，关注了也不活跃</div>
+    <div class="compare-cell">粉丝清晰知道你代表什么，会主动推荐给他人</div>
+  </div>
+
+  <h2 class="sub gold rv">差异二："系统化生产" vs "灵感驱动"</h2>
+  <div class="accent gold rv">
+    <h4>核心：内容不靠灵感，靠系统</h4>
+    <p>等灵感来了再发内容，就像等感觉来了再去健身——永远不会稳定。</p>
+  </div>
+  <div class="compare rv">
+    <div class="compare-head bad">❌ 普通创作者的方式</div>
+    <div class="compare-head good">✅ 头部达人的方式</div>
+    <div class="compare-cell">有灵感就发，没灵感就断更；热情高时一天发 3 条，懈怠时两周不更新</div>
+    <div class="compare-cell">建立内容日历，固定发布节奏；把"内容选题"变成一套可复用的生产流程</div>
+    <div class="compare-cell">每条内容从头想到尾，耗时耗力，很快就精疲力竭</div>
+    <div class="compare-cell">把内容拆分成：选题库 → 框架模板 → 批量制作 → 定时发布</div>
+    <div class="compare-cell">更新不稳定，算法不推流，粉丝失去期待感</div>
+    <div class="compare-cell">稳定更新，算法持续分发，粉丝形成观看习惯</div>
+  </div>
+
+  <h2 class="sub gold rv">差异三："深度运营" vs "只管发内容"</h2>
+  <div class="compare rv">
+    <div class="compare-head bad">❌ 普通创作者的运营</div>
+    <div class="compare-head good">✅ 头部达人的运营</div>
+    <div class="compare-cell">发完内容就结束了，评论区很少回复，粉丝感觉不到"真人"在对面</div>
+    <div class="compare-cell">发布后 1 小时内密集互动，回复评论，引导讨论，让算法判断内容"质量高"</div>
+    <div class="compare-cell">把粉丝当数字看，追求"量"，忽视粉丝质量和活跃度</div>
+    <div class="compare-cell">把粉丝当社群经营，建立私域，让高黏性粉丝成为传播节点</div>
+  </div>
+
+  <h2 class="sub gold rv">差异四："多元变现" vs "等品牌来找"</h2>
+  <div class="compare rv">
+    <div class="compare-head bad">❌ 普通创作者的变现</div>
+    <div class="compare-head good">✅ 头部达人的变现</div>
+    <div class="compare-cell">单一变现：等广告；粉丝不够 100 万，完全没收入，极度依赖平台规则</div>
+    <div class="compare-cell">多元变现：广告 + 知识付费 + 带货 + 私域服务，粉丝 1 万就能开始变现</div>
+    <div class="compare-cell">被动等品牌；报价没有逻辑，要么定低了要么谈崩</div>
+    <div class="compare-cell">主动设计变现产品，建立媒介手册，主动对接品牌，形成稳定商务收入</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 06 STAGE BREAKDOWN -->
+<section class="section-alt" id="s6">
+  <div class="inner">
+    <div class="sec-header rv">
+      <div class="sec-header-num">06</div>
+      <div class="sec-header-body">
+      <span class="sec-eye">06 · STAGE BREAKDOWN</span>
+      <h2 class="sec-title">四个阶段的<em>详细执行手册</em></h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- STAGE 1 -->
+    <div class="stage rv">
+      <div class="stage-head s1">
+        <div class="stage-label">STAGE 01 · 基础建设期</div>
+        <div class="stage-name">定位与人设 — 你是谁，凭什么被关注</div>
+      </div>
+      <div class="stage-body">
+        <div class="tags">
+          <span class="tag blue">用时：0–4 周</span>
+          <span class="tag gold">核心动作：定位 + 人设 + 账号搭建</span>
+          <span class="tag gold">里程碑：能用 1 句话说清自己</span>
+        </div>
+        <h3 class="sub">定位三问（每个问题都必须回答清楚）</h3>
+        <div class="step"><div class="step-num">1</div><p><strong>我是谁？</strong>你的真实背景、经历、专业领域。不要造假，真实经历才有长期信任背书。</p></div>
+        <div class="step"><div class="step-num">2</div><p><strong>我为谁服务？</strong>具体描绘你的目标受众：年龄、职业、痛点、渴望。越具体越好，"所有人"等于"没有人"。</p></div>
+        <div class="step"><div class="step-num">3</div><p><strong>我提供什么独特价值？</strong>你能给受众带来什么，是别人给不了的？知识、经历、视角、娱乐……至少占据一个。</p></div>
+        <div class="accent blue">
+          <h4>黄金定位公式</h4>
+          <p>我是一个【身份标签】，专门帮助【目标人群】解决【核心痛点】，让他们实现【渴望结果】。</p>
+        </div>
+        <h3 class="sub">真实案例示范</h3>
+        <div class="case">
+          <div class="case-label">案例 · 数码博主</div>
+          <div class="case-title">❌ 模糊定位："我做数码测评"</div>
+          <div class="case-body">这个定位没有任何差异化，市面上有几十万个数码测评博主，你凭什么被关注？</div>
+        </div>
+        <div class="case">
+          <div class="case-label">案例 · 数码博主（优化版）</div>
+          <div class="case-title">✅ 精准定位："我是理工科在读生，专门帮预算在 3000 元以内的大学生选手机，教他们用最少的钱买到性价比最高的设备"</div>
+          <div class="case-body">这个定位有具体人群（大学生）、具体痛点（预算有限）、具体价值（性价比选购），目标用户一看就知道"这个博主是为我服务的"。</div>
+        </div>
+        <div class="case">
+          <div class="case-label">案例 · 美妆博主</div>
+          <div class="case-title">✅ 精准定位："我是皮肤科学生，专门帮敏感肌的女生找到真正温和有效的平价护肤品，不再被过度营销的大牌割韭菜"</div>
+          <div class="case-body">专业背景（皮肤科学生）+ 具体人群（敏感肌女生）+ 鲜明立场（反割韭菜）= 强吸引力定位。</div>
+        </div>
+        <h3 class="sub">人设的三个维度</h3>
+        <div class="step"><div class="step-num">①</div><p><strong>视觉人设：</strong>头像、封面风格、固定出镜形象——让人一看就记住你的"样子"。品牌色系 + 固定模板 = 视觉识别度。</p></div>
+        <div class="step"><div class="step-num">②</div><p><strong>语言人设：</strong>你的说话风格和语气。专业感？亲切感？犀利感？固定下来，不要每次都不一样。口头禅是最快建立记忆点的工具。</p></div>
+        <div class="step"><div class="step-num">③</div><p><strong>价值人设：</strong>你代表什么立场、观点和价值观。有立场才有磁性，没有立场只是信息搬运工。</p></div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage rv">
+      <div class="stage-head s2">
+        <div class="stage-label">STAGE 02 · 内容能力期</div>
+        <div class="stage-name">内容能力 — 让人看完、记住、转发</div>
+      </div>
+      <div class="stage-body">
+        <div class="tags">
+          <span class="tag orange">用时：1–3 个月</span>
+          <span class="tag gold">核心动作：内容生产体系 + 爆款逻辑</span>
+          <span class="tag gold">里程碑：稳定产出有完播率的内容</span>
+        </div>
+        <h3 class="sub">好内容的底层结构：HOOK–VALUE–CTA</h3>
+        <div class="step"><div class="step-num">H</div><p><strong>HOOK（钩子）：</strong>前 3 秒/前两行，必须让用户"停下来"。提问、反常识、冲突感、强利益点——用任何方法，但必须有。</p></div>
+        <div class="step"><div class="step-num">V</div><p><strong>VALUE（价值）：</strong>你承诺了什么，就必须兑现。干货、故事、观点——给够价值，用户才会看完、分享、关注。</p></div>
+        <div class="step"><div class="step-num">C</div><p><strong>CTA（行动号召）：</strong>只引导一个动作，说得具体，说得有理由。"喜欢这个思路的帮我点个赞"比"点赞关注"有效 10 倍。</p></div>
+
+        <h3 class="sub">不同赛道的 HOOK 公式示例</h3>
+        <table class="dtable">
+          <thead><tr><th>赛道</th><th>强 HOOK 示例</th><th>为什么有效</th></tr></thead>
+          <tbody>
+            <tr><td>数码测评</td><td>"买手机前，这 5 个参数绝对不能被销售骗"</td><td>制造恐惧感 + 利益承诺</td></tr>
+            <tr><td>美妆护肤</td><td>"我用了 6 年才知道：洗面奶洗了等于没洗"</td><td>反常识 + 时间代价感</td></tr>
+            <tr><td>汽车</td><td>"试驾了 20 台车，这 3 台我劝你不要买"</td><td>专业背书 + 具体数字 + 负面冲突</td></tr>
+            <tr><td>时尚穿搭</td><td>"月薪 3000 的我，是怎么把自己打扮得像月薪 3 万的"</td><td>身份代入 + 强烈反差</td></tr>
+            <tr><td>知识财经</td><td>"普通人存款的最大误区，银行从不告诉你"</td><td>对立感 + 秘密感 + 恐惧感</td></tr>
+          </tbody>
+        </table>
+
+        <div class="accent orange">
+          <h4>内容选题公式</h4>
+          <p>好选题 = 高关注度话题 ∩ 你的专业领域 ∩ 目标受众的强烈痛点<br><br>找选题的 4 个来源：<strong>①平台搜索框联想词</strong>（输入关键词看下拉词）→ <strong>②竞品评论区高赞问题</strong>（用户最真实的需求）→ <strong>③你的真实经历</strong>（别人没有的第一手素材）→ <strong>④粉丝私信和评论提问</strong>（最精准的选题来源）</p>
+        </div>
+
+        <h3 class="sub">内容类型与适用阶段</h3>
+        <table class="dtable">
+          <thead><tr><th>内容类型</th><th>适用阶段</th><th>核心目标</th><th>典型形式</th></tr></thead>
+          <tbody>
+            <tr><td>干货教程类</td><td>冷启动期</td><td>建立专业信任</td><td>5 个技巧、3 步方法、避坑指南</td></tr>
+            <tr><td>故事经历类</td><td>全阶段</td><td>建立情感连接</td><td>我的经历、失败故事、转折时刻</td></tr>
+            <tr><td>观点争议类</td><td>增长期</td><td>引发讨论传播</td><td>我为什么反对 XX、真相是……</td></tr>
+            <tr><td>用户案例类</td><td>变现期</td><td>建立社会证明</td><td>学员成果、粉丝反馈、对比展示</td></tr>
+            <tr><td>幕后日常类</td><td>全阶段</td><td>增强真实感</td><td>工作日常、创作过程、真实状态</td></tr>
+            <tr><td>热点借势类</td><td>增长期</td><td>短期爆发流量</td><td>结合当前热点发表赛道内观点</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="sub">内容生产 SOP（可复制的生产流程）</h3>
+        <div class="step"><div class="step-num">1</div><p><strong>选题立项（15 分钟）：</strong>从选题库中选出本周选题，确认目标受众痛点、核心价值点、CTA 方向。</p></div>
+        <div class="step"><div class="step-num">2</div><p><strong>脚本/大纲（30–60 分钟）：</strong>按"HOOK → VALUE → CTA"结构写大纲。视频内容写逐字稿，图文内容写标题 + 正文结构。</p></div>
+        <div class="step"><div class="step-num">3</div><p><strong>拍摄/制作（1–3 小时）：</strong>固定场景、固定光线、固定构图。批量拍摄（一次拍 3 条以上）节省时间。</p></div>
+        <div class="step"><div class="step-num">4</div><p><strong>剪辑/修图（1–2 小时）：</strong>统一色调滤镜，加字幕，封面单独制作。保持视觉风格一致性。</p></div>
+        <div class="step"><div class="step-num">5</div><p><strong>发布（15 分钟）：</strong>标题写入核心关键词（前 5 字），正文埋入 3 次以上关键词，加话题标签（3 个大词 + 5 个精准词）。</p></div>
+        <div class="step"><div class="step-num">6</div><p><strong>发布后 1 小时互动（30 分钟）：</strong>主动回复前 20 条评论，引导评论区讨论，置顶互动问题。这是算法判断内容质量的黄金窗口期。</p></div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage rv">
+      <div class="stage-head s3">
+        <div class="stage-label">STAGE 03 · 增长爆发期</div>
+        <div class="stage-name">增长积累 — 从有到多，突破第一个 10 万粉</div>
+      </div>
+      <div class="stage-body">
+        <div class="tags">
+          <span class="tag purple">用时：3–12 个月</span>
+          <span class="tag gold">核心动作：爆款复制 + 跨平台分发 + 社群运营</span>
+          <span class="tag gold">里程碑：10 万粉，月均单条 5 万 + 播放</span>
+        </div>
+        <h3 class="sub">增长的三种引擎</h3>
+        <div class="step"><div class="step-num">1</div><p><strong>算法引擎：</strong>研究平台算法偏好，用数据反推内容策略。哪条表现好，就生产更多同类内容。不要用感觉，用数字说话。每周固定分析一次数据，找出"表现最好的 3 条"和"表现最差的 3 条"，分析原因。</p></div>
+        <div class="step"><div class="step-num">2</div><p><strong>爆款引擎：</strong>每 10 条内容里，至少策划 1 条"冲爆款"的。爆款三要素：<strong>超出预期的信息密度</strong>（干货量超过同类内容 2 倍）+ <strong>强情绪共鸣</strong>（让观众有"说出了我的心声"的感觉）+ <strong>极强分享动机</strong>（内容好到想推荐给别人）。</p></div>
+        <div class="step"><div class="step-num">3</div><p><strong>协作引擎：</strong>找同量级或稍大的创作者互推、合拍、联动。选择标准：<strong>粉丝重合度高</strong>（同赛道或相邻赛道）+ <strong>粉丝量级相近</strong>（±50% 以内）+ <strong>价值观相符</strong>（人设契合才能互相加分）。</p></div>
+
+        <h3 class="sub">如何策划一条有爆款潜力的内容</h3>
+        <div class="case">
+          <div class="case-label">爆款策划框架</div>
+          <div class="case-title">5 步爆款策划法</div>
+          <div class="case-body">
+            ① <strong>找爆款选题：</strong>在竞品账号里找互动量最高的内容，提炼共同特征（话题类型、情绪类型、信息密度）<br>
+            ② <strong>找差异化角度：</strong>同一选题，找到一个别人没讲过的切入点（自身经历、反常识观点、独特数据）<br>
+            ③ <strong>写强 HOOK：</strong>前 3 秒必须制造冲突、好奇或恐惧。写 3 个版本，选最强的一个<br>
+            ④ <strong>超预期信息量：</strong>比同类内容多给 30% 的实用价值，让用户觉得"值得收藏"<br>
+            ⑤ <strong>设计分享动机：</strong>内容里有没有让用户想"转发给朋友"的点？没有就加一个
+          </div>
+        </div>
+
+        <div class="accent purple">
+          <h4>增长期最容易犯的错误</h4>
+          <p>① <strong>爆了一条就开始等：</strong>爆款是复利的起点，不是终点。爆款之后立刻分析原因，连续生产 3 条同类内容趁热打铁。<br>② <strong>急于变现：</strong>增长期频繁发广告会让算法降权、粉丝流失。1 万粉以内，克制商务合作冲动，把粉丝质量做扎实。<br>③ <strong>跨赛道发内容：</strong>偶尔一条"跨界"内容会严重扰乱平台对你账号的标签认定，导致后续推流不准。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage rv">
+      <div class="stage-head s4">
+        <div class="stage-label">STAGE 04 · 商业变现期</div>
+        <div class="stage-name">商业变现 — 把影响力转化为可持续收入</div>
+      </div>
+      <div class="stage-body">
+        <div class="tags">
+          <span class="tag green">用时：持续推进</span>
+          <span class="tag gold">核心动作：变现产品设计 + 商务谈判 + 私域建设</span>
+          <span class="tag gold">里程碑：建立不依赖单一平台的收入结构</span>
+        </div>
+        <h3 class="sub">五种主流变现模式</h3>
+        <div class="step"><div class="step-num">①</div><p><strong>品牌广告：</strong>最常见的变现方式。关键是建立"媒介报价单"，清晰呈现你的受众数据、互动率、合作案例，主动出击而不是被动等待。定价参考：粉丝数 × 0.01 元是最低参考价，互动率高可溢价 2—5 倍。</p></div>
+        <div class="step"><div class="step-num">②</div><p><strong>知识付费：</strong>把你的专业能力打包成课程、训练营、咨询服务。1 万铁粉的知识付费收入，往往高于 100 万泛粉的广告收入。</p></div>
+        <div class="step"><div class="step-num">③</div><p><strong>带货电商：</strong>选择和自己人设高度吻合的产品，真用真推荐。带货的核心是"信任"，一次虚假推荐可能摧毁多年积累的口碑。</p></div>
+        <div class="step"><div class="step-num">④</div><p><strong>私域服务：</strong>把高意向粉丝引入微信群/社群，提供付费会员、1 对 1 咨询、线下活动等高溢价服务。私域是最稳定的变现池。</p></div>
+        <div class="step"><div class="step-num">⑤</div><p><strong>IP 授权联名：</strong>当你的人设足够强时，可以与品牌联名出产品、IP 授权等。这是变现的高级阶段。</p></div>
+        <div class="accent green">
+          <h4>变现的黄金原则：信任优先于收入</h4>
+          <p>任何破坏粉丝信任的变现行为，短期赚钱，长期毁账号。每一次商业合作都要问自己：<strong>"这对我的粉丝有价值吗？我真的推荐这个东西吗？"</strong>如果答案是否，拒绝这单，保护你更值钱的东西——信任。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 07 算法机制 -->
+<section class="section" id="s8">
+  <div class="sec-header rv">
+    <div class="sec-header-num">07</div>
+    <div class="sec-header-body">
+    <span class="sec-eye">07 · ALGORITHM MECHANICS</span>
+    <h2 class="sec-title">算法机制：让<em>平台帮你推流</em></h2>
+        <div class="sec-line"></div>
+    </div>
+  </div>
+  <p class="body rv">大多数创作者把算法当"黑盒子"，实际上平台算法有清晰的逻辑——<strong>算法的本质是：帮平台找到最值得推荐的内容。</strong>理解这一点，你就能反向优化内容。</p>
+
+  <h2 class="sub dark rv">算法推流的四个核心指标</h2>
+  <div class="algo-grid rv">
+    <div class="algo-card">
+      <div class="algo-card-title">① 完播率（最重要）</div>
+      <div class="algo-card-body">用户把内容看到最后的比例。完播率 &gt; 70% 代表内容质量高，算法会加大推流。<br><strong>提升方法：</strong>在内容中间设置"悬念钩"（"后面还有更重要的一点"），结尾加彩蛋。</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-card-title">② 互动率（点赞 + 评论 + 收藏）</div>
+      <div class="algo-card-body">互动行为告诉算法"用户喜欢这条内容"。其中收藏 &gt; 评论 &gt; 点赞（收藏代表实用价值）。<br><strong>提升方法：</strong>结尾设置互动问题，评论区前 10 分钟主动回复。</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-card-title">③ 转发/分享率</div>
+      <div class="algo-card-body">分享是最高价值的互动行为，说明内容有"社交货币"价值，算法会给予最高权重加成。<br><strong>提升方法：</strong>内容里包含"值得转发给别人"的干货或情感共鸣点。</div>
+    </div>
+    <div class="algo-card">
+      <div class="algo-card-title">④ 账号标签清晰度</div>
+      <div class="algo-card-body">算法需要给你的账号"打标签"才能精准推流。标签越清晰，推流越精准，粉丝转化率越高。<br><strong>提升方法：</strong>所有内容围绕同一垂类，避免跨赛道发内容。</div>
+    </div>
+  </div>
+
+  <h2 class="sub dark rv">各平台算法特殊规则</h2>
+  <table class="dtable rv">
+    <thead><tr><th>平台</th><th>最重要指标</th><th>推流逻辑</th><th>关键注意事项</th></tr></thead>
+    <tbody>
+      <tr><td>抖音</td><td>完播率 + 点赞率</td><td>流量池递进：500 曝光→5000→5 万→50 万。完播率达标才进下一个池。</td><td>发布后前 1 小时不要编辑内容，会影响推流</td></tr>
+      <tr><td>小红书</td><td>收藏率 + 搜索关键词</td><td>搜索流量 + 推荐流量双驱动。收藏率决定是否被长期推荐。</td><td>标题前 10 字必须含核心关键词；正文开头也要含关键词</td></tr>
+      <tr><td>B 站</td><td>完播率 + 投币率</td><td>新稿件先给冷启动流量，根据完播率决定是否扩大推荐。</td><td>视频时长最好超过 8 分钟，有利于完播率权重</td></tr>
+      <tr><td>视频号</td><td>转发率 + 点赞率</td><td>朋友点赞带动曝光，社交裂变驱动流量。</td><td>发布后第一波请真实好友点赞，激活社交推流</td></tr>
+    </tbody>
+  </table>
+
+  <div class="accent green rv">
+    <h4>算法最不喜欢的行为</h4>
+    <p>① 刷量、买粉（平台会识别并限流）<br>② 发布后频繁修改内容（重置推流计划）<br>③ 账号长时间不更新（降低账号活跃权重）<br>④ 同一设备频繁切换账号（触发风控）<br>⑤ 跨赛道发内容（扰乱账号标签，导致推流不准）</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 08 SEO 关键词策略 -->
+<section class="section-alt" id="s9">
+  <div class="inner">
+    <div class="sec-header rv">
+      <div class="sec-header-num">08</div>
+      <div class="sec-header-body">
+      <span class="sec-eye">08 · SEO KEYWORD STRATEGY</span>
+      <h2 class="sec-title">SEO 关键词：让用户<em>主动搜到你</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <p class="body rv">算法推荐流量是"被动等待"，搜索流量是"主动到来"——而主动搜索的用户需求明确、转化率更高。在小红书和 B 站，搜索流量可以占总流量的 40% 以上。</p>
+
+    <h2 class="sub gold rv">三层关键词体系</h2>
+    <table class="dtable rv">
+      <thead><tr><th>层级</th><th>关键词类型</th><th>特点</th><th>用法</th></tr></thead>
+      <tbody>
+        <tr><td>第一层</td><td>核心词（账号级别）</td><td>搜索量大，竞争激烈。如：美妆、手机评测</td><td>必须出现在账号名 / 简介 / 所有内容中</td></tr>
+        <tr><td>第二层</td><td>品类词（内容级别）</td><td>搜索量中等，竞争适中。如：敏感肌护肤、5000 元手机推荐</td><td>每条内容的标题和正文中各出现 2–3 次</td></tr>
+        <tr><td>第三层</td><td>长尾词（精准流量）</td><td>搜索量小，竞争极低，但需求精准。如：混合偏油敏感肌夏天用什么防晒</td><td>新号优先布局，起步阶段最容易排名上首页</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="sub gold rv">各平台 SEO 操作要点</h2>
+    <div class="algo-grid rv">
+      <div class="algo-card">
+        <div class="algo-card-title">小红书 SEO</div>
+        <div class="algo-card-body">标题前 10 字必须含核心关键词 → 正文开头含关键词 → 话题标签用 3 个大词+5 个精准词 → 正文中关键词自然出现 3 次以上 → 第一张图文字也要含关键词</div>
+      </div>
+      <div class="algo-card">
+        <div class="algo-card-title">B 站 SEO</div>
+        <div class="algo-card-body">标题含关键词（B 站是全文搜索）→ 视频描述写 200 字以上且含关键词 → 合集名称含关键词 → 弹幕区引导（弹幕也是信号）</div>
+      </div>
+      <div class="algo-card">
+        <div class="algo-card-title">抖音 SEO</div>
+        <div class="algo-card-body">标题/文案中含关键词 → 口播中说出关键词（字幕识别）→ #话题标签选精准词 → 账号简介含核心关键词</div>
+      </div>
+      <div class="algo-card">
+        <div class="algo-card-title">找关键词的方法</div>
+        <div class="algo-card-body">① 平台搜索框输入关键词看下拉联想词<br>② 看同类内容的热门标签<br>③ 分析竞品账号用了哪些关键词<br>④ 微信指数 / 百度指数看趋势</div>
+      </div>
+    </div>
+
+    <div class="accent blue rv">
+      <h4>SEO 的长期复利效应</h4>
+      <p>算法推荐流量是"今天发明天消失"，而 SEO 带来的搜索流量是"发布 6 个月后还在持续带流量"。<br><br>一篇针对长尾关键词优化好的内容，可以在小红书搜索结果中持续排名 12–18 个月。<strong>这就是为什么要把 SEO 当成长期资产来经营，而不是每次发内容的临时动作。</strong></p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 09 数据复盘 -->
+<section class="section" id="s10">
+  <div class="sec-header rv">
+    <div class="sec-header-num">09</div>
+    <div class="sec-header-body">
+    <span class="sec-eye">09 · DATA ANALYTICS</span>
+    <h2 class="sec-title">数据复盘：用数字<em>指导创作决策</em></h2>
+        <div class="sec-line"></div>
+    </div>
+  </div>
+  <p class="body rv">"感觉内容不错但没人看"——这是大多数创作者说的话。感觉靠不住，数据才是镜子。但很多人不知道该看哪些数据、怎么用数据优化内容。</p>
+
+  <h2 class="sub orange rv">每周必看的核心指标</h2>
+  <table class="dtable rv">
+    <thead><tr><th>指标</th><th>健康值参考</th><th>低于标准怎么办</th></tr></thead>
+    <tbody>
+      <tr><td>完播率</td><td>抖音&gt;60% / 小红书&gt;80%</td><td>优化前 3 秒 HOOK，中间加悬念，结尾加彩蛋</td></tr>
+      <tr><td>互动率（互动/播放）</td><td>&gt;3% 为良好，&gt;8% 为优秀</td><td>结尾加互动引导，发布后主动回复评论激活</td></tr>
+      <tr><td>收藏率（小红书）</td><td>&gt;5% 为良好</td><td>增加内容实用性，加"建议收藏"引导语</td></tr>
+      <tr><td>涨粉转化率（播放/新粉丝）</td><td>1000 播放带来 1 个粉为基准</td><td>优化账号主页吸引力，加关注引导 CTA</td></tr>
+      <tr><td>主页访问量</td><td>视频完播后进入主页比例&gt;5%</td><td>优化视频结尾，让用户有动力点进主页</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub orange rv">爆款 vs 冷门内容拆解框架</h2>
+  <div class="compare rv">
+    <div class="compare-head bad">❌ 冷门内容——问自己这些问题</div>
+    <div class="compare-head good">✅ 爆款内容——分析这些维度</div>
+    <div class="compare-cell">前 3 秒 HOOK 够不够强？用户为什么划走？</div>
+    <div class="compare-cell">HOOK 是什么类型？（反常识/冲突/利益承诺）</div>
+    <div class="compare-cell">封面是不是不够吸引？标题关键词是否准确？</div>
+    <div class="compare-cell">封面视觉有什么特点？标题用了哪些词？</div>
+    <div class="compare-cell">内容价值够不够？有没有让用户觉得"值得收藏"？</div>
+    <div class="compare-cell">内容密度如何？哪一段引发了最多互动？</div>
+    <div class="compare-cell">发布时间对不对？是不是粉丝不活跃的时段？</div>
+    <div class="compare-cell">发布时间、话题标签选择有没有规律？</div>
+  </div>
+
+  <h2 class="sub orange rv">每月数据复盘四问</h2>
+  <div class="rv">
+    <div class="step"><div class="step-num">1</div><p><strong>这个月哪类内容表现最好？</strong>找出规律，下个月加大这类内容的生产比例。</p></div>
+    <div class="step"><div class="step-num">2</div><p><strong>粉丝最关心什么话题？</strong>看评论区高赞评论和私信提问，这是最真实的选题来源。</p></div>
+    <div class="step"><div class="step-num">3</div><p><strong>哪个时间段发布效果最好？</strong>分析每条内容的发布时间和数据，找到你的粉丝最活跃时段。</p></div>
+    <div class="step"><div class="step-num">4</div><p><strong>下个月要调整什么？</strong>每次复盘只改一个变量（比如只改封面风格），才能判断哪个调整有效。</p></div>
+  </div>
+
+  <div class="accent orange rv">
+    <h4>增长停滞时的诊断顺序</h4>
+    <p>连续 2 周没有增长时，按以下顺序排查：<br><strong>① 封面和标题</strong>（点击率低？封面不吸引？标题关键词不准？）→ <strong>② 内容质量</strong>（完播率低？价值量不够？）→ <strong>③ 发布时间</strong>（错过粉丝活跃窗口？）→ <strong>④ 选题方向</strong>（这个话题受众已经饱和？）→ <strong>⑤ 账号标签</strong>（是否发了与主赛道不符的内容导致推流不准？）<br><br>每次只改一个变量，才能知道究竟哪里出了问题。</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 10 心态管理 -->
+<section class="section-alt" id="s11">
+  <div class="inner">
+    <div class="sec-header rv">
+      <div class="sec-header-num">10</div>
+      <div class="sec-header-body">
+      <span class="sec-eye">10 · MINDSET MANAGEMENT</span>
+      <h2 class="sec-title">心态管理：如何<em>撑过低谷期</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <p class="body rv">没有人告诉你做自媒体最难的部分不是技术，而是心态。发了 30 条内容还没起色怎么办？遇到大量黑粉怎么应对？连续断更怎么恢复？这些问题，才是大多数人真正放弃的原因。</p>
+
+    <div class="mindset-grid rv">
+      <div class="mindset-card">
+        <div class="mindset-icon">📉</div>
+        <div class="mindset-title">没有增长时</div>
+        <div class="mindset-body">先问自己：发满 100 条了吗？大多数账号在 100 条之前，数据都不好看。100 条之前的数据，是你的学费，不是你的失败。<br><br><strong>行动：</strong>分析表现最好的 5 条内容，找出共同点，集中生产同类内容。</div>
+      </div>
+      <div class="mindset-card">
+        <div class="mindset-icon">💬</div>
+        <div class="mindset-title">遇到黑粉和恶意评论</div>
+        <div class="mindset-body">有人攻击你，说明你已经有了可以被看见的影响力。默默无闻的账号是没有黑粉的。<br><br><strong>处理原则：</strong>有理有据的质疑→公开回应；恶意攻击→屏蔽删除不回应；同行竞争→保持沉默专注内容。</div>
+      </div>
+      <div class="mindset-card">
+        <div class="mindset-icon">🔁</div>
+        <div class="mindset-title">断更之后如何重启</div>
+        <div class="mindset-body">断更不是世界末日。回来后不用解释太多，直接发内容，粉丝的记忆比你想象的长。<br><br><strong>重启技巧：</strong>先发一条"真实现状"类内容（如：我消失这段时间做了什么），真诚优于完美。</div>
+      </div>
+      <div class="mindset-card">
+        <div class="mindset-icon">😰</div>
+        <div class="mindset-title">看到同行爆火感到焦虑</div>
+        <div class="mindset-body">别人的爆款，是他们在他们的赛道上做对了某件事。你在你的赛道上，参照物是昨天的自己，不是别人今天的成绩。<br><br><strong>建议：</strong>把焦虑能量转化成拆解动作——研究他为什么爆，你能借鉴哪一点。</div>
+      </div>
+      <div class="mindset-card">
+        <div class="mindset-icon">🎯</div>
+        <div class="mindset-title">找不到创作动力</div>
+        <div class="mindset-body">动力是靠不住的，系统才靠得住。设立"最小发布标准"——即使状态最差，也能完成一条图文笔记。降低门槛，保持在场比完美更重要。<br><br><strong>技巧：</strong>提前建好 30 条选题库，灵感耗尽时从选题库随机取一条。</div>
+      </div>
+      <div class="mindset-card">
+        <div class="mindset-icon">⚖️</div>
+        <div class="mindset-title">平衡创作与生活</div>
+        <div class="mindset-body">做自媒体是马拉松，不是百米冲刺。可持续性比爆发力更重要。<br><br><strong>建议：</strong>设定固定创作时间（每天 2 小时），工作日内完成，不占用所有休息时间。精力是最重要的资产，保护它。</div>
+      </div>
+    </div>
+
+    <div class="accent gold rv">
+      <h4>一个改变认知的比喻</h4>
+      <p>做自媒体就像种树。前三个月，你什么都看不到——树根在地下生长。第 4–6 个月，才开始冒出小芽。第 1–2 年，开始有树荫。<br><br><strong>大多数人在看不到树的阶段就放弃了，然后看着"有人突然爆火"——殊不知那棵树的根已经长了很久。</strong></p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 11 变现路径 -->
+<section class="section" id="s12">
+  <div class="sec-header rv">
+    <div class="sec-header-num">11</div>
+    <div class="sec-header-body">
+    <span class="sec-eye">11 · MONETIZATION ROADMAP</span>
+    <h2 class="sec-title">不同粉丝量级的<em>变现路径建议</em></h2>
+        <div class="sec-line"></div>
+    </div>
+  </div>
+  <table class="dtable rv">
+    <thead><tr><th>粉丝量级</th><th>核心变现方式</th><th>月收入参考</th><th>重点动作</th></tr></thead>
+    <tbody>
+      <tr><td>0–1 万</td><td>私域服务、小额咨询</td><td>0–3,000 元</td><td>专注涨粉，建立基础私域池，开始测试付费产品形态</td></tr>
+      <tr><td>1–5 万</td><td>知识付费、小品牌合作</td><td>3,000–20,000 元</td><td>推出第一个课程/训练营，主动对接垂直赛道小品牌</td></tr>
+      <tr><td>5–50 万</td><td>品牌广告、带货、知识付费</td><td>2–20 万元</td><td>建立媒介报价单，做专场直播，推出高客单价产品</td></tr>
+      <tr><td>50 万以上</td><td>全链路变现、IP 授权、投资</td><td>20 万元以上</td><td>建立团队、打造个人品牌矩阵、考虑 IP 化和线下业务</td></tr>
+    </tbody>
+  </table>
+
+  <div class="accent gold rv">
+    <h4>最重要的一句话</h4>
+    <p><strong style="font-size:17px;color:var(--gold-d)">粉丝量不是变现的门槛，信任感才是。</strong><br><br>1000 个真正信任你、被你影响的铁粉，比 10 万个不知道你是谁的泛粉，商业价值高出 10 倍。从第一天开始，就把"建立信任"当作最核心的 KPI。</p>
+  </div>
+
+  <h2 class="sub dark rv">给刚开始的你：三件最重要的事</h2>
+  <div class="rv">
+    <div class="step"><div class="step-num">1</div><p><strong>今天就开始，不要等"准备好了"再发：</strong>99% 的完美准备，不如 1 条真实发出去的内容。开始才有反馈，有反馈才能进步。</p></div>
+    <div class="step"><div class="step-num">2</div><p><strong>坚持发满 100 条，再评估方向：</strong>100 条内容之前，你对自己账号的任何判断都是不准确的。用数据说话，不用感觉说话。</p></div>
+    <div class="step"><div class="step-num">3</div><p><strong>做自己，不要做"别人的复制品"：</strong>市面上永远不缺模仿者，但永远缺真实的自己。你独特的经历、视角、性格，才是你最无法被替代的竞争壁垒。</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CHECKLIST -->
+<section class="section-alt">
+  <div class="inner">
+    <div class="checklist-section rv">
+      <div class="cl-title">✦ 创作者执行清单</div>
+      <div class="cl-desc">全部完成，你已经系统化地启动了你的创作者之路</div>
+
+      <div class="cl-group">
+        <div class="cl-group-title">▸ 第一周：定位 & 平台</div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">用黄金定位公式写出自己的一句话定位，并测试：说给 3 个朋友听，他们能立刻理解吗？</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">根据平台选择框架，确定主平台（1 个）和辅平台（最多 2 个）</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">完整填写账号简介（Bio），包含身份 + 价值 + 关键词 + 引导行动</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">设定品牌色板、封面模板、固定风格，完成 3 条示范内容</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">研究 3 个同赛道对标账号，记录他们的爆款选题和内容结构</div></div>
+      </div>
+
+      <div class="cl-group">
+        <div class="cl-group-title">▸ 第二、三周：内容起步</div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">建立 30 条以上的选题库（来源：搜索联想词 + 竞品评论区 + 自身经历）</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">写出 3 种不同类型的 HOOK，测试哪种点击率最高</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">制定内容日历（每周发几条、什么时间发）</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">发布前 10 条内容，保持赛道一致，风格统一</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">每条内容发布后 1 小时内，回复所有评论</div></div>
+      </div>
+
+      <div class="cl-group">
+        <div class="cl-group-title">▸ 第一个月：SEO & 算法</div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">整理出 10 个核心关键词，埋入账号名 / 简介 / 每条内容</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">每条内容标题前 5 字含核心关键词</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">了解主平台的推流机制和最佳发布时间</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">建立每周数据复盘习惯（30 分钟/周）</div></div>
+      </div>
+
+      <div class="cl-group">
+        <div class="cl-group-title">▸ 持续阶段：增长 & 变现</div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">发满 100 条内容后，做一次系统复盘，分析哪类内容转化率最高</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">联系 3 个同赛道创作者，探索互推 / 联动合作</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">粉丝达到 1 万时，设计第一个付费产品或私域引流钩子</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">建立媒介报价单（账号数据 + 受众画像 + 报价表）</div></div>
+        <div class="cl-item"><div class="cl-box"></div><div class="cl-text">每季度重新审视人设定位，判断是否需要微调方向</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <div class="foot-logo">自媒体达人成长体系</div>
+  <div class="foot-tag">CREATOR GROWTH SYSTEM · 从 0 到变现</div>
+  <div class="foot-meta">
+    定位即战略 · 内容即产品 · 粉丝即资产 · 信任即货币<br>
+    <span style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:10px;display:block">本手册为内部参考资料 · Luxury Edition</span>
+  </div>
+</footer>
+
+<script>
+const rv = document.querySelectorAll('.rv');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('on');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+rv.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

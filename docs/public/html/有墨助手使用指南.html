@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 助手使用指南</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    color: #e0e0e0;
+    line-height: 1.8;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #a78bfa, #6366f1);
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  .header .icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a78bfa, #818cf8, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+  }
+
+  .header .subtitle {
+    font-size: 15px;
+    color: #9ca3af;
+    margin-top: 8px;
+  }
+
+  /* Alert Banner */
+  .alert-banner {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    padding: 18px 24px;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .alert-banner .alert-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .alert-banner .alert-text {
+    font-size: 15px;
+    color: #fca5a5;
+    font-weight: 500;
+  }
+
+  .alert-banner .alert-text strong {
+    color: #f87171;
+  }
+
+  /* Cards */
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(99, 102, 241, 0.3);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .card:nth-child(1)::before { background: linear-gradient(90deg, #6366f1, #818cf8); }
+  .card:nth-child(2)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .card:nth-child(3)::before { background: linear-gradient(90deg, #10b981, #34d399); }
+  .card:nth-child(4)::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .card:nth-child(5)::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .card-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: #fff;
+  }
+
+  .card:nth-child(1) .card-number { background: linear-gradient(135deg, #6366f1, #818cf8); }
+  .card:nth-child(2) .card-number { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+  .card:nth-child(3) .card-number { background: linear-gradient(135deg, #10b981, #34d399); }
+  .card:nth-child(4) .card-number { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+  .card:nth-child(5) .card-number { background: linear-gradient(135deg, #ef4444, #f87171); }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f3f4f6;
+  }
+
+  .card-body {
+    font-size: 15px;
+    color: #d1d5db;
+    padding-left: 50px;
+  }
+
+  .card-body p {
+    margin-bottom: 10px;
+  }
+
+  /* Highlight tags */
+  .tag-do {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.15);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 2px 4px 2px 0;
+  }
+
+  .tag-dont {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 2px 4px 2px 0;
+  }
+
+  /* Example boxes */
+  .example-box {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 12px;
+    border-left: 3px solid rgba(99, 102, 241, 0.5);
+  }
+
+  .example-box .label {
+    font-size: 12px;
+    color: #818cf8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .example-box .content {
+    font-size: 14px;
+    color: #a5b4fc;
+  }
+
+  .example-box .content .good { color: #6ee7b7; }
+  .example-box .content .bad { color: #fca5a5; text-decoration: line-through; opacity: 0.7; }
+
+  /* Comparison */
+  .compare {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .compare-item {
+    flex: 1;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .compare-good {
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .compare-bad {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .compare-item .compare-label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .compare-good .compare-label { color: #6ee7b7; }
+  .compare-bad .compare-label { color: #fca5a5; }
+  .compare-good .compare-text { color: #a7f3d0; }
+  .compare-bad .compare-text { color: #fecaca; }
+
+  /* Role cards */
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .role-card {
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .role-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .role-card .role-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+  .role-card .role-name { font-size: 14px; font-weight: 600; color: #c4b5fd; margin-bottom: 4px; }
+  .role-card .role-desc { font-size: 11px; color: #9ca3af; line-height: 1.5; }
+
+  /* Workflow steps */
+  .workflow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 14px 0 6px;
+  }
+
+  .workflow-step {
+    flex: 1;
+    background: rgba(99, 102, 241, 0.06);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .workflow-arrow {
+    flex-shrink: 0;
+    font-size: 18px;
+    color: #6366f1;
+    margin: 0 6px;
+  }
+
+  .workflow-step .ws-num { font-size: 20px; margin-bottom: 4px; display: block; }
+  .workflow-step .ws-title { font-size: 12px; font-weight: 600; color: #a5b4fc; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+  .workflow-step .ws-desc { font-size: 12px; color: #9ca3af; line-height: 1.4; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: #6b7280;
+    font-size: 13px;
+  }
+
+  .footer .tip {
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 16px;
+    color: #a5b4fc;
+    font-size: 14px;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .footer .tip-icon { font-size: 18px; flex-shrink: 0; }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { padding: 24px 16px; }
+    .header h1 { font-size: 26px; }
+    .card { padding: 22px 20px 18px; }
+    .card-body { padding-left: 0; margin-top: 12px; }
+    .compare { flex-direction: column; }
+    .role-grid { grid-template-columns: 1fr; }
+    .workflow { flex-direction: column; }
+    .workflow-arrow { transform: rotate(90deg); margin: 4px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <span class="icon">🤖</span>
+    <h1>AI 助手使用指南</h1>
+    <div class="subtitle">3 分钟掌握正确的打开方式，让 AI 真正帮你提效</div>
+  </div>
+
+  <div class="alert-banner">
+    <span class="alert-icon">📢</span>
+    <div class="alert-text">
+      这份指南已经讲过很多次了，也在会上当面演示过。<strong>请认真看完，有问题再问。</strong>
+    </div>
+  </div>
+
+  <div class="cards">
+
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-number">1</div>
+        <div class="card-title">私聊直接说，群里要 @</div>
+      </div>
+      <div class="card-body">
+        <p><span class="tag-do">✅ 私聊</span> 直接发消息即可，不需要 @ 机器人</p>
+        <p><span class="tag-do">✅ 群聊</span> 必须 <strong>@机器人</strong> 才会触发回复</p>
+        <p style="color: #9ca3af; font-size: 14px; margin-top: 8px;">
+          为什么群里要 @？因为群里有多个人在说话，不 @ 的话机器人无法区分哪些消息是给它的，上下文会混乱。
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 2 — 重点重写 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-number">2</div>
+        <div class="card-title">先定义角色，再输入主题</div>
+      </div>
+      <div class="card-body">
+        <p>AI 不是聊天工具，是<strong>生产力工具</strong>。正确的使用方式是：<strong>先校准身份，再批量生产。</strong></p>
+        <p>第一步，告诉 AI 你是什么角色。它会生成一个专属工具模板。之后每次使用，只需要<strong>输入本次主题</strong>就够了。</p>
+
+        <!-- 角色选择 -->
+        <div class="role-grid">
+          <div class="role-card">
+            <span class="role-icon">🎬</span>
+            <div class="role-name">达人 / 创作者</div>
+            <div class="role-desc">口播脚本、选题策划<br>人设打磨、内容提案</div>
+          </div>
+          <div class="role-card">
+            <span class="role-icon">📷</span>
+            <div class="role-name">摄影 / 拍摄</div>
+            <div class="role-desc">分镜脚本、拍摄方案<br>场景设计、视觉参考</div>
+          </div>
+          <div class="role-card">
+            <span class="role-icon">✍️</span>
+            <div class="role-name">编辑 / 运营</div>
+            <div class="role-desc">文案撰写、标题优化<br>数据解读、发布策略</div>
+          </div>
+        </div>
+
+        <!-- 工作流 -->
+        <div class="workflow">
+          <div class="workflow-step">
+            <span class="ws-num">①</span>
+            <div class="ws-title">Define</div>
+            <div class="ws-desc">告诉 AI 你的角色</div>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-step">
+            <span class="ws-num">②</span>
+            <div class="ws-title">Generate</div>
+            <div class="ws-desc">生成专属工具模板</div>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-step">
+            <span class="ws-num">③</span>
+            <div class="ws-title">Use</div>
+            <div class="ws-desc">每次只输入主题</div>
+          </div>
+        </div>
+
+        <!-- 对比 -->
+        <div class="compare">
+          <div class="compare-item compare-bad">
+            <div class="compare-label">❌ 低效用法</div>
+            <div class="compare-text">
+              "帮我写个东西"<br>
+              "随便写一篇"<br>
+              "你好，在吗"<br>
+              "帮我想想"
+            </div>
+          </div>
+          <div class="compare-item compare-good">
+            <div class="compare-label">✅ 高效用法</div>
+            <div class="compare-text">
+              "我是穿搭达人，对标方圆，帮我生成一套小红书口播的Agent，用于微博平台"<br>
+              "我是摄影师，对标影视飓风，帮我生成一个用于脚本分镜拆解的Agent"
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box" style="margin-top: 14px;">
+          <div class="label">💡 一次定义，反复使用</div>
+          <div class="content">
+            定义一次：<span class="good">"我是美食达人，风格是接地气的东北幽默，帮我生成一个口播脚本工具"</span><br>
+            之后每次：<span class="good">"主题：锅包肉"</span> / <span class="good">"主题：烧烤季"</span> / <span class="good">"主题：年夜饭"</span><br>
+            ——不用每次重复说你是谁、什么风格，AI 已经记住了。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-number">3</div>
+        <div class="card-title">创建 Agent 后，让它拉群</div>
+      </div>
+      <div class="card-body">
+        <p>当你跟机器人私聊，让它创建了一个专属的智能体（Agent）后——</p>
+        <p><span class="tag-do">✅ 正确做法</span> 让机器人<strong>自己创建群聊</strong>，它会自动配置好上下文，记住之前的对话</p>
+        <p><span class="tag-dont">❌ 错误做法</span> 自己手动拉群 → 新群里的机器人<strong>不记得</strong>刚才聊了什么，等于从零开始</p>
+        <div class="example-box">
+          <div class="label">正确的操作流程</div>
+          <div class="content">
+            ① 私聊机器人，描述你的需求<br>
+            ② 机器人帮你创建 Agent<br>
+            ③ 告诉机器人：<span class="good">"帮我创建一个群聊"</span><br>
+            ④ 机器人拉群，上下文无缝衔接 ✨
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-number">4</div>
+        <div class="card-title">创建群聊时请耐心等待</div>
+      </div>
+      <div class="card-body">
+        <p>机器人创建群聊的时候，后台需要：</p>
+        <p style="margin-left: 8px;">
+          📡 调用飞书 API 创建群<br>
+          ⚙️ 写入配置文件、绑定 Agent<br>
+          🔄 重启服务使配置生效
+        </p>
+        <p style="margin-top: 10px;">整个过程可能需要 <strong>30 秒到 1 分钟</strong>，这是正常的，耐心等一下就好。</p>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-number">5</div>
+        <div class="card-title">看到乱码别慌</div>
+      </div>
+      <div class="card-body">
+        <p>如果收到了<strong>一大串英文字符或报错信息</strong>，说明服务暂时出了点问题。</p>
+        <p><span class="tag-do">✅ 正确应对</span> 等 1-2 分钟，再重新发一次消息</p>
+        <p><span class="tag-dont">❌ 不要做</span> 疯狂重发、截图问人、觉得坏了就不用了</p>
+        <p style="color: #9ca3af; font-size: 14px; margin-top: 8px;">
+          服务器偶尔抽风是正常的，通常很快就会自动恢复。如果超过 5 分钟还不行，联系管理员。
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="tip">
+      <span class="tip-icon">🎯</span>
+      <div>
+        <strong>记住核心原则：</strong>AI 是你的专属生产力工具，不是聊天对象。<br>
+        先定义角色生成工具，之后每次只输入主题——这才是正确的打开方式。
+      </div>
+    </div>
+    <p>如有疑问，请联系管理员 · 祝大家用得顺手 🚀</p>
+  </div>
+
+</div>
+
+</body>
+</html>

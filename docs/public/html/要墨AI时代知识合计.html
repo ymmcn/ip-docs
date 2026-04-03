@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 时代知识合集 · 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF8F3;
+  --cream-dark: #F4EFE4;
+  --warm: #FDFBF7;
+  --gold: #C9A96E;
+  --gold-light: #E8D5A3;
+  --gold-dark: #A07D3A;
+  --ink: #1A1A1A;
+  --ink-m: #3D3530;
+  --ink-l: #6B6460;
+  --red: #C44536;
+  --red-bg: #FDF3F2;
+  --green: #2E7D5E;
+  --green-bg: #F2FAF6;
+
+  --ch01: #C9A96E;
+  --ch01-bg: #FBF6EC;
+  --ch01-dark: #A07D3A;
+  --ch02: #3B6CB7;
+  --ch02-bg: #EFF4FC;
+  --ch02-dark: #2A4E8A;
+  --ch03: #C87941;
+  --ch03-bg: #FDF4EC;
+  --ch03-dark: #9E5B28;
+  --ch04: #2E7D5E;
+  --ch04-bg: #F2FAF6;
+  --ch04-dark: #1E5A42;
+  --ch05: #7C52A8;
+  --ch05-bg: #F5F0FB;
+  --ch05-dark: #5A3880;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Noto Serif SC', 'Georgia', serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.8;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,248,243,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gold-light);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.nav-brand span { color: var(--gold); }
+.nav-links { display: flex; gap: 0.2rem; align-items: center; }
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.78rem;
+  color: var(--ink-l);
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.nav-links a:hover { background: var(--gold-light); color: var(--gold-dark); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  padding: 100px 2rem 80px;
+  background: linear-gradient(160deg, var(--warm) 0%, var(--cream) 50%, var(--cream-dark) 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A96E' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.72rem; letter-spacing: 0.25em;
+  color: var(--gold-dark);
+  border: 1px solid var(--gold);
+  padding: 0.4rem 1.2rem;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  background: rgba(201,169,110,0.08);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-dark);
+}
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--ink-m);
+  margin-bottom: 1rem;
+  letter-spacing: 0.06em;
+}
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--ink-l);
+  max-width: 580px;
+  margin: 0 auto 3rem;
+  line-height: 2;
+}
+.hero-desc strong { color: var(--gold-dark); }
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 1.2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.stat-card {
+  background: white;
+  border: 1px solid var(--gold-light);
+  border-radius: 12px;
+  padding: 1.2rem 1.8rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(201,169,110,0.12);
+  transition: transform 0.25s, box-shadow 0.25s;
+  min-width: 110px;
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(201,169,110,0.2);
+}
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 700;
+  color: var(--gold-dark);
+  line-height: 1.2;
+}
+.stat-label {
+  font-size: 0.72rem; color: var(--ink-l);
+  letter-spacing: 0.08em; margin-top: 0.3rem;
+}
+.scroll-hint {
+  margin-top: 4rem;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: var(--ink-l); font-size: 0.8rem; letter-spacing: 0.1em;
+}
+.scroll-hint::after {
+  content: '';
+  display: block; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollDown 2s infinite;
+}
+@keyframes scrollDown {
+  0% { opacity: 1; transform: scaleY(0); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+
+/* ===== TOC ===== */
+.toc-section {
+  padding: 100px 2rem;
+  background: var(--warm);
+  border-top: 1px solid var(--gold-light);
+  border-bottom: 1px solid var(--gold-light);
+}
+.section-label {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.section-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--ink);
+  margin-bottom: 3.5rem;
+  font-weight: 700;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px; margin: 0 auto;
+}
+.toc-card {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.toc-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--card-color, var(--gold));
+}
+.toc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  border-color: var(--card-color, var(--gold));
+}
+.toc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--card-color, var(--gold));
+  opacity: 0.4;
+  line-height: 1;
+}
+.toc-title { font-size: 1.05rem; font-weight: 600; color: var(--ink); }
+.toc-desc { font-size: 0.85rem; color: var(--ink-l); line-height: 1.7; flex: 1; }
+.toc-btn {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border: 1.5px solid var(--card-color, var(--gold));
+  border-radius: 6px;
+  color: var(--card-color, var(--gold));
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+.toc-btn:hover {
+  background: var(--card-color, var(--gold));
+  color: white;
+}
+
+/* ===== CHAPTER BASE ===== */
+.chapter {
+  padding: 100px 2rem;
+  max-width: 1100px; margin: 0 auto;
+}
+.chapter-wrapper {
+  border-bottom: 1px solid var(--cream-dark);
+}
+.chapter-header {
+  text-align: center; margin-bottom: 5rem;
+}
+.chapter-badge {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--chapter-color);
+  margin-bottom: 1.2rem;
+}
+.chapter-badge::before, .chapter-badge::after {
+  content: ''; display: block; width: 30px; height: 1px;
+  background: var(--chapter-color);
+  opacity: 0.5;
+}
+.chapter-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900; line-height: 1;
+  color: var(--chapter-color);
+  opacity: 0.12;
+  position: absolute; right: 0; top: -1rem;
+  pointer-events: none; user-select: none;
+}
+.chapter-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+  line-height: 1.3;
+}
+.chapter-subtitle {
+  font-size: 1rem; color: var(--ink-l);
+  letter-spacing: 0.08em;
+}
+.chapter-divider {
+  width: 60px; height: 3px;
+  background: var(--chapter-color);
+  margin: 1.5rem auto;
+  border-radius: 2px;
+}
+
+/* ===== COMPONENTS ===== */
+
+/* Accent Box */
+.accent-box {
+  background: var(--chapter-bg, var(--cream-dark));
+  border-left: 4px solid var(--chapter-color);
+  border-radius: 0 12px 12px 0;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+  color: var(--ink-m);
+  line-height: 1.9;
+}
+.accent-box strong { color: var(--chapter-color); }
+
+/* Gold Quote */
+.gold-quote {
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+.gold-quote::before {
+  content: '\201C';
+  font-family: 'Playfair Display', serif;
+  font-size: 8rem;
+  color: var(--gold-light);
+  position: absolute; top: -1rem; left: 50%; transform: translateX(-50%);
+  line-height: 1;
+  pointer-events: none;
+}
+.gold-quote p {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  color: var(--ink-m);
+  font-style: italic;
+  line-height: 1.7;
+  position: relative; z-index: 1;
+}
+.gold-quote cite {
+  display: block; margin-top: 1rem;
+  font-size: 0.85rem; font-style: normal;
+  color: var(--gold-dark);
+  letter-spacing: 0.1em;
+}
+
+/* Card Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem; margin: 2rem 0;
+}
+.card {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  border-radius: 16px;
+  padding: 1.8rem;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--chapter-color);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+.card:hover::after { transform: scaleX(1); }
+.card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+.card-title { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 0.6rem; }
+.card-body { font-size: 0.88rem; color: var(--ink-l); line-height: 1.8; }
+
+/* Compare Table */
+.compare-table {
+  width: 100%; border-collapse: collapse;
+  margin: 2rem 0; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.compare-table th {
+  padding: 1rem 1.5rem;
+  font-size: 0.85rem; letter-spacing: 0.1em;
+  text-transform: uppercase; font-weight: 600;
+}
+.compare-table td {
+  padding: 0.9rem 1.5rem;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+.compare-table tr:hover td { background: var(--cream); }
+.th-dim { background: var(--ink); color: white; }
+.th-red { background: var(--red); color: white; }
+.th-green { background: var(--green); color: white; }
+.td-red { background: var(--red-bg); color: var(--red); }
+.td-green { background: var(--green-bg); color: var(--green); }
+
+/* Step Flow */
+.step-flow {
+  display: flex; flex-direction: column; gap: 0;
+  margin: 2rem 0; position: relative;
+}
+.step-flow::before {
+  content: '';
+  position: absolute; left: 24px; top: 30px; bottom: 30px; width: 2px;
+  background: linear-gradient(to bottom, var(--chapter-color), transparent);
+}
+.step-item {
+  display: flex; gap: 1.5rem; align-items: flex-start;
+  padding: 1.2rem 0; position: relative;
+}
+.step-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--chapter-color);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  flex-shrink: 0; z-index: 1;
+}
+.step-content { flex: 1; padding-top: 0.5rem; }
+.step-title { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+.step-desc { font-size: 0.88rem; color: var(--ink-l); line-height: 1.7; }
+
+/* Tags */
+.tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.2rem 0; }
+.tag {
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  background: var(--chapter-bg, var(--cream-dark));
+  color: var(--chapter-color);
+  border: 1px solid var(--chapter-color);
+  transition: all 0.2s;
+}
+.tag:hover { background: var(--chapter-color); color: white; }
+
+/* Checklist */
+.checklist { list-style: none; margin: 1.5rem 0; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px dashed var(--cream-dark);
+  font-size: 0.92rem; color: var(--ink-m);
+}
+.checklist li::before {
+  content: '';
+  width: 20px; height: 20px; flex-shrink: 0;
+  border: 2px solid var(--chapter-color);
+  border-radius: 4px;
+  background: var(--chapter-bg, transparent);
+  margin-top: 2px;
+  position: relative;
+}
+.checklist li.done::before {
+  background: var(--chapter-color);
+  content: '✓';
+  color: white; font-size: 0.7rem;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Timeline */
+.timeline { margin: 2rem 0; position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 50%; top: 0; bottom: 0;
+  width: 2px; background: var(--gold-light);
+  transform: translateX(-50%);
+}
+.timeline-item {
+  display: flex; gap: 2rem; margin: 2rem 0; align-items: center;
+}
+.timeline-item:nth-child(even) { flex-direction: row-reverse; }
+.timeline-content {
+  flex: 1; background: white;
+  border: 1px solid var(--cream-dark);
+  border-radius: 12px; padding: 1.2rem 1.5rem;
+  transition: all 0.3s;
+}
+.timeline-content:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  border-color: var(--chapter-color);
+}
+.timeline-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--chapter-color);
+  flex-shrink: 0; z-index: 1;
+  box-shadow: 0 0 0 4px var(--chapter-bg, var(--cream));
+}
+.timeline-year {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--chapter-color);
+  margin-bottom: 0.3rem;
+}
+.timeline-text { font-size: 0.88rem; color: var(--ink-l); line-height: 1.7; }
+
+/* Big Number */
+.big-number {
+  text-align: center; padding: 3rem 0;
+}
+.big-number .num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--chapter-color), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.big-number .label {
+  font-size: 1rem; color: var(--ink-l);
+  letter-spacing: 0.15em; margin-top: 0.5rem;
+}
+
+/* 3-Col Triangle */
+.triangle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin: 2rem 0;
+}
+.triangle-item {
+  background: white; border: 1px solid var(--cream-dark);
+  border-radius: 12px; padding: 1.5rem;
+  text-align: center; transition: all 0.3s;
+  border-top: 3px solid var(--chapter-color);
+}
+.triangle-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+}
+.tri-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+.tri-title { font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.tri-body { font-size: 0.84rem; color: var(--ink-l); line-height: 1.7; }
+
+/* Insight Cards */
+.insight-card {
+  background: white;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  margin: 1rem 0;
+  display: flex; transition: all 0.3s;
+}
+.insight-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.12); transform: translateX(4px); }
+.insight-bar {
+  width: 6px;
+  background: var(--chapter-color);
+  flex-shrink: 0;
+}
+.insight-body { padding: 1.5rem 2rem; }
+.insight-label {
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--chapter-color); margin-bottom: 0.6rem;
+}
+.insight-text { font-size: 0.95rem; color: var(--ink-m); line-height: 1.8; }
+
+/* Contrast Pair */
+.contrast-pair {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin: 2rem 0;
+}
+.contrast-card {
+  border-radius: 12px; padding: 1.5rem 2rem;
+}
+.contrast-red { background: var(--red-bg); border: 1px solid rgba(196,69,54,0.2); }
+.contrast-green { background: var(--green-bg); border: 1px solid rgba(46,125,94,0.2); }
+.contrast-title {
+  font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 1rem; font-weight: 600;
+}
+.contrast-red .contrast-title { color: var(--red); }
+.contrast-green .contrast-title { color: var(--green); }
+.contrast-list { list-style: none; }
+.contrast-list li {
+  font-size: 0.9rem; padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  color: var(--ink-m);
+  display: flex; align-items: flex-start; gap: 0.6rem;
+}
+.contrast-list li::before { flex-shrink: 0; }
+.contrast-red .contrast-list li::before { content: '✕'; color: var(--red); font-size: 0.8rem; }
+.contrast-green .contrast-list li::before { content: '✓'; color: var(--green); font-size: 0.8rem; }
+
+/* Big Steps (仿拆量) */
+.big-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2rem; margin: 3rem 0;
+}
+.big-step {
+  text-align: center; padding: 2.5rem 1rem;
+  background: white; border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.big-step::before {
+  content: attr(data-num);
+  position: absolute; right: -0.5rem; bottom: -1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 7rem; font-weight: 900;
+  color: var(--chapter-color); opacity: 0.06;
+  line-height: 1; pointer-events: none;
+}
+.big-step:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(0,0,0,0.1); }
+.big-step-char {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem; font-weight: 900;
+  color: var(--chapter-color);
+  line-height: 1.1; margin-bottom: 0.8rem;
+}
+.big-step-title { font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.8rem; }
+.big-step-desc { font-size: 0.84rem; color: var(--ink-l); line-height: 1.7; }
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+.fade-in-delay-5 { transition-delay: 0.5s; }
+
+/* ===== CHAPTER-SPECIFIC COLORS ===== */
+.ch01 { --chapter-color: var(--ch01); --chapter-bg: var(--ch01-bg); --chapter-dark: var(--ch01-dark); }
+.ch02 { --chapter-color: var(--ch02); --chapter-bg: var(--ch02-bg); --chapter-dark: var(--ch02-dark); }
+.ch03 { --chapter-color: var(--ch03); --chapter-bg: var(--ch03-bg); --chapter-dark: var(--ch03-dark); }
+.ch04 { --chapter-color: var(--ch04); --chapter-bg: var(--ch04-bg); --chapter-dark: var(--ch04-dark); }
+.ch05 { --chapter-color: var(--ch05); --chapter-bg: var(--ch05-bg); --chapter-dark: var(--ch05-dark); }
+
+/* Industry cards special */
+.industry-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin: 2rem 0;
+}
+.industry-card {
+  background: white; border: 1px solid var(--cream-dark);
+  border-radius: 12px; padding: 1.3rem;
+  display: flex; align-items: center; gap: 1rem;
+  transition: all 0.3s;
+}
+.industry-card:hover {
+  border-color: var(--ch01);
+  box-shadow: 0 6px 20px rgba(201,169,110,0.15);
+  transform: translateY(-2px);
+}
+.ind-icon { font-size: 1.8rem; }
+.ind-name { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+.ind-desc { font-size: 0.78rem; color: var(--ink-l); }
+
+/* Prism visual */
+.prism-box {
+  background: linear-gradient(135deg, var(--chapter-bg, var(--cream-dark)) 0%, white 100%);
+  border: 1px solid var(--chapter-color);
+  border-radius: 16px; padding: 2.5rem;
+  text-align: center; margin: 2rem 0;
+}
+.prism-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--ink); margin-bottom: 1.5rem;
+}
+.prism-items {
+  display: flex; justify-content: center; gap: 3rem;
+  flex-wrap: wrap;
+}
+.prism-item { text-align: center; }
+.prism-icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--chapter-color);
+  color: white; font-size: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 0.6rem;
+}
+.prism-label { font-size: 0.88rem; color: var(--ink-m); font-weight: 600; }
+.prism-connector {
+  display: flex; align-items: center; color: var(--gold-light);
+  font-size: 1.5rem; padding-top: 1.5rem;
+}
+
+/* Full-width section bg */
+.section-bg-cream { background: var(--cream); }
+.section-bg-warm { background: var(--warm); }
+.section-bg-dark { background: var(--ink); color: var(--cream); }
+
+/* Sub heading */
+.sub-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--ink); margin: 2.5rem 0 1.2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.sub-h2::before {
+  content: ''; display: block; width: 4px; height: 1.4em;
+  background: var(--chapter-color); border-radius: 2px;
+  flex-shrink: 0;
+}
+.sub-h3 {
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--ink-m); margin: 1.8rem 0 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+/* 5-step pill */
+.pill-steps {
+  display: flex; gap: 0; margin: 2rem 0;
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.pill-step {
+  flex: 1; padding: 1.2rem 0.5rem;
+  text-align: center;
+  background: white; border-right: 1px solid var(--cream-dark);
+  transition: all 0.3s; cursor: default;
+}
+.pill-step:last-child { border-right: none; }
+.pill-step:hover { background: var(--chapter-bg, var(--cream)); }
+.pill-step-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--chapter-color); color: white;
+  font-size: 0.8rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 0.5rem;
+}
+.pill-step-text { font-size: 0.78rem; color: var(--ink-m); line-height: 1.5; }
+
+/* 631 visual */
+.rule-631 {
+  display: grid; grid-template-columns: 6fr 3fr 1fr;
+  gap: 0.5rem; margin: 2rem 0; height: 120px;
+}
+.rule-631 > div {
+  border-radius: 10px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: white; font-weight: 700;
+}
+.rule-6 { background: var(--ch05); font-size: 1.8rem; }
+.rule-3 { background: var(--ch05-dark); font-size: 1.4rem; }
+.rule-1 { background: var(--ink); font-size: 1rem; }
+.rule-label { font-size: 0.7rem; font-weight: 400; opacity: 0.85; margin-top: 0.3rem; }
+
+/* 1-second timeline */
+.second-timeline {
+  display: flex; align-items: center; gap: 0;
+  margin: 2rem 0; overflow-x: auto; padding-bottom: 1rem;
+}
+.sec-block {
+  min-width: 120px; padding: 1rem;
+  text-align: center; border-right: 2px solid var(--cream-dark);
+  position: relative;
+}
+.sec-block:last-child { border-right: none; }
+.sec-block.active { background: var(--ch05-bg); border-radius: 8px; }
+.sec-time {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; color: var(--ch05);
+  font-weight: 700;
+}
+.sec-text { font-size: 0.8rem; color: var(--ink-l); margin-top: 0.3rem; line-height: 1.5; }
+
+/* Attention switches */
+.switch-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem; margin: 2rem 0;
+}
+.switch-item {
+  background: white; border: 1.5px solid var(--cream-dark);
+  border-radius: 12px; padding: 1.2rem; text-align: center;
+  transition: all 0.3s; cursor: default;
+}
+.switch-item:hover {
+  border-color: var(--ch05);
+  background: var(--ch05-bg);
+  transform: scale(1.04);
+}
+.sw-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--ch05); line-height: 1;
+}
+.sw-label { font-size: 0.82rem; color: var(--ink-m); margin-top: 0.4rem; line-height: 1.4; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--ink); color: var(--cream);
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--gold); margin-bottom: 0.8rem;
+}
+.footer-sub { font-size: 0.85rem; color: #8a807a; margin-bottom: 3rem; letter-spacing: 0.1em; }
+.footer-chapters {
+  display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.footer-ch a {
+  text-decoration: none; font-size: 0.82rem;
+  color: #8a807a; transition: color 0.2s;
+}
+.footer-ch a:hover { color: var(--gold); }
+.footer-divider {
+  width: 60px; height: 1px; background: #3D3530;
+  margin: 0 auto 2rem;
+}
+.footer-copy { font-size: 0.78rem; color: #6B6460; letter-spacing: 0.08em; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .timeline::before { display: none; }
+  .timeline-item { flex-direction: column !important; }
+  .triangle-grid, .big-steps, .industry-grid { grid-template-columns: 1fr 1fr; }
+  .contrast-pair { grid-template-columns: 1fr; }
+  .pill-steps { flex-direction: column; }
+  .rule-631 { grid-template-columns: 1fr; height: auto; }
+  .rule-631 > div { height: 70px; }
+}
+@media (max-width: 480px) {
+  .triangle-grid, .big-steps, .industry-grid { grid-template-columns: 1fr; }
+}
+
+/* Chapter background alternation */
+.ch-wrap-01 { background: var(--warm); }
+.ch-wrap-02 { background: var(--cream); }
+.ch-wrap-03 { background: var(--warm); }
+.ch-wrap-04 { background: var(--cream); }
+.ch-wrap-05 { background: var(--warm); }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="nav-brand">AI 时代<span>·</span>知识合集</div>
+  <div class="nav-links">
+    <a href="#ch01">GEO 机会</a>
+    <a href="#ch02">未来认知</a>
+    <a href="#ch03">创业投资</a>
+    <a href="#ch04">数字员工</a>
+    <a href="#ch05">爆款方法论</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-badge fade-in">AI ERA KNOWLEDGE COLLECTION · 2025</div>
+  <h1 class="fade-in fade-in-delay-1">AI 时代<br><em>知识合集</em></h1>
+  <p class="hero-sub fade-in fade-in-delay-2">5 份实战文档 · 从认知到行动的完整框架</p>
+  <p class="hero-desc fade-in fade-in-delay-3">
+    <strong>GEO 机会</strong> | <strong>未来认知</strong> | <strong>创业投资</strong> | <strong>数字员工</strong> | <strong>爆款视频</strong><br>
+    5 位一线实战者的认知结晶
+  </p>
+  <div class="hero-stats fade-in fade-in-delay-4">
+    <div class="stat-card">
+      <div class="stat-number">千亿</div>
+      <div class="stat-label">GEO 赛道</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">1000万</div>
+      <div class="stat-label">新增岗位</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">40亿</div>
+      <div class="stat-label">半年流量</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">万刀</div>
+      <div class="stat-label">月收入</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">30亿</div>
+      <div class="stat-label">播放量</div>
+    </div>
+  </div>
+  <div class="scroll-hint fade-in fade-in-delay-5">SCROLL</div>
+</section>
+
+<!-- ===== TOC ===== -->
+<section class="toc-section">
+  <p class="section-label fade-in">Contents</p>
+  <h2 class="section-title fade-in">五章知识地图</h2>
+  <div class="toc-grid">
+    <div class="toc-card fade-in" style="--card-color: var(--ch01)">
+      <div class="toc-num">01</div>
+      <div class="toc-title">GEO 的千亿机会</div>
+      <div class="toc-desc">生成式引擎优化正在重写搜索规则。理解 AI 如何决策，抢占下一代流量入口。</div>
+      <a href="#ch01" class="toc-btn">阅读章节 →</a>
+    </div>
+    <div class="toc-card fade-in fade-in-delay-1" style="--card-color: var(--ch02)">
+      <div class="toc-num">02</div>
+      <div class="toc-title">把未来清晰告诉大家</div>
+      <div class="toc-desc">AI 时代的认知框架与机会判断——看清趋势才能做出正确的选择。</div>
+      <a href="#ch02" class="toc-btn">阅读章节 →</a>
+    </div>
+    <div class="toc-card fade-in fade-in-delay-2" style="--card-color: var(--ch03)">
+      <div class="toc-num">03</div>
+      <div class="toc-title">创业、跨界和投资</div>
+      <div class="toc-desc">老华连续创业者的底层认知：产品、复购、投资、定位——商业本质的七条规律。</div>
+      <a href="#ch03" class="toc-btn">阅读章节 →</a>
+    </div>
+    <div class="toc-card fade-in fade-in-delay-3" style="--card-color: var(--ch04)">
+      <div class="toc-num">04</div>
+      <div class="toc-title">从聊天到生产力</div>
+      <div class="toc-desc">用 OpenClaw 搭建 7×24 数字员工，把 AI 从玩具变成真正的生产力工具。</div>
+      <a href="#ch04" class="toc-btn">阅读章节 →</a>
+    </div>
+    <div class="toc-card fade-in fade-in-delay-4" style="--card-color: var(--ch05)">
+      <div class="toc-num">05</div>
+      <div class="toc-title">半年 40 亿流量</div>
+      <div class="toc-desc">Seedance 2.0 爆款全拆解：631 原则、1 秒法则、仿拆量三字心法。</div>
+      <a href="#ch05" class="toc-btn">阅读章节 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     CHAPTER 01 — GEO 的千亿机会
+===================================================================== -->
+<div class="ch-wrap-01" id="ch01">
+<section class="chapter ch01">
+  <header class="chapter-header fade-in" style="position:relative">
+    <div class="chapter-badge">Chapter 01 · GEO</div>
+    <h2 class="chapter-title">GEO 的千亿机会</h2>
+    <p class="chapter-subtitle">生成式引擎优化 · 搜索流量的下一个十年</p>
+    <div class="chapter-divider"></div>
+    <span class="chapter-num">01</span>
+  </header>
+
+  <!-- 核心判断 -->
+  <div class="accent-box fade-in" style="--chapter-bg: var(--ch01-bg)">
+    <strong>核心判断：</strong>GEO 不是可选项，而是必修课。当 ChatGPT、Perplexity、Google AI Overview 成为用户的第一个搜索入口，谁被 AI 推荐，谁就赢得流量。未来三年内，不懂 GEO 的品牌将从 AI 的推荐列表中消失。
+  </div>
+
+  <!-- 流量迁移时间线 -->
+  <h3 class="sub-h2 fade-in">流量四次迁移时间线</h3>
+  <div class="step-flow fade-in">
+    <div class="step-item">
+      <div class="step-num">①</div>
+      <div class="step-content">
+        <div class="step-title">SEO 时代（2000—2015）</div>
+        <div class="step-desc">关键词优化、外链建设，Google 蓝链主导一切流量分配。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">②</div>
+      <div class="step-content">
+        <div class="step-title">DSO 时代（2015—2022）</div>
+        <div class="step-desc">社交搜索崛起，抖音、小红书、YouTube 成为内容发现新入口。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">③</div>
+      <div class="step-content">
+        <div class="step-title">GEO 元年（2023—至今）</div>
+        <div class="step-desc">AI 生成引擎重组信息，Perplexity 日活过亿，Google AI Overview 全量推送。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">④</div>
+      <div class="step-content">
+        <div class="step-title">融合时代（未来）</div>
+        <div class="step-desc">SEO + DSO + GEO 三位一体，品牌能否被 AI「认识」决定生死。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEO vs SEO 对比 -->
+  <h3 class="sub-h2 fade-in">GEO vs SEO：规则已变</h3>
+  <div class="fade-in">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th class="th-dim">维度</th>
+        <th class="th-red">传统 SEO</th>
+        <th class="th-green">GEO 新范式</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>目标</strong></td>
+        <td class="td-red">排在蓝链第一</td>
+        <td class="td-green">被 AI 当作权威来源引用</td>
+      </tr>
+      <tr>
+        <td><strong>核心信号</strong></td>
+        <td class="td-red">关键词密度、外链数量</td>
+        <td class="td-green">权威性、可信度、结构化数据</td>
+      </tr>
+      <tr>
+        <td><strong>内容形式</strong></td>
+        <td class="td-red">堆砌关键词的长文</td>
+        <td class="td-green">清晰回答问题、有来源的深度内容</td>
+      </tr>
+      <tr>
+        <td><strong>更新频率</strong></td>
+        <td class="td-red">一次优化长期有效</td>
+        <td class="td-green">持续喂养 AI 知识库</td>
+      </tr>
+      <tr>
+        <td><strong>结果呈现</strong></td>
+        <td class="td-red">10 条链接列表</td>
+        <td class="td-green">AI 直接给出答案并引用你</td>
+      </tr>
+      <tr>
+        <td><strong>竞争壁垒</strong></td>
+        <td class="td-red">技术优化、购买外链</td>
+        <td class="td-green">真实专业内容 + 品牌信任</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- AI 决策链路 -->
+  <h3 class="sub-h2 fade-in">AI 决策链路 5 步</h3>
+  <div class="pill-steps fade-in">
+    <div class="pill-step">
+      <div class="pill-step-num">1</div>
+      <div class="pill-step-text">用户<br>提问</div>
+    </div>
+    <div class="pill-step">
+      <div class="pill-step-num">2</div>
+      <div class="pill-step-text">AI 理解<br>意图</div>
+    </div>
+    <div class="pill-step">
+      <div class="pill-step-num">3</div>
+      <div class="pill-step-text">检索权<br>威来源</div>
+    </div>
+    <div class="pill-step">
+      <div class="pill-step-num">4</div>
+      <div class="pill-step-text">综合<br>生成答案</div>
+    </div>
+    <div class="pill-step">
+      <div class="pill-step-num">5</div>
+      <div class="pill-step-text">引用<br>并推荐</div>
+    </div>
+  </div>
+
+  <!-- 核心打法三角 -->
+  <h3 class="sub-h2 fade-in">核心打法三角</h3>
+  <div class="triangle-grid fade-in">
+    <div class="triangle-item">
+      <div class="tri-icon">✍️</div>
+      <div class="tri-title">内容即资产</div>
+      <div class="tri-body">打造深度、权威、可引用的专业内容。让 AI 把你当作"这个领域的权威"。结构清晰、数据丰富、观点鲜明。</div>
+    </div>
+    <div class="triangle-item">
+      <div class="tri-icon">🤖</div>
+      <div class="tri-title">AI 友好架构</div>
+      <div class="tri-body">结构化数据标记、FAQ 格式、语义化 HTML。让爬虫和大模型都能轻松理解你的内容。</div>
+    </div>
+    <div class="triangle-item">
+      <div class="tri-icon">🌐</div>
+      <div class="tri-title">官网即门户</div>
+      <div class="tri-body">品牌官网是 GEO 的核心阵地。持续更新、建立信任信号、多平台引用形成闭环。</div>
+    </div>
+  </div>
+
+  <!-- 机会地图 -->
+  <h3 class="sub-h2 fade-in">六大行业机会地图</h3>
+  <div class="industry-grid fade-in">
+    <div class="industry-card">
+      <div class="ind-icon">🏥</div>
+      <div>
+        <div class="ind-name">医疗健康</div>
+        <div class="ind-desc">用户问诊前先问 AI，权威信息需求巨大</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">💰</div>
+      <div>
+        <div class="ind-name">金融理财</div>
+        <div class="ind-desc">投资决策前 AI 咨询已成主流习惯</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">🎓</div>
+      <div>
+        <div class="ind-name">教育培训</div>
+        <div class="ind-desc">学习路径推荐、课程选择的 AI 渗透率最高</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">🛍️</div>
+      <div>
+        <div class="ind-name">电商零售</div>
+        <div class="ind-desc">购买前 AI 比价、测评查询成新习惯</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">✈️</div>
+      <div>
+        <div class="ind-name">旅游出行</div>
+        <div class="ind-desc">行程规划、景点推荐全面 AI 化</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">🏠</div>
+      <div>
+        <div class="ind-name">房产家居</div>
+        <div class="ind-desc">置业决策周期长，AI 咨询频次极高</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行动清单 -->
+  <h3 class="sub-h2 fade-in">GEO 行动清单</h3>
+  <ul class="checklist fade-in">
+    <li>审计现有官网内容，找出可被 AI 引用的权威信息</li>
+    <li>建立品牌知识库：FAQ、产品详情、专业观点文章</li>
+    <li>部署结构化数据标记（Schema.org）</li>
+    <li>在主流 AI 平台搜索品牌名，测试当前被引用情况</li>
+    <li>建立内容日历：每周至少一篇深度原创内容</li>
+    <li>监控 AI 推荐排名变化，持续迭代优化策略</li>
+  </ul>
+
+</section>
+</div>
+
+<!-- =====================================================================
+     CHAPTER 02 — 把未来清晰告诉大家
+===================================================================== -->
+<div class="ch-wrap-02" id="ch02">
+<section class="chapter ch02">
+  <header class="chapter-header fade-in" style="position:relative">
+    <div class="chapter-badge">Chapter 02 · Future Vision</div>
+    <h2 class="chapter-title">把未来清晰告诉大家</h2>
+    <p class="chapter-subtitle">AI 时代的认知框架与机会判断</p>
+    <div class="chapter-divider" style="background: var(--ch02)"></div>
+    <span class="chapter-num">02</span>
+  </header>
+
+  <!-- 底层逻辑 -->
+  <div class="accent-box fade-in" style="--chapter-bg: var(--ch02-bg); --chapter-color: var(--ch02)">
+    <strong>底层逻辑：</strong>技术是工具，人是目的。AI 的本质是将人类智慧工业化——把专家的思维复制给普通人。在这个时代，<strong>认知差</strong>就是财富差，看清趋势比努力工作更重要。
+  </div>
+
+  <!-- 三张洞察卡片 -->
+  <h3 class="sub-h2 fade-in">三大时代洞察</h3>
+  <div class="card-grid fade-in">
+    <div class="insight-card">
+      <div class="insight-bar" style="background: var(--ch02)"></div>
+      <div class="insight-body">
+        <div class="insight-label" style="color: var(--ch02)">技术洞察</div>
+        <div class="insight-text">AI 不是替代人，而是<strong>放大人</strong>。会用 AI 的人，效率是不会用的 10 倍。这不是威胁，是杠杆。问题不是"AI 会不会抢我的工作"，而是"哪些工作因 AI 而变得更值钱"。</div>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-bar" style="background: var(--ch02)"></div>
+      <div class="insight-body">
+        <div class="insight-label" style="color: var(--ch02)">规律洞察</div>
+        <div class="insight-text">每一次技术革命都会<strong>消灭旧岗位，创造新岗位</strong>。蒸汽机消灭了马车夫，创造了铁路工人。互联网消灭了传统零售，创造了电商。AI 将消灭重复性脑力工作，创造创意性协作岗位。</div>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-bar" style="background: var(--ch02)"></div>
+      <div class="insight-body">
+        <div class="insight-label" style="color: var(--ch02)">视角洞察</div>
+        <div class="insight-text">普通人看到的是<strong>工具</strong>，优秀者看到的是<strong>杠杆</strong>，卓越者看到的是<strong>范式转移</strong>。你用 AI 写文章，他用 AI 重构商业模式——起点相同，但认知高度决定终点不同。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 势的判断 -->
+  <h3 class="sub-h2 fade-in">顺势 vs 逆势：判断清楚再行动</h3>
+  <div class="contrast-pair fade-in">
+    <div class="contrast-card contrast-red">
+      <div class="contrast-title">❌ 逆势而为</div>
+      <ul class="contrast-list">
+        <li>坚持不用 AI，维护"纯手工"人设</li>
+        <li>只做平台内容，忽视 AI 推荐生态</li>
+        <li>低价量产内容，用数量换质量</li>
+        <li>等待观望，觉得 AI 是短暂泡沫</li>
+        <li>把 AI 当威胁而不是工具</li>
+      </ul>
+    </div>
+    <div class="contrast-card contrast-green">
+      <div class="contrast-title">✓ 顺势而为</div>
+      <ul class="contrast-list">
+        <li>把 AI 嵌入工作流，持续提升效率</li>
+        <li>布局 GEO，让 AI 主动推荐自己</li>
+        <li>专注深度价值，AI 做不了的事情</li>
+        <li>提前学习，抢占 AI 时代的认知红利</li>
+        <li>用 AI 放大自己的独特优势</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 三大机会 -->
+  <h3 class="sub-h2 fade-in">三大核心机会</h3>
+  <div class="card-grid fade-in">
+    <div class="card" style="--chapter-color: var(--ch02)">
+      <div class="card-icon">🧠</div>
+      <div class="card-title">智能服务</div>
+      <div class="card-body">以 AI 为引擎的专业服务升级——法律、医疗、咨询、教育。一个人能服务过去 10 人团队的工作量，单价反而更高。</div>
+    </div>
+    <div class="card" style="--chapter-color: var(--ch02)">
+      <div class="card-icon">🤖</div>
+      <div class="card-title">智能硬件</div>
+      <div class="card-body">AI 从云端走入实体——智能眼镜、AI 耳机、具身机器人。未来 3 年硬件 × AI 的交叉赛道将爆发出最大增量。</div>
+    </div>
+    <div class="card" style="--chapter-color: var(--ch02)">
+      <div class="card-icon">🌏</div>
+      <div class="card-title">AI 出海</div>
+      <div class="card-body">中国制造 × AI 能力 × 全球市场。用 AI 降低出海成本，用本地化内容打开全球流量，这是最大的套利机会。</div>
+    </div>
+  </div>
+
+  <!-- 社会结构变化 -->
+  <h3 class="sub-h2 fade-in">社会结构的深层变化</h3>
+  <div class="big-number fade-in" style="--chapter-color: var(--ch02)">
+    <div class="num">1000万</div>
+    <div class="label">AI 时代新增岗位预测（中国，2025—2030）</div>
+  </div>
+  <div class="prism-box fade-in" style="--chapter-color: var(--ch02); --chapter-bg: var(--ch02-bg)">
+    <div class="prism-title">地缘 → 心缘：连接方式的革命</div>
+    <div class="prism-items">
+      <div class="prism-item">
+        <div class="prism-icon" style="background: #999">📍</div>
+        <div class="prism-label">地缘社区</div>
+        <div style="font-size:0.78rem; color: var(--ink-l); margin-top:0.3rem">同地→认识</div>
+      </div>
+      <div class="prism-connector">→</div>
+      <div class="prism-item">
+        <div class="prism-icon" style="background: var(--ch02)">💙</div>
+        <div class="prism-label">心缘社区</div>
+        <div style="font-size:0.78rem; color: var(--ink-l); margin-top:0.3rem">同频→相聚</div>
+      </div>
+    </div>
+    <p style="font-size:0.88rem; color: var(--ink-l); margin-top: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+      AI 降低了远程协作成本，未来的社群和团队不再受地理限制。同价值观、同兴趣的人将跨越地域形成更紧密的连接。
+    </p>
+  </div>
+
+  <!-- 新物种宣言 -->
+  <h3 class="sub-h2 fade-in">新物种宣言</h3>
+  <ul class="checklist fade-in">
+    <li class="done">我不和 AI 竞争，我用 AI 做杠杆</li>
+    <li class="done">我不卖时间，我卖认知和判断力</li>
+    <li class="done">我不追平台算法，我让 AI 推荐我</li>
+    <li>我每天花 30 分钟学习 AI 新能力</li>
+    <li>我把重复工作交给 AI，精力用在创造</li>
+    <li>我在 AI 改变行业前，抢先成为行业专家</li>
+  </ul>
+
+</section>
+</div>
+
+<!-- =====================================================================
+     CHAPTER 03 — 创业、跨界和投资
+===================================================================== -->
+<div class="ch-wrap-03" id="ch03">
+<section class="chapter ch03">
+  <header class="chapter-header fade-in" style="position:relative">
+    <div class="chapter-badge">Chapter 03 · Entrepreneurship</div>
+    <h2 class="chapter-title">创业、跨界和投资</h2>
+    <p class="chapter-subtitle">老华 · 连续成功创业者的底层认知</p>
+    <div class="chapter-divider" style="background: var(--ch03)"></div>
+    <span class="chapter-num">03</span>
+  </header>
+
+  <!-- 人物时间线 -->
+  <h3 class="sub-h2 fade-in">创业轨迹：四次跨越</h3>
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-content" style="--chapter-color: var(--ch03)">
+        <div class="timeline-year">📍 新西兰</div>
+        <div class="timeline-text">异乡求学，打磨英文思维。感受到信息差和认知差的价值——同样的信息在不同市场有完全不同的价格。</div>
+      </div>
+      <div class="timeline-dot" style="background: var(--ch03)"></div>
+      <div style="flex:1"></div>
+    </div>
+    <div class="timeline-item">
+      <div style="flex:1"></div>
+      <div class="timeline-dot" style="background: var(--ch03)"></div>
+      <div class="timeline-content" style="--chapter-color: var(--ch03)">
+        <div class="timeline-year">🏠 房产跨界</div>
+        <div class="timeline-text">从零进入陌生行业，验证了"外行打内行"的可能——带着互联网思维重构传统房产服务流程。</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content" style="--chapter-color: var(--ch03)">
+        <div class="timeline-year">📚 米课创业</div>
+        <div class="timeline-text">外贸教育平台，从 0 到行业头部。核心洞察：中国外贸人极度缺乏系统化知识，付费意愿强烈，复购率高。</div>
+      </div>
+      <div class="timeline-dot" style="background: var(--ch03)"></div>
+      <div style="flex:1"></div>
+    </div>
+    <div class="timeline-item">
+      <div style="flex:1"></div>
+      <div class="timeline-dot" style="background: var(--ch03)"></div>
+      <div class="timeline-content" style="--chapter-color: var(--ch03)">
+        <div class="timeline-year">🐴 马厂时代</div>
+        <div class="timeline-text">AI 赋能出海，开创新赛道。用 AI 工具帮助中国企业打入全球市场，复制成熟方法论到新战场。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 创业核心 -->
+  <div class="accent-box fade-in" style="--chapter-bg: var(--ch03-bg); --chapter-color: var(--ch03)">
+    <strong>创业核心信条：</strong>找到一个有痛点的人群，做出一个真正解决问题的产品，然后不断迭代直到复购率证明你做对了。创业不是赌博，是用最小代价验证假设。
+  </div>
+
+  <!-- 好产品 9 条 -->
+  <h3 class="sub-h2 fade-in">好产品的 9 个判断标准</h3>
+  <div class="tags fade-in" style="--chapter-color: var(--ch03); --chapter-bg: var(--ch03-bg)">
+    <span class="tag">① 解决真实痛点</span>
+    <span class="tag">② 用户用完还会来</span>
+    <span class="tag">③ 说得清楚一句话</span>
+    <span class="tag">④ 价格对应价值</span>
+    <span class="tag">⑤ 用户主动推荐</span>
+    <span class="tag">⑥ 越用越离不开</span>
+    <span class="tag">⑦ 边际成本在降</span>
+    <span class="tag">⑧ 可以持续改进</span>
+    <span class="tag">⑨ 有数据做决策</span>
+  </div>
+
+  <!-- 复购率大金句 -->
+  <div class="gold-quote fade-in">
+    <p>复购率是检验一切商业模式的<br>最终考卷。<br>没有复购的增长，<br>都是在透支未来。</p>
+    <cite>— 老华 · 创业心法</cite>
+  </div>
+
+  <!-- 投资 7 件事 -->
+  <h3 class="sub-h2 fade-in">投资要看的 7 件事</h3>
+  <div class="step-flow fade-in" style="--chapter-color: var(--ch03)">
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch03)">1</div>
+      <div class="step-content">
+        <div class="step-title">赛道是否够大</div>
+        <div class="step-desc">千亿市场里的 1% 也有十亿。赛道天花板决定企业上限。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch03)">2</div>
+      <div class="step-content">
+        <div class="step-title">创始人是否对路</div>
+        <div class="step-desc">行业出身 or 降维打击？要么深耕，要么颠覆，不要不上不下。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch03)">3</div>
+      <div class="step-content">
+        <div class="step-title">商业模式是否清晰</div>
+        <div class="step-desc">说不清怎么赚钱的公司，通常也赚不到钱。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch03)">4</div>
+      <div class="step-content">
+        <div class="step-title">护城河在哪里</div>
+        <div class="step-desc">数据、网络效应、品牌、技术专利——护城河越深越好。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch03)">5</div>
+      <div class="step-content">
+        <div class="step-title">现金流是否健康</div>
+        <div class="step-desc">盈利能力比增长速度更重要，活下去才能赢。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch03)">6</div>
+      <div class="step-content">
+        <div class="step-title">时机是否恰当</div>
+        <div class="step-desc">太早是先烈，太晚是跟风。好的投资总在拐点附近。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch03)">7</div>
+      <div class="step-content">
+        <div class="step-title">退出路径是否明确</div>
+        <div class="step-desc">IPO、并购、回购——进入前就想好如何退出。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 定位即放弃 -->
+  <h3 class="sub-h2 fade-in">定位即放弃</h3>
+  <div class="contrast-pair fade-in">
+    <div class="contrast-card contrast-red">
+      <div class="contrast-title">❌ 什么都想要</div>
+      <ul class="contrast-list">
+        <li>服务所有用户群体</li>
+        <li>做全品类产品线</li>
+        <li>全渠道同时布局</li>
+        <li>低价高量覆盖市场</li>
+        <li>结果：什么都做不好</li>
+      </ul>
+    </div>
+    <div class="contrast-card contrast-green">
+      <div class="contrast-title">✓ 聚焦最重要的事</div>
+      <ul class="contrast-list">
+        <li>锁定核心用户画像</li>
+        <li>只做最有竞争力的产品</li>
+        <li>选 1-2 个主力渠道做深</li>
+        <li>高价做精，利润反而更高</li>
+        <li>成为细分市场第一名</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 组织能力洞察 -->
+  <h3 class="sub-h2 fade-in">组织能力的本质</h3>
+  <div class="insight-card fade-in" style="--chapter-color: var(--ch03)">
+    <div class="insight-bar" style="background: var(--ch03)"></div>
+    <div class="insight-body">
+      <div class="insight-label" style="color: var(--ch03)">组织洞察</div>
+      <div class="insight-text">企业的天花板是创始人的认知天花板。组织能力 = 选对人 × 做对事 × 激励到位。最好的管理不是管人，而是让人自我管理——设计好游戏规则，让每个人都想赢。</div>
+    </div>
+  </div>
+
+  <!-- 标的 vs 价格 -->
+  <h3 class="sub-h2 fade-in">投资标的 vs 入场价格</h3>
+  <div class="contrast-pair fade-in">
+    <div class="contrast-card contrast-red">
+      <div class="contrast-title">📌 烂标的贵买</div>
+      <ul class="contrast-list">
+        <li>商业模式有缺陷</li>
+        <li>高估值泡沫明显</li>
+        <li>看热点追风口</li>
+        <li>忽视基本面</li>
+      </ul>
+    </div>
+    <div class="contrast-card contrast-green">
+      <div class="contrast-title">💎 好标的便宜买</div>
+      <ul class="contrast-list">
+        <li>优秀企业低谷期布局</li>
+        <li>市场情绪悲观时入场</li>
+        <li>长期逻辑不变则持有</li>
+        <li>安全边际足够才出手</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<!-- =====================================================================
+     CHAPTER 04 — 从聊天到生产力
+===================================================================== -->
+<div class="ch-wrap-04" id="ch04">
+<section class="chapter ch04">
+  <header class="chapter-header fade-in" style="position:relative">
+    <div class="chapter-badge">Chapter 04 · Digital Workforce</div>
+    <h2 class="chapter-title">从聊天到生产力</h2>
+    <p class="chapter-subtitle">用 OpenClaw 搭建 7×24 数字员工</p>
+    <div class="chapter-divider" style="background: var(--ch04)"></div>
+    <span class="chapter-num">04</span>
+  </header>
+
+  <!-- 7×24 核心数据 -->
+  <div class="big-number fade-in" style="--chapter-color: var(--ch04)">
+    <div class="num">7×24</div>
+    <div class="label">永不下班的数字员工 · 成本仅需人工的 1%</div>
+  </div>
+
+  <!-- 三大优势 -->
+  <h3 class="sub-h2 fade-in">数字员工三大优势</h3>
+  <div class="triangle-grid fade-in" style="--chapter-color: var(--ch04)">
+    <div class="triangle-item" style="border-top-color: var(--ch04)">
+      <div class="tri-icon">💸</div>
+      <div class="tri-title">极度便宜</div>
+      <div class="tri-body">API 调用成本不到人工的 1%。一个月处理 10 万条消息的成本，可能不到一杯咖啡钱。规模越大，单位成本越低。</div>
+    </div>
+    <div class="triangle-item" style="border-top-color: var(--ch04)">
+      <div class="tri-icon">⚡</div>
+      <div class="tri-title">超级能干</div>
+      <div class="tri-body">同时处理数百个任务不出错。代码审查、文档撰写、数据分析、客服回复——多技能并行，响应速度秒级。</div>
+    </div>
+    <div class="triangle-item" style="border-top-color: var(--ch04)">
+      <div class="tri-icon">🎛️</div>
+      <div class="tri-title">完全可控</div>
+      <div class="tri-body">通过 Prompt 精确定义行为边界。知识库随时更新，角色随时调整，永远不会"心情不好"或"离职"。</div>
+    </div>
+  </div>
+
+  <!-- 竞争门槛 -->
+  <h3 class="sub-h2 fade-in">未来竞争门槛的变化</h3>
+  <div class="contrast-pair fade-in">
+    <div class="contrast-card contrast-red">
+      <div class="contrast-title">❌ 旧竞争门槛</div>
+      <ul class="contrast-list">
+        <li>雇佣更多员工</li>
+        <li>建更大的团队</li>
+        <li>堆砌人力完成任务</li>
+        <li>靠资本密集投入</li>
+        <li>规模 = 竞争力</li>
+      </ul>
+    </div>
+    <div class="contrast-card contrast-green">
+      <div class="contrast-title">✓ 新竞争门槛</div>
+      <ul class="contrast-list">
+        <li>用 AI 扩展团队能力</li>
+        <li>Prompt 工程即核心技能</li>
+        <li>流程自动化降低边际成本</li>
+        <li>知识密集型创造价值</li>
+        <li>人均产值 = 真实竞争力</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Prompt 岗位说明书 -->
+  <h3 class="sub-h2 fade-in">Prompt 岗位说明书：5 步设计法</h3>
+  <div class="step-flow fade-in" style="--chapter-color: var(--ch04)">
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch04)">1</div>
+      <div class="step-content">
+        <div class="step-title">定义角色（Role）</div>
+        <div class="step-desc">你是谁、你的专业背景、你的工作态度。例："你是一位资深产品经理，擅长用户研究和需求分析。"</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch04)">2</div>
+      <div class="step-content">
+        <div class="step-title">明确职责（Duty）</div>
+        <div class="step-desc">具体负责什么任务、处理哪类问题。职责越清晰，输出越精准。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch04)">3</div>
+      <div class="step-content">
+        <div class="step-title">设定风格（Style）</div>
+        <div class="step-desc">回复语气（正式/轻松）、格式（结构化/对话式）、长度（简洁/详尽）。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch04)">4</div>
+      <div class="step-content">
+        <div class="step-title">注入知识（Knowledge）</div>
+        <div class="step-desc">上传产品手册、FAQ、历史案例。知识库越丰富，AI 越像真实专家。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch04)">5</div>
+      <div class="step-content">
+        <div class="step-title">定义边界（Boundary）</div>
+        <div class="step-desc">明确不能做什么、遇到什么情况要升级人工。边界保护产品安全。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 四种虾团队 -->
+  <h3 class="sub-h2 fade-in">四种数字虾团队</h3>
+  <div class="card-grid fade-in" style="--chapter-color: var(--ch04)">
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <div class="card-title">产品虾</div>
+      <div class="card-body">需求分析、竞品调研、PRD撰写、用户故事拆解。相当于一个初级产品经理的输出能力。</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💻</div>
+      <div class="card-title">代码虾</div>
+      <div class="card-body">代码审查、Bug 定位、单元测试生成、技术文档撰写。配合 GitHub Copilot 提升开发效率 300%。</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">测试虾</div>
+      <div class="card-body">测试用例生成、回归测试规划、性能测试分析。把测试工作量减少 60%。</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📝</div>
+      <div class="card-title">文档虾</div>
+      <div class="card-body">技术文档、用户手册、营销文案、会议纪要。文档工作永远不缺席。</div>
+    </div>
+  </div>
+
+  <!-- API vs 浏览器 -->
+  <h3 class="sub-h2 fade-in">API 模式 vs 浏览器模式</h3>
+  <div class="fade-in">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th class="th-dim">对比维度</th>
+        <th class="th-green">API 直连模式</th>
+        <th class="th-red">浏览器对话模式</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>成本</strong></td>
+        <td class="td-green">按 Token 计费，极低</td>
+        <td class="td-red">固定月费，不看使用量</td>
+      </tr>
+      <tr>
+        <td><strong>集成性</strong></td>
+        <td class="td-green">嵌入任何系统工作流</td>
+        <td class="td-red">只能在浏览器界面用</td>
+      </tr>
+      <tr>
+        <td><strong>自动化</strong></td>
+        <td class="td-green">完全可程序化触发</td>
+        <td class="td-red">需要人工每次输入</td>
+      </tr>
+      <tr>
+        <td><strong>可扩展性</strong></td>
+        <td class="td-green">并发无上限</td>
+        <td class="td-red">单用户单会话</td>
+      </tr>
+      <tr>
+        <td><strong>数据安全</strong></td>
+        <td class="td-green">私有化部署可选</td>
+        <td class="td-red">数据经第三方服务器</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- 结尾金句 -->
+  <div class="gold-quote fade-in">
+    <p>从今天起，<br>你的竞争对手不是<br>隔壁的人，<br>而是使用 AI 的人。</p>
+    <cite>— OpenClaw 数字员工理念</cite>
+  </div>
+
+</section>
+</div>
+
+<!-- =====================================================================
+     CHAPTER 05 — 半年 40 亿流量
+===================================================================== -->
+<div class="ch-wrap-05" id="ch05">
+<section class="chapter ch05">
+  <header class="chapter-header fade-in" style="position:relative">
+    <div class="chapter-badge">Chapter 05 · Viral Growth</div>
+    <h2 class="chapter-title">半年 40 亿流量</h2>
+    <p class="chapter-subtitle">Seedance 2.0 爆款全拆解</p>
+    <div class="chapter-divider" style="background: var(--ch05)"></div>
+    <span class="chapter-num">05</span>
+  </header>
+
+  <!-- 核心数据 -->
+  <div class="card-grid fade-in" style="--chapter-color: var(--ch05)">
+    <div class="card" style="text-align: center; padding: 2.5rem;">
+      <div style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--ch05); line-height: 1;">40亿</div>
+      <div style="font-size: 0.85rem; color: var(--ink-l); margin-top: 0.5rem;">半年累计播放量</div>
+    </div>
+    <div class="card" style="text-align: center; padding: 2.5rem;">
+      <div style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--ch05); line-height: 1;">万刀</div>
+      <div style="font-size: 0.85rem; color: var(--ink-l); margin-top: 0.5rem;">月收入峰值</div>
+    </div>
+    <div class="card" style="text-align: center; padding: 2.5rem;">
+      <div style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--ch05); line-height: 1;">30亿</div>
+      <div style="font-size: 0.85rem; color: var(--ink-l); margin-top: 0.5rem;">单账号最高播放</div>
+    </div>
+  </div>
+
+  <!-- 人物时间线 -->
+  <h3 class="sub-h2 fade-in">从 0 到爆款的成长轨迹</h3>
+  <div class="step-flow fade-in" style="--chapter-color: var(--ch05)">
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch05)">①</div>
+      <div class="step-content">
+        <div class="step-title">入局 AI 生成视频</div>
+        <div class="step-desc">2024 年初，发现 AI 生成视频的内容洼地——高质量内容稀缺，流量极易获取。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch05)">②</div>
+      <div class="step-content">
+        <div class="step-title">摸索爆款规律</div>
+        <div class="step-desc">发布 200+ 条内容，系统拆解数据，发现完播率和前 3 秒是决定生死的核心指标。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch05)">③</div>
+      <div class="step-content">
+        <div class="step-title">建立 Seedance 方法论</div>
+        <div class="step-desc">从感性经验到系统框架：631 原则 + 1 秒法则 + 仿拆量三字心法成型。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num" style="background: var(--ch05)">④</div>
+      <div class="step-content">
+        <div class="step-title">规模化复制</div>
+        <div class="step-desc">矩阵账号铺开，一套方法论驱动多账号、多赛道同步爆发，半年 40 亿流量。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 631 原则 -->
+  <h3 class="sub-h2 fade-in">631 内容结构原则</h3>
+  <div class="rule-631 fade-in">
+    <div class="rule-6">
+      <div>6</div>
+      <div class="rule-label">情感共鸣 60%</div>
+    </div>
+    <div class="rule-3">
+      <div>3</div>
+      <div class="rule-label">信息价值 30%</div>
+    </div>
+    <div class="rule-1">
+      <div>1</div>
+      <div class="rule-label">行动引导 10%</div>
+    </div>
+  </div>
+  <div class="accent-box fade-in" style="--chapter-bg: var(--ch05-bg); --chapter-color: var(--ch05)">
+    <strong>631 的逻辑：</strong>人是情感动物，先打动情感才能传递信息。60% 的内容让观众感同身受，30% 给予真正有价值的信息，10% 自然引导关注或行动。硬卖货的视频永远跑不了量。
+  </div>
+
+  <!-- 1秒法则 -->
+  <h3 class="sub-h2 fade-in">1 秒法则：前 3 帧决定一切</h3>
+  <div class="second-timeline fade-in">
+    <div class="sec-block active">
+      <div class="sec-time">0-1s</div>
+      <div class="sec-text">钩子瞬间<br>视觉冲击 or 强问句</div>
+    </div>
+    <div class="sec-block active">
+      <div class="sec-time">1-3s</div>
+      <div class="sec-text">悬念建立<br>让人想看下去</div>
+    </div>
+    <div class="sec-block">
+      <div class="sec-time">3-10s</div>
+      <div class="sec-text">价值交付<br>核心信息前置</div>
+    </div>
+    <div class="sec-block">
+      <div class="sec-time">10-30s</div>
+      <div class="sec-text">情感共鸣<br>深化连接</div>
+    </div>
+    <div class="sec-block">
+      <div class="sec-time">30s+</div>
+      <div class="sec-text">行动引导<br>自然转化</div>
+    </div>
+  </div>
+
+  <!-- 内容密度对比 -->
+  <h3 class="sub-h2 fade-in">内容密度的决定性差异</h3>
+  <div class="contrast-pair fade-in">
+    <div class="contrast-card contrast-red">
+      <div class="contrast-title">❌ 低密度内容</div>
+      <ul class="contrast-list">
+        <li>前 10 秒自我介绍</li>
+        <li>信息稀疏，大量废话</li>
+        <li>背景音乐盖过重点</li>
+        <li>字幕和画面脱节</li>
+        <li>结尾强硬要求关注</li>
+      </ul>
+    </div>
+    <div class="contrast-card contrast-green">
+      <div class="contrast-title">✓ 高密度内容</div>
+      <ul class="contrast-list">
+        <li>第一帧直接进主题</li>
+        <li>每秒都有信息量</li>
+        <li>视觉/声音/文字三重强化</li>
+        <li>节奏紧张，不给划走的机会</li>
+        <li>自然引导，不显刻意</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 注意力 7 开关 -->
+  <h3 class="sub-h2 fade-in">注意力的 7 个开关</h3>
+  <div class="switch-grid fade-in">
+    <div class="switch-item">
+      <div class="sw-num">1</div>
+      <div class="sw-label">好奇心<br>我还不知道的</div>
+    </div>
+    <div class="switch-item">
+      <div class="sw-num">2</div>
+      <div class="sw-label">恐惧感<br>我可能在犯错</div>
+    </div>
+    <div class="switch-item">
+      <div class="sw-num">3</div>
+      <div class="sw-label">认同感<br>说出我心声了</div>
+    </div>
+    <div class="switch-item">
+      <div class="sw-num">4</div>
+      <div class="sw-label">惊喜感<br>完全没想到</div>
+    </div>
+    <div class="switch-item">
+      <div class="sw-num">5</div>
+      <div class="sw-label">紧迫感<br>现在就要看</div>
+    </div>
+    <div class="switch-item">
+      <div class="sw-num">6</div>
+      <div class="sw-label">归属感<br>我们是同类</div>
+    </div>
+    <div class="switch-item">
+      <div class="sw-num">7</div>
+      <div class="sw-label">期待感<br>后面更精彩</div>
+    </div>
+  </div>
+
+  <!-- 三字心法 -->
+  <h3 class="sub-h2 fade-in">爆款三字心法</h3>
+  <div class="big-steps fade-in" style="--chapter-color: var(--ch05)">
+    <div class="big-step" data-num="仿">
+      <div class="big-step-char">仿</div>
+      <div class="big-step-title">模仿标杆</div>
+      <div class="big-step-desc">找到赛道爆款，逐帧拆解结构，100% 理解后再开始创作。不要从零开始，先站在巨人的肩膀上。</div>
+    </div>
+    <div class="big-step" data-num="拆">
+      <div class="big-step-char">拆</div>
+      <div class="big-step-title">深度拆解</div>
+      <div class="big-step-desc">把爆款视频拆成：选题逻辑 + 开头钩子 + 内容结构 + 情感节奏 + 结尾引导。每个元素都要搞清楚为什么有效。</div>
+    </div>
+    <div class="big-step" data-num="量">
+      <div class="big-step-char">量</div>
+      <div class="big-step-title">规模量产</div>
+      <div class="big-step-desc">验证框架后批量生产。AI 生成视频降低了制作成本，关键是把爆款公式工业化，每天稳定产出。</div>
+    </div>
+  </div>
+
+  <!-- 情感演绎 -->
+  <div class="accent-box fade-in" style="--chapter-bg: var(--ch05-bg); --chapter-color: var(--ch05)">
+    <strong>情感是最大的流量密码：</strong>数据和技巧是工具，但真正让视频被分享、被记住的是<strong>情感共鸣</strong>。让观众看完后感到被理解、被鼓励、被感动——这才是真正的爆款基因。技术可以复制，情感无法伪造。
+  </div>
+
+  <!-- 温暖结尾 -->
+  <div class="gold-quote fade-in">
+    <p>每一个播放量背后，<br>都是一个真实的人。<br>做内容的终极意义，<br>不是流量，<br>是触动。</p>
+    <cite>— Seedance 2.0 创作哲学</cite>
+  </div>
+
+</section>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-logo fade-in">AI 时代知识合集</div>
+  <p class="footer-sub fade-in">AI ERA KNOWLEDGE COLLECTION · 2025</p>
+  <div class="footer-chapters fade-in">
+    <div class="footer-ch"><a href="#ch01">Ch.01 GEO 的千亿机会</a></div>
+    <div class="footer-ch"><a href="#ch02">Ch.02 把未来清晰告诉大家</a></div>
+    <div class="footer-ch"><a href="#ch03">Ch.03 创业、跨界和投资</a></div>
+    <div class="footer-ch"><a href="#ch04">Ch.04 从聊天到生产力</a></div>
+    <div class="footer-ch"><a href="#ch05">Ch.05 半年 40 亿流量</a></div>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy fade-in">5 位一线实战者的认知结晶 · 从认知到行动的完整框架 · 2025</p>
+</footer>
+
+<script>
+// IntersectionObserver 滚动渐入
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+document.querySelectorAll('.fade-in').forEach(el => {
+  observer.observe(el);
+});
+
+// Nav active state on scroll
+const sections = document.querySelectorAll('[id^="ch0"]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.style.background = '';
+        link.style.color = '';
+        if (link.getAttribute('href') === '#' + id) {
+          link.style.background = 'var(--gold-light)';
+          link.style.color = 'var(--gold-dark)';
+        }
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(s => sectionObserver.observe(s));
+
+// Smooth hover on stat cards
+document.querySelectorAll('.stat-card').forEach((card, i) => {
+  card.style.animationDelay = i * 0.1 + 's';
+});
+</script>
+</body>
+</html>
