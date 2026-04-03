@@ -8,6 +8,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/' },
+      { text: '报告', link: '/ip-docs/html/demo.html', target: '_blank' },
     ],
     sidebar: [
       {
